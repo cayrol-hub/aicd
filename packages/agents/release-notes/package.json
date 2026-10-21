@@ -1,0 +1,32 @@
+{
+    "name": "@aicd/agent-release-notes",
+    "version": "1.0.0",
+    "description": "Release notes agent",
+    "license": "Apache-2.0",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aicd-dev/aicd.git",
+        "directory": "packages/agents/release-notes"
+    },
+    "engines": {
+        "node": ">=22.13"
+    },
+    "dependencies": {
+        "@aicd/plugin-sdk": "workspace:*",
+        "@aicd/core": "workspace:*",
+        "@aicd/git": "workspace:*",
+        "zod": "^4.6.7"
+    }
+}

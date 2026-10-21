@@ -1,0 +1,29 @@
+{
+    "name": "@aicd/adapter-issue-trackers",
+    "version": "1.0.0",
+    "description": "Issue trackers: Jira, GitHub Issues, Linear, Markdown specs",
+    "license": "Apache-2.0",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aicd-dev/aicd.git",
+        "directory": "packages/adapters/issue-trackers"
+    },
+    "engines": {
+        "node": ">=22.13"
+    },
+    "dependencies": {
+        "@aicd/plugin-sdk": "workspace:*"
+    }
+}
