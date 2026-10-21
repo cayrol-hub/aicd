@@ -5,7 +5,7 @@ import {
     PrometheusSource,
     SentrySource,
     sumPointWise
-} from "@aicd/adapter-metrics-sources";
+} from "@aicd-ci/adapter-metrics-sources";
 
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};
 const window = {start: new Date("2026-10-21T10:00:00Z"), end: new Date("2026-10-21T10:15:00Z")};

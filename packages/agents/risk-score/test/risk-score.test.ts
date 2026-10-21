@@ -3,7 +3,7 @@ import {mkdtempSync, mkdirSync, rmSync, writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {dirname, join} from "node:path";
 import {afterAll, beforeAll, describe, expect, it, vi} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     COMMENT_MARKER,
     findDestructiveSql,
@@ -16,9 +16,9 @@ import {
     scoreMergeRequest,
     type RiskSignal,
     type SignalId
-} from "@aicd/agent-risk-score";
-import {RunBudget} from "@aicd/core";
-import type {AgentRuntime} from "@aicd/plugin-sdk";
+} from "@aicd-ci/agent-risk-score";
+import {RunBudget} from "@aicd-ci/core";
+import type {AgentRuntime} from "@aicd-ci/plugin-sdk";
 
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};
 

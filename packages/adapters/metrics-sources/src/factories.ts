@@ -1,4 +1,4 @@
-import type {Factory, FactoryContext, MetricsSource} from "@aicd/plugin-sdk";
+import type {Factory, FactoryContext, MetricsSource} from "@aicd-ci/plugin-sdk";
 import {DatadogSource} from "./datadog.js";
 import {PrometheusSource} from "./prometheus.js";
 import {SentrySource} from "./sentry.js";

@@ -1,5 +1,5 @@
 /**
- * Conformance kit for plugin authors: `@aicd/plugin-sdk/testing`.
+ * Conformance kit for plugin authors: `@aicd-ci/plugin-sdk/testing`.
  * Framework-agnostic: each check returns a list of failures (empty = conformant), so it fits
  * Vitest, Jest, Mocha or node:test with one assertion.
  */

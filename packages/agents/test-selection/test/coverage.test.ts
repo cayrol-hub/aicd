@@ -7,7 +7,7 @@ import {
     parseJaCoCo,
     parseLcov,
     shellQuote
-} from "@aicd/agent-test-selection";
+} from "@aicd-ci/agent-test-selection";
 
 describe("normalizePath", () => {
     it("makes paths repository-relative and POSIX", () => {

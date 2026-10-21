@@ -15,7 +15,7 @@ spec:
       description: analyze runs `always` so that green pipelines feed the flaky-test history.
     version:
       default: "1"
-      description: Version of @aicd/cli to run.
+      description: Version of @aicd-ci/cli to run.
     config:
       default: .aicd.yaml
       description: Path of the configuration file.
@@ -55,4 +55,4 @@ $[[ inputs.job_name ]]:
       set -f  # arguments are split on spaces but never glob-expanded
       config_args=""
       if [ -f "$AICD_INPUT_CONFIG" ]; then config_args="--config $AICD_INPUT_CONFIG"; fi
-      npx --yes @aicd/cli@$[[ inputs.version ]] $AICD_INPUT_COMMAND --ci gitlab $config_args $AICD_INPUT_ARGS
+      npx --yes @aicd-ci/cli@$[[ inputs.version ]] $AICD_INPUT_COMMAND --ci gitlab $config_args $AICD_INPUT_ARGS

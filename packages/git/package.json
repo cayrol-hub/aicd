@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/git",
+    "name": "@aicd-ci/git",
     "version": "1.0.0",
     "description": "Read-only git helpers (log, diff, tags, co-change)",
     "license": "Apache-2.0",

@@ -1,5 +1,5 @@
 import {createHmac} from "node:crypto";
-import type {Deployer, DeploymentRef, DeploymentState} from "@aicd/plugin-sdk";
+import type {Deployer, DeploymentRef, DeploymentState} from "@aicd-ci/plugin-sdk";
 import {assertTarget, matchesTarget, type DeployTarget} from "./guard.js";
 
 export interface WebhookDeployerOptions {

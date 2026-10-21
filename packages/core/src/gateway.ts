@@ -9,7 +9,7 @@ import {
     type ProposedAction,
     type QuarantineRecord,
     type StateStore
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import type {Decision} from "./policy.js";
 
 /** Everything the gateway may act on. Missing targets make the matching actions skipped. */

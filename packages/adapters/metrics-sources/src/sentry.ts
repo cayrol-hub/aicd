@@ -1,4 +1,4 @@
-import type {ErrorGroup, MetricQuery, MetricSample, MetricsSource, TimeWindow} from "@aicd/plugin-sdk";
+import type {ErrorGroup, MetricQuery, MetricSample, MetricsSource, TimeWindow} from "@aicd-ci/plugin-sdk";
 import {getJson, trimBase, type HttpOptions} from "./http.js";
 
 export interface SentryOptions extends HttpOptions {

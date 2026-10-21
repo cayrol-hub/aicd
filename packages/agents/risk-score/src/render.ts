@@ -1,4 +1,4 @@
-import type {Language} from "@aicd/plugin-sdk";
+import type {Language} from "@aicd-ci/plugin-sdk";
 import {explainSignal, type RiskLevel, type RiskReport, type SignalId} from "./score.js";
 
 export const COMMENT_MARKER = "<!-- aicd:risk -->";

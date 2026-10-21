@@ -8,7 +8,7 @@ import {
     type Logger,
     type QuarantineRecord,
     type StateStore
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {ALERT_SOURCES, normalizeAlert} from "./alerts.js";
 import {bearerToken, matchesAnyToken, safeEqual, verifyGitHubSignature, verifyHmacSha256} from "./auth.js";
 import {PayloadError, type AicdEvent, type AlertSource, type EventHandlers} from "./events.js";
@@ -45,7 +45,7 @@ export interface AicdServerOptions {
         sentryClientSecret?: string;
     };
     handlers: EventHandlers;
-    /** Injected so that the server stays generic (DORA lives in `@aicd/metrics`). */
+    /** Injected so that the server stays generic (DORA lives in `@aicd-ci/metrics`). */
     api?: {dora?(params: DoraParams): Promise<unknown>};
     mcp?: McpEndpoint;
     /** Default 2. */

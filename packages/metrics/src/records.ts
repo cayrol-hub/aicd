@@ -1,5 +1,5 @@
-import {log} from "@aicd/git";
-import {COLLECTIONS, type DeploymentRecord, type IncidentRecord, type StateStore} from "@aicd/plugin-sdk";
+import {log} from "@aicd-ci/git";
+import {COLLECTIONS, type DeploymentRecord, type IncidentRecord, type StateStore} from "@aicd-ci/plugin-sdk";
 
 /** Upper bound of records read from a collection at once. */
 export const MAX_RECORDS = 10_000;

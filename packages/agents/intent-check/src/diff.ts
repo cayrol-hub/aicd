@@ -1,4 +1,4 @@
-import {quoteIsIn} from "@aicd/core";
+import {quoteIsIn} from "@aicd-ci/core";
 
 /** The part of a unified diff that concerns one file. */
 export interface DiffSection {

@@ -1,4 +1,4 @@
-import {COLLECTIONS, type StateStore} from "@aicd/plugin-sdk";
+import {COLLECTIONS, type StateStore} from "@aicd-ci/plugin-sdk";
 import type {SecurityAlert, Severity} from "./sarif.js";
 
 /** What the default branch already has: alerts in it are not new on a merge request. */

@@ -1,6 +1,6 @@
-import {callLlm} from "@aicd/core";
-import {log, previousTag as findPreviousTag, revParse, tags} from "@aicd/git";
-import type {AgentResult, AgentRuntime, Language, ProposedAction} from "@aicd/plugin-sdk";
+import {callLlm} from "@aicd-ci/core";
+import {log, previousTag as findPreviousTag, revParse, tags} from "@aicd-ci/git";
+import type {AgentResult, AgentRuntime, Language, ProposedAction} from "@aicd-ci/plugin-sdk";
 import {INTERNAL_TYPES, SECTIONS, skipReason, toEntry, type ReleaseEntry} from "./conventional.js";
 import {buildPrompt, LlmNotesSchema, SYSTEM_PROMPT, verifyNotes, type Audience} from "./llm.js";
 import {commitLink, entryBullet, inline, renderNotes, type LinkOptions, type NotesSection} from "./render.js";
@@ -25,7 +25,7 @@ export interface ReleaseNotesOptions extends LinkOptions {
 export interface ReleaseNotesInput {
     cwd: string;
     tag: string;
-    /** Default: the tag before `tag` (`@aicd/git` `previousTag`). */
+    /** Default: the tag before `tag` (`@aicd-ci/git` `previousTag`). */
     previousTag?: string;
     audiences?: Audience[];
     /** Titles of merge / pull requests by reference ("!45", "#12"): classify squash commits, context for the LLM. */

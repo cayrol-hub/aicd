@@ -1,5 +1,5 @@
 import {describe, expect, it, vi} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     dedupeAlerts,
     globToRegExp,
@@ -12,15 +12,15 @@ import {
     splitNewAlerts,
     type LlmSecurityVerdict,
     type SecurityAlert
-} from "@aicd/agent-security-triage";
-import {RunBudget} from "@aicd/core";
+} from "@aicd-ci/agent-security-triage";
+import {RunBudget} from "@aicd-ci/core";
 import {
     COLLECTIONS,
     type AgentRuntime,
     type LLMProvider,
     type ReadonlyCI,
     type StructuredRequest
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {CODEQL, LOGIN_JS, semgrep, TRIVY} from "./fixtures.js";
 
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};

@@ -1,9 +1,9 @@
 import {PassThrough} from "node:stream";
 import {describe, expect, it, vi} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
-import {createMcpServer, invalidParams, serveStdio, validateArguments, type McpTool} from "@aicd/mcp";
-import {recordDeployment, recordIncident} from "@aicd/metrics";
-import {COLLECTIONS, type QuarantineRecord} from "@aicd/plugin-sdk";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
+import {createMcpServer, invalidParams, serveStdio, validateArguments, type McpTool} from "@aicd-ci/mcp";
+import {recordDeployment, recordIncident} from "@aicd-ci/metrics";
+import {COLLECTIONS, type QuarantineRecord} from "@aicd-ci/plugin-sdk";
 
 const NOW = new Date("2026-10-15T00:00:00Z");
 

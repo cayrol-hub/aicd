@@ -1,4 +1,10 @@
-import {autonomyRank, FORBIDDEN_ACTIONS, type ActionType, type Autonomy, type ProposedAction} from "@aicd/plugin-sdk";
+import {
+    autonomyRank,
+    FORBIDDEN_ACTIONS,
+    type ActionType,
+    type Autonomy,
+    type ProposedAction
+} from "@aicd-ci/plugin-sdk";
 
 /** Minimum autonomy each action needs. */
 export const REQUIRED_AUTONOMY: Record<ActionType, Autonomy> = {

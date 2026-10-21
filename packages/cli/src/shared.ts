@@ -1,9 +1,9 @@
 import {readFileSync} from "node:fs";
 import {glob} from "tinyglobby";
-import {createLogger, loadConfig, type AicdConfig, type LogLevel, type ResolvedConfig} from "@aicd/core";
-import {parseJUnit, type TestCaseResult} from "@aicd/parsers";
-import type {Logger} from "@aicd/plugin-sdk";
-import {createRedactor, secretsFromEnv} from "@aicd/redaction";
+import {createLogger, loadConfig, type AicdConfig, type LogLevel, type ResolvedConfig} from "@aicd-ci/core";
+import {parseJUnit, type TestCaseResult} from "@aicd-ci/parsers";
+import type {Logger} from "@aicd-ci/plugin-sdk";
+import {createRedactor, secretsFromEnv} from "@aicd-ci/redaction";
 
 export interface GlobalOptions {
     config?: string;

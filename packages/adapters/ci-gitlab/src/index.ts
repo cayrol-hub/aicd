@@ -12,7 +12,7 @@ import type {
     PipelineContext,
     PipelineSummary,
     ReleaseDraft
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 
 interface GitLabJob {
     id: number;

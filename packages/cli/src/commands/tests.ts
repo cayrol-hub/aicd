@@ -13,7 +13,7 @@ import {
     runTestSelection,
     saveCoverageMap,
     type Selection
-} from "@aicd/agent-test-selection";
+} from "@aicd-ci/agent-test-selection";
 import {EXIT, findFiles, readTests, type GlobalOptions} from "../shared.js";
 import {conclude} from "../outcome.js";
 import {Session} from "../session.js";

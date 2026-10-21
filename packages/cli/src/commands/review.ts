@@ -1,8 +1,8 @@
-import {findTickets} from "@aicd/adapter-issue-trackers";
-import {runIntentCheck} from "@aicd/agent-intent-check";
-import {DEFAULT_SENSITIVE_PATHS, parseUnifiedDiff, runRiskScore} from "@aicd/agent-risk-score";
-import type {IssueTracker} from "@aicd/plugin-sdk";
-import {changedFiles as gitChangedFiles} from "@aicd/git";
+import {findTickets} from "@aicd-ci/adapter-issue-trackers";
+import {runIntentCheck} from "@aicd-ci/agent-intent-check";
+import {DEFAULT_SENSITIVE_PATHS, parseUnifiedDiff, runRiskScore} from "@aicd-ci/agent-risk-score";
+import type {IssueTracker} from "@aicd-ci/plugin-sdk";
+import {changedFiles as gitChangedFiles} from "@aicd-ci/git";
 import {EXIT, type GlobalOptions} from "../shared.js";
 import {conclude, report, type AgentRun} from "../outcome.js";
 import {Session} from "../session.js";

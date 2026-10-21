@@ -1,4 +1,4 @@
-import type {IssueTracker, Logger, Ticket} from "@aicd/plugin-sdk";
+import type {IssueTracker, Logger, Ticket} from "@aicd-ci/plugin-sdk";
 import {TrackerHttpError} from "./http.js";
 
 export interface FindTicketsOptions {

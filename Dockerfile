@@ -6,7 +6,7 @@ WORKDIR /src
 COPY . .
 RUN pnpm install --frozen-lockfile \
     && pnpm build \
-    && pnpm --filter @aicd/cli deploy --prod --legacy /out
+    && pnpm --filter @aicd-ci/cli deploy --prod --legacy /out
 
 FROM node:24-slim
 ENV NODE_ENV=production

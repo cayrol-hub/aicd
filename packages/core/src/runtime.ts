@@ -1,6 +1,6 @@
 import {appendFileSync, mkdirSync} from "node:fs";
 import {dirname} from "node:path";
-import type {AuditEntry, AuditKind, Budget, LLMUsage, Logger, StateStore} from "@aicd/plugin-sdk";
+import type {AuditEntry, AuditKind, Budget, LLMUsage, Logger, StateStore} from "@aicd-ci/plugin-sdk";
 
 export class RunBudget implements Budget {
     #spent = 0;

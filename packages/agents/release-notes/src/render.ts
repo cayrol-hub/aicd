@@ -1,4 +1,4 @@
-import type {Language} from "@aicd/plugin-sdk";
+import type {Language} from "@aicd-ci/plugin-sdk";
 import {SECTIONS, type Reference, type ReleaseEntry, type Section} from "./conventional.js";
 
 const TEXT = {

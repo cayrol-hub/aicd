@@ -1,4 +1,4 @@
-import type {Language} from "@aicd/plugin-sdk";
+import type {Language} from "@aicd-ci/plugin-sdk";
 import type {CoverageSource} from "./mapping.js";
 import {shellQuote} from "./paths.js";
 import type {Selection, SelectionDecision} from "./select.js";

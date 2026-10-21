@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/adapter-notifiers",
+    "name": "@aicd-ci/adapter-notifiers",
     "version": "1.0.0",
     "description": "Notifiers: Slack, Microsoft Teams, generic webhook",
     "license": "Apache-2.0",
@@ -24,6 +24,6 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*"
+        "@aicd-ci/plugin-sdk": "workspace:*"
     }
 }

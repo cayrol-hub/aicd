@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/agent-pipeline-optimizer",
+    "name": "@aicd-ci/agent-pipeline-optimizer",
     "version": "1.0.0",
     "description": "Pipeline optimizer agent: finds slow and redundant jobs",
     "license": "Apache-2.0",
@@ -24,8 +24,8 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*",
-        "@aicd/core": "workspace:*",
+        "@aicd-ci/plugin-sdk": "workspace:*",
+        "@aicd-ci/core": "workspace:*",
         "zod": "^4.6.7",
         "yaml": "^2.9.1"
     }

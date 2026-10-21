@@ -1,6 +1,6 @@
 import {describe, expect, it, vi} from "vitest";
-import {decide, executeDecisions, RunBudget} from "@aicd/core";
-import type {CIProvider, ProposedAction} from "@aicd/plugin-sdk";
+import {decide, executeDecisions, RunBudget} from "@aicd-ci/core";
+import type {CIProvider, ProposedAction} from "@aicd-ci/plugin-sdk";
 
 const retry: ProposedAction = {type: "retry_job", jobId: "42", reason: "flaky"};
 const comment: ProposedAction = {type: "comment", reason: "report", body: "hello"};

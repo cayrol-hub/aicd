@@ -15,7 +15,7 @@ test:
   image: node:24
   script:
     - npm ci
-    - npx vitest run --reporter=junit --outputFile=junit.xml $(npx --yes @aicd/cli@1 tests select --format args) || npx --yes @aicd/cli@1 quarantine check --junit junit.xml
+    - npx vitest run --reporter=junit --outputFile=junit.xml $(npx --yes @aicd-ci/cli@1 tests select --format args) || npx --yes @aicd-ci/cli@1 quarantine check --junit junit.xml
   artifacts:
     when: always
     reports:
@@ -26,11 +26,11 @@ deploy-production:
   stage: deploy
   environment: production
   script:
-    - npx --yes @aicd/cli@1 deploy record --env production --status in_progress --id "$CI_PIPELINE_ID"
+    - npx --yes @aicd-ci/cli@1 deploy record --env production --status in_progress --id "$CI_PIPELINE_ID"
     - ./deploy.sh
-    - npx --yes @aicd/cli@1 deploy record --env production --status success --id "$CI_PIPELINE_ID"
+    - npx --yes @aicd-ci/cli@1 deploy record --env production --status success --id "$CI_PIPELINE_ID"
     # Watches metrics for observe_minutes, then pauses or rolls back if the deployment degrades.
-    - npx --yes @aicd/cli@1 guard --deployment "$CI_PIPELINE_ID"
+    - npx --yes @aicd-ci/cli@1 guard --deployment "$CI_PIPELINE_ID"
   cache: {key: aicd-state, paths: [.aicd/]}
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

@@ -1,6 +1,6 @@
-import {guardDeployment} from "@aicd/agent-release-guardian";
-import {deploymentCommits, previousDeployment, recordDeployment} from "@aicd/metrics";
-import {COLLECTIONS, type DeploymentRecord, type DeploymentState, type StateStore} from "@aicd/plugin-sdk";
+import {guardDeployment} from "@aicd-ci/agent-release-guardian";
+import {deploymentCommits, previousDeployment, recordDeployment} from "@aicd-ci/metrics";
+import {COLLECTIONS, type DeploymentRecord, type DeploymentState, type StateStore} from "@aicd-ci/plugin-sdk";
 import {EXIT, type GlobalOptions} from "../shared.js";
 import {conclude, report} from "../outcome.js";
 import {Session} from "../session.js";

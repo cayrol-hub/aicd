@@ -1,4 +1,4 @@
-import type {Language} from "@aicd/plugin-sdk";
+import type {Language} from "@aicd-ci/plugin-sdk";
 import type {DoraLevel, DoraReport} from "./dora.js";
 
 const TEXT = {

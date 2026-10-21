@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/adapter-llm-openai",
+    "name": "@aicd-ci/adapter-llm-openai",
     "version": "1.0.0",
     "description": "OpenAI and OpenAI-compatible (Ollama, vLLM) LLM adapter",
     "license": "Apache-2.0",
@@ -24,7 +24,7 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*",
+        "@aicd-ci/plugin-sdk": "workspace:*",
         "zod": "^4.6.7"
     }
 }

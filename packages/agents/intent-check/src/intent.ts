@@ -1,5 +1,5 @@
-import {callLlm} from "@aicd/core";
-import type {AgentResult, AgentRuntime, Evidence, ProposedAction, Ticket} from "@aicd/plugin-sdk";
+import {callLlm} from "@aicd-ci/core";
+import type {AgentResult, AgentRuntime, Evidence, ProposedAction, Ticket} from "@aicd-ci/plugin-sdk";
 import {isTestFile, locateQuote, splitDiff} from "./diff.js";
 import {buildPrompt, LlmIntentSchema, SYSTEM_PROMPT, type PromptCriterion} from "./llm.js";
 import {COMMENT_MARKER, renderIntentComment, STATUS_CONTEXT, statusDescription} from "./render.js";
@@ -22,7 +22,7 @@ export interface IntentCheckInput {
     mergeRequest: {title: string; description?: string};
     diff?: string;
     changedFiles: string[];
-    /** Tickets linked to the merge request (see `findTickets` of @aicd/adapter-issue-trackers). */
+    /** Tickets linked to the merge request (see `findTickets` of @aicd-ci/adapter-issue-trackers). */
     tickets: Ticket[];
     options?: Partial<IntentCheckOptions>;
 }

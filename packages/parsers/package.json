@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/parsers",
+    "name": "@aicd-ci/parsers",
     "version": "1.0.0",
     "description": "Parsers for JUnit reports and CI logs",
     "license": "Apache-2.0",

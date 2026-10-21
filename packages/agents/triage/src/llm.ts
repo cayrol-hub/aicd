@@ -1,5 +1,5 @@
 import {z} from "zod";
-import {FAILURE_CATEGORIES, type Evidence, type FailureCategory} from "@aicd/plugin-sdk";
+import {FAILURE_CATEGORIES, type Evidence, type FailureCategory} from "@aicd-ci/plugin-sdk";
 
 export const LlmDiagnosisSchema = z.object({
     category: z.enum(FAILURE_CATEGORIES as [FailureCategory, ...FailureCategory[]]),

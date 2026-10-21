@@ -1,4 +1,4 @@
-import {COLLECTIONS, type StateStore, type TestSelectionRecord} from "@aicd/plugin-sdk";
+import {COLLECTIONS, type StateStore, type TestSelectionRecord} from "@aicd-ci/plugin-sdk";
 import {normalizePath} from "./paths.js";
 
 /** Stores a selection (`COLLECTIONS.testSelections`, id = run id). */

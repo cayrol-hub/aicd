@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/agent-test-selection",
+    "name": "@aicd-ci/agent-test-selection",
     "version": "1.0.0",
     "description": "Test selection agent: picks the tests a diff needs",
     "license": "Apache-2.0",
@@ -24,9 +24,9 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*",
-        "@aicd/core": "workspace:*",
-        "@aicd/git": "workspace:*",
+        "@aicd-ci/plugin-sdk": "workspace:*",
+        "@aicd-ci/core": "workspace:*",
+        "@aicd-ci/git": "workspace:*",
         "fast-xml-parser": "^5.11.2",
         "tinyglobby": "^0.2.17"
     }

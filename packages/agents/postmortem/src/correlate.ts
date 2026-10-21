@@ -1,4 +1,4 @@
-import {callLlm} from "@aicd/core";
+import {callLlm} from "@aicd-ci/core";
 import {
     COLLECTIONS,
     type AgentResult,
@@ -6,7 +6,7 @@ import {
     type DeploymentRecord,
     type IncidentRecord,
     type ProposedAction
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {buildCorrelationPrompt, CORRELATION_SYSTEM_PROMPT, LlmRankingSchema, verifyRanking} from "./llm.js";
 import {correlationText, renderCorrelationIssue} from "./render.js";
 

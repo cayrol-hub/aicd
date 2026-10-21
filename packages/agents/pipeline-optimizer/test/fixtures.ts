@@ -1,4 +1,4 @@
-import type {JobInfo, PipelineSummary} from "@aicd/plugin-sdk";
+import type {JobInfo, PipelineSummary} from "@aicd-ci/plugin-sdk";
 
 export const GITLAB_CI = `stages:
   - install

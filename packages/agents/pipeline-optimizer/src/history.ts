@@ -1,4 +1,4 @@
-import {COLLECTIONS, type JobInfo, type JobRunRecord, type PipelineSummary, type StateStore} from "@aicd/plugin-sdk";
+import {COLLECTIONS, type JobInfo, type JobRunRecord, type PipelineSummary, type StateStore} from "@aicd-ci/plugin-sdk";
 
 const FINISHED = new Set(["success", "failed", "canceled"]);
 

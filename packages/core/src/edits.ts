@@ -1,4 +1,4 @@
-import type {FileChange} from "@aicd/plugin-sdk";
+import type {FileChange} from "@aicd-ci/plugin-sdk";
 
 /** A change an LLM may propose: replace one exact, unique snippet of a file. */
 export interface TextEdit {

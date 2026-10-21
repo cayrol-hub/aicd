@@ -29,10 +29,10 @@ jobs:
         with: {node-version: 24}
       - run: npm ci
       # Only the tests the change needs (empty output = everything).
-      - run: npx vitest run --reporter=junit --outputFile=junit.xml $(npx --yes @aicd/cli@1 tests select --format args)
+      - run: npx vitest run --reporter=junit --outputFile=junit.xml $(npx --yes @aicd-ci/cli@1 tests select --format args)
       # Pass when every failing test is a known flaky test in quarantine.
       - if: failure()
-        run: npx --yes @aicd/cli@1 quarantine check --junit junit.xml
+        run: npx --yes @aicd-ci/cli@1 quarantine check --junit junit.xml
       - if: always()
         uses: actions/upload-artifact@v4
         with: {name: junit, path: junit.xml}

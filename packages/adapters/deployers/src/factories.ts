@@ -1,4 +1,4 @@
-import type {Deployer, Factory, FactoryContext} from "@aicd/plugin-sdk";
+import type {Deployer, Factory, FactoryContext} from "@aicd-ci/plugin-sdk";
 import {ArgoCDDeployer} from "./argocd.js";
 import {WebhookDeployer} from "./webhook.js";
 

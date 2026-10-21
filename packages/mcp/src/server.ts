@@ -1,4 +1,4 @@
-import type {Logger, StateStore} from "@aicd/plugin-sdk";
+import type {Logger, StateStore} from "@aicd-ci/plugin-sdk";
 import {
     failure,
     invalidParams,

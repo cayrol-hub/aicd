@@ -1,4 +1,4 @@
-import type {IncidentRecord, Language} from "@aicd/plugin-sdk";
+import type {IncidentRecord, Language} from "@aicd-ci/plugin-sdk";
 import type {CorrelationReport} from "./correlate.js";
 import type {Claim, NarrativeSection} from "./llm.js";
 import type {Durations, PostmortemReport, TimelineEntry} from "./postmortem.js";

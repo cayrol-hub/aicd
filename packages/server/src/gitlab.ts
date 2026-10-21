@@ -1,4 +1,4 @@
-import type {DeploymentState, JobStatus} from "@aicd/plugin-sdk";
+import type {DeploymentState, JobStatus} from "@aicd-ci/plugin-sdk";
 import type {AicdEvent} from "./events.js";
 import {at, defined, isoDate, obj, str} from "./json.js";
 

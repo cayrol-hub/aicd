@@ -1,5 +1,5 @@
 import {z} from "zod";
-import type {Language} from "@aicd/plugin-sdk";
+import type {Language} from "@aicd-ci/plugin-sdk";
 
 export const LlmIntentSchema = z.object({
     criteria: z

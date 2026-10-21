@@ -1,4 +1,4 @@
-import type {Language} from "@aicd/plugin-sdk";
+import type {Language} from "@aicd-ci/plugin-sdk";
 import type {FindingKind, OptimizerFinding} from "./analyze.js";
 import type {OptimizerReport} from "./optimizer.js";
 

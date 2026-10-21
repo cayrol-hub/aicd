@@ -1,4 +1,4 @@
-import type {Language} from "@aicd/plugin-sdk";
+import type {Language} from "@aicd-ci/plugin-sdk";
 import type {FlakyReport} from "./agent.js";
 import type {TestScore} from "./score.js";
 

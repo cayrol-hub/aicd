@@ -1,4 +1,4 @@
-import type {Evidence, Language} from "@aicd/plugin-sdk";
+import type {Evidence, Language} from "@aicd-ci/plugin-sdk";
 import {ownersOf, parseCodeowners} from "./codeowners.js";
 import {parseUnifiedDiff, type DiffFile} from "./diff.js";
 import {firstMatch} from "./glob.js";
@@ -261,7 +261,7 @@ export interface RiskInput {
     diff?: string;
     /** Changed paths, when no diff is available (or in addition to it). */
     changedFiles?: string[];
-    /** Fix commits per file, e.g. from `@aicd/git` `fixCounts`. */
+    /** Fix commits per file, e.g. from `@aicd-ci/git` `fixCounts`. */
     fixCounts?: ReadonlyMap<string, number> | Record<string, number>;
     /** Content of the CODEOWNERS file. */
     codeowners?: string;

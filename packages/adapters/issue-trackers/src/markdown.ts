@@ -1,6 +1,6 @@
 import {readFile} from "node:fs/promises";
 import {basename, isAbsolute, relative, resolve} from "node:path";
-import type {IssueTracker, Ticket} from "@aicd/plugin-sdk";
+import type {IssueTracker, Ticket} from "@aicd-ci/plugin-sdk";
 import {extractAcceptanceCriteria} from "./criteria.js";
 import {unique} from "./http.js";
 

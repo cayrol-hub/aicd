@@ -1,4 +1,4 @@
-import type {Confidence, FailureCategory, Finding} from "@aicd/plugin-sdk";
+import type {Confidence, FailureCategory, Finding} from "@aicd-ci/plugin-sdk";
 
 export const COMMENT_MARKER = "<!-- aicd:triage -->";
 

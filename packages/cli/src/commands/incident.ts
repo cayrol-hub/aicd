@@ -1,7 +1,7 @@
 import {writeFileSync} from "node:fs";
-import {buildPostmortem, correlateIncident, type PostmortemReport} from "@aicd/agent-postmortem";
-import {recordIncident} from "@aicd/metrics";
-import {COLLECTIONS, type AuditEntry, type IncidentRecord, type StateStore} from "@aicd/plugin-sdk";
+import {buildPostmortem, correlateIncident, type PostmortemReport} from "@aicd-ci/agent-postmortem";
+import {recordIncident} from "@aicd-ci/metrics";
+import {COLLECTIONS, type AuditEntry, type IncidentRecord, type StateStore} from "@aicd-ci/plugin-sdk";
 import {EXIT, type GlobalOptions} from "../shared.js";
 import {conclude, report} from "../outcome.js";
 import {Session} from "../session.js";

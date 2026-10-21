@@ -1,4 +1,4 @@
-import type {Evidence, JobRunRecord, Language} from "@aicd/plugin-sdk";
+import type {Evidence, JobRunRecord, Language} from "@aicd-ci/plugin-sdk";
 import {lineOf, parseCiConfig, type CiJob, type ConfigFile} from "./ci-config.js";
 import {jobStats, percentile, type JobStats} from "./history.js";
 

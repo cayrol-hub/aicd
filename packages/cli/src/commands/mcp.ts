@@ -1,4 +1,4 @@
-import {createMcpServer, serveStdio} from "@aicd/mcp";
+import {createMcpServer, serveStdio} from "@aicd-ci/mcp";
 import {EXIT, VERSION, type GlobalOptions} from "../shared.js";
 import {Session} from "../session.js";
 

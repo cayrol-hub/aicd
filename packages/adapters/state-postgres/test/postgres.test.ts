@@ -6,8 +6,8 @@ import {
     toJsonb,
     type PgPool,
     type PgPoolClient
-} from "@aicd/adapter-state-postgres";
-import {checkStateStore} from "@aicd/plugin-sdk/testing";
+} from "@aicd-ci/adapter-state-postgres";
+import {checkStateStore} from "@aicd-ci/plugin-sdk/testing";
 
 interface Call {
     text: string;

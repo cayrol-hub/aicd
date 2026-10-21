@@ -1,8 +1,8 @@
 import {copyFileSync, existsSync, mkdtempSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
-import {PostgresStateStore} from "@aicd/adapter-state-postgres";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {PostgresStateStore} from "@aicd-ci/adapter-state-postgres";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     Auditor,
     autonomyFor,
@@ -14,7 +14,7 @@ import {
     type AicdConfig,
     type ComponentRegistry,
     type Policies
-} from "@aicd/core";
+} from "@aicd-ci/core";
 import type {
     AgentRuntime,
     Autonomy,
@@ -29,7 +29,7 @@ import type {
     Notifier,
     PipelineContext,
     StateStore
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {builtInRegistry} from "./registry.js";
 import {makeLogger, makeRedactor, resolveConfig, type GlobalOptions} from "./shared.js";
 

@@ -1,7 +1,7 @@
 import {existsSync} from "node:fs";
 import {join} from "node:path";
-import {changedFiles as gitChangedFiles} from "@aicd/git";
-import type {AgentResult, AgentRuntime, ProposedAction} from "@aicd/plugin-sdk";
+import {changedFiles as gitChangedFiles} from "@aicd-ci/git";
+import type {AgentResult, AgentRuntime, ProposedAction} from "@aicd-ci/plugin-sdk";
 import {discoverTests} from "./discover.js";
 import {recordSelection} from "./history.js";
 import {loadCoverageMap, type CoverageMap} from "./mapping.js";

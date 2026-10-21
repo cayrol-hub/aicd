@@ -6,7 +6,7 @@ import {
     type LLMUsage,
     type StructuredRequest,
     type StructuredResponse
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 
 /** USD per million tokens [input, output]. Unknown models are priced at 0 with a warning. */
 export const PRICES: Record<string, [number, number]> = {

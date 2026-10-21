@@ -1,5 +1,5 @@
 import {describe, expect, it, vi} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     buildPostmortem,
     computeDurations,
@@ -9,8 +9,8 @@ import {
     type LlmNarrative,
     type LlmRanking,
     type TimelineEntry
-} from "@aicd/agent-postmortem";
-import {RunBudget} from "@aicd/core";
+} from "@aicd-ci/agent-postmortem";
+import {RunBudget} from "@aicd-ci/core";
 import {
     COLLECTIONS,
     type AgentRuntime,
@@ -19,7 +19,7 @@ import {
     type IncidentRecord,
     type LLMProvider,
     type StateStore
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};
 

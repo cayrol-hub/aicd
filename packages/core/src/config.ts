@@ -2,7 +2,7 @@ import {existsSync, readFileSync} from "node:fs";
 import {dirname, isAbsolute, resolve} from "node:path";
 import {parse as parseYaml} from "yaml";
 import {z} from "zod";
-import {minAutonomy, type Autonomy} from "@aicd/plugin-sdk";
+import {minAutonomy, type Autonomy} from "@aicd-ci/plugin-sdk";
 
 const autonomy = z.enum(["observe", "advise", "propose", "act"]);
 const sendCode = z.enum(["none", "diff_only", "full"]);

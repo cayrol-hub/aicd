@@ -1,6 +1,6 @@
 import {existsSync, mkdirSync, readFileSync, writeFileSync} from "node:fs";
 import {basename, dirname, join, resolve} from "node:path";
-import {git} from "@aicd/git";
+import {git} from "@aicd-ci/git";
 import type {
     CIProvider,
     CIProviderFactory,
@@ -12,7 +12,7 @@ import type {
     PipelineContext,
     PipelineSummary,
     ReleaseDraft
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 
 /**
  * Any CI, or a developer's machine: logs come from files, comments go to stdout and

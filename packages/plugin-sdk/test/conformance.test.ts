@@ -1,9 +1,9 @@
 import {describe, expect, it} from "vitest";
-import {githubProvider} from "@aicd/adapter-ci-github";
-import {gitlabProvider} from "@aicd/adapter-ci-gitlab";
-import {localProvider} from "@aicd/adapter-ci-local";
-import {definePlugin, PLUGIN_API_VERSION, type PluginManifest} from "@aicd/plugin-sdk";
-import {checkCIProvider, checkPluginManifest, checkStateStore} from "@aicd/plugin-sdk/testing";
+import {githubProvider} from "@aicd-ci/adapter-ci-github";
+import {gitlabProvider} from "@aicd-ci/adapter-ci-gitlab";
+import {localProvider} from "@aicd-ci/adapter-ci-local";
+import {definePlugin, PLUGIN_API_VERSION, type PluginManifest} from "@aicd-ci/plugin-sdk";
+import {checkCIProvider, checkPluginManifest, checkStateStore} from "@aicd-ci/plugin-sdk/testing";
 
 describe("conformance kit", () => {
     it("accepts the built-in CI adapters", async () => {

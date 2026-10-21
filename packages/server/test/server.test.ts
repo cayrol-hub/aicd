@@ -4,15 +4,15 @@ import {request} from "node:http";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
 import {afterEach, describe, expect, it} from "vitest";
-import {COLLECTIONS, type Logger, type StateStore} from "@aicd/plugin-sdk";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {COLLECTIONS, type Logger, type StateStore} from "@aicd-ci/plugin-sdk";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     createAicdServer,
     type AicdEvent,
     type AicdServer,
     type AicdServerOptions,
     type EventRecord
-} from "@aicd/server";
+} from "@aicd-ci/server";
 
 const GITHUB_SECRET = "gh-secret-do-not-echo";
 const GITLAB_TOKEN = "gl-token-do-not-echo";

@@ -1,6 +1,6 @@
 import {z} from "zod";
-import {quoteIsIn} from "@aicd/core";
-import type {Language} from "@aicd/plugin-sdk";
+import {quoteIsIn} from "@aicd-ci/core";
+import type {Language} from "@aicd-ci/plugin-sdk";
 
 export const LlmGuardSchema = z.object({
     explanation: z.string().describe("One or two sentences: what degraded and the most probable reason."),

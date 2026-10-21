@@ -2,7 +2,7 @@ import {mkdtempSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
 import {describe, expect, it} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 
 describe("SqliteStateStore", () => {
     it("persists diagnoses, history, audit and records across reopenings", async () => {

@@ -1,6 +1,6 @@
 import {z} from "zod";
-import {applyEdits, callLlm, fixBranchName, type TextEdit} from "@aicd/core";
-import {COLLECTIONS} from "@aicd/plugin-sdk";
+import {applyEdits, callLlm, fixBranchName, type TextEdit} from "@aicd-ci/core";
+import {COLLECTIONS} from "@aicd-ci/plugin-sdk";
 import type {
     AgentResult,
     AgentRuntime,
@@ -9,7 +9,7 @@ import type {
     FileChange,
     ProposedAction,
     ReadonlyCI
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {recordBaseline, splitNewAlerts} from "./baseline.js";
 import {DEFAULT_IGNORE_PATHS, dedupeAlerts, matchIgnorePath} from "./heuristics.js";
 import {

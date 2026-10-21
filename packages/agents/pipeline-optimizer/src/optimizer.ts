@@ -1,6 +1,6 @@
 import {z} from "zod";
-import {callLlm, fixBranchName} from "@aicd/core";
-import type {AgentResult, AgentRuntime, FileChange, ProposedAction, ReadonlyCI} from "@aicd/plugin-sdk";
+import {callLlm, fixBranchName} from "@aicd-ci/core";
+import type {AgentResult, AgentRuntime, FileChange, ProposedAction, ReadonlyCI} from "@aicd-ci/plugin-sdk";
 import {analyzePipeline, type AnalyzeOptions, type OptimizerFinding} from "./analyze.js";
 import {flavorOf, type ConfigFile} from "./ci-config.js";
 import {loadHistory, recordJobRuns, recordPipelines, type JobStats} from "./history.js";

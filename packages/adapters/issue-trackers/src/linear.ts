@@ -1,4 +1,4 @@
-import type {IssueDraft, IssueTracker, Ticket} from "@aicd/plugin-sdk";
+import type {IssueDraft, IssueTracker, Ticket} from "@aicd-ci/plugin-sdk";
 import {extractAcceptanceCriteria} from "./criteria.js";
 import {asRecord, asString, requestJson} from "./http.js";
 import {extractProjectKeys} from "./jira.js";

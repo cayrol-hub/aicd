@@ -1,8 +1,8 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import {describe, expect, it, vi} from "vitest";
 import {z} from "zod";
-import {AnthropicProvider, costOf} from "@aicd/adapter-llm-anthropic";
-import {LLMError} from "@aicd/plugin-sdk";
+import {AnthropicProvider, costOf} from "@aicd-ci/adapter-llm-anthropic";
+import {LLMError} from "@aicd-ci/plugin-sdk";
 
 const usage = {input_tokens: 1_000, output_tokens: 200, cache_creation_input_tokens: 0, cache_read_input_tokens: 4_000};
 

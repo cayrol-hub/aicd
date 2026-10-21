@@ -1,4 +1,4 @@
-import type {Confidence, StateStore, TestOutcome} from "@aicd/plugin-sdk";
+import type {Confidence, StateStore, TestOutcome} from "@aicd-ci/plugin-sdk";
 
 export interface ScoreOptions {
     /** Last recorded outcomes looked at per test (skipped ones included in the count, ignored in the stats). */

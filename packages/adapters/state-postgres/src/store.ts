@@ -9,7 +9,7 @@ import type {
     StoredRecord,
     TestOutcome,
     TestStatus
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {MIGRATION_LOCK_KEY, SCHEMA_STATEMENTS, SCHEMA_VERSION} from "./schema.js";
 
 /** Rows kept per test, as in the SQLite store. */

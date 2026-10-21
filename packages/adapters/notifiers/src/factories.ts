@@ -1,4 +1,4 @@
-import type {Factory, FactoryContext, Notifier} from "@aicd/plugin-sdk";
+import type {Factory, FactoryContext, Notifier} from "@aicd-ci/plugin-sdk";
 import {SlackNotifier, TeamsNotifier, WebhookNotifier} from "./notifiers.js";
 
 const isString = (value: unknown): value is string => typeof value === "string" && value.length > 0;

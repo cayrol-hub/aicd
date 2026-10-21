@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {cleanLog, extractExcerpt, parseJUnit} from "@aicd/parsers";
+import {cleanLog, extractExcerpt, parseJUnit} from "@aicd-ci/parsers";
 
 describe("parseJUnit", () => {
     it("reads nested suites, failures, errors and skipped tests", () => {

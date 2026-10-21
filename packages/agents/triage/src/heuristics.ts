@@ -1,4 +1,4 @@
-import type {Confidence, Evidence, FailureCategory, TestOutcome} from "@aicd/plugin-sdk";
+import type {Confidence, Evidence, FailureCategory, TestOutcome} from "@aicd-ci/plugin-sdk";
 
 export type Language = "en" | "fr";
 

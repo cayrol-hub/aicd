@@ -1,10 +1,10 @@
 import {existsSync, readdirSync, readFileSync, statSync} from "node:fs";
 import {join} from "node:path";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
-import {runTriage, type TriageOptions} from "@aicd/agent-triage";
-import {RunBudget} from "@aicd/core";
-import {parseJUnit} from "@aicd/parsers";
-import type {Confidence, FailureCategory, LLMProvider, Logger, TestOutcome} from "@aicd/plugin-sdk";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
+import {runTriage, type TriageOptions} from "@aicd-ci/agent-triage";
+import {RunBudget} from "@aicd-ci/core";
+import {parseJUnit} from "@aicd-ci/parsers";
+import type {Confidence, FailureCategory, LLMProvider, Logger, TestOutcome} from "@aicd-ci/plugin-sdk";
 
 /**
  * A replay case is a directory:

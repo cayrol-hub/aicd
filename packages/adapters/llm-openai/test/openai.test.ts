@@ -1,7 +1,12 @@
 import {describe, expect, it, vi} from "vitest";
 import {z} from "zod";
-import {llmFactories, OpenAICompatibleProvider, stripOptionalNulls, toStrictJsonSchema} from "@aicd/adapter-llm-openai";
-import {LLMError, type FactoryContext} from "@aicd/plugin-sdk";
+import {
+    llmFactories,
+    OpenAICompatibleProvider,
+    stripOptionalNulls,
+    toStrictJsonSchema
+} from "@aicd-ci/adapter-llm-openai";
+import {LLMError, type FactoryContext} from "@aicd-ci/plugin-sdk";
 
 const schema = z.object({
     category: z.enum(["regression", "flaky_test"]),

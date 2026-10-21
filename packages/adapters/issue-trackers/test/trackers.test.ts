@@ -13,8 +13,8 @@ import {
     textToAdf,
     trackerFactories,
     TrackerHttpError
-} from "@aicd/adapter-issue-trackers";
-import type {FactoryContext, IssueTracker, Ticket} from "@aicd/plugin-sdk";
+} from "@aicd-ci/adapter-issue-trackers";
+import type {FactoryContext, IssueTracker, Ticket} from "@aicd-ci/plugin-sdk";
 
 interface Call {
     url: string;

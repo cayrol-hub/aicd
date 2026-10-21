@@ -1,6 +1,12 @@
 import {describe, expect, it, vi} from "vitest";
-import {notifierFactories, SlackNotifier, slackPayload, TeamsNotifier, WebhookNotifier} from "@aicd/adapter-notifiers";
-import type {FactoryContext, Notification} from "@aicd/plugin-sdk";
+import {
+    notifierFactories,
+    SlackNotifier,
+    slackPayload,
+    TeamsNotifier,
+    WebhookNotifier
+} from "@aicd-ci/adapter-notifiers";
+import type {FactoryContext, Notification} from "@aicd-ci/plugin-sdk";
 
 const notification: Notification = {
     title: "Deployment paused",

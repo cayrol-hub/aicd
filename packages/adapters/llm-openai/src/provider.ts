@@ -4,7 +4,7 @@ import {
     type LLMUsage,
     type StructuredRequest,
     type StructuredResponse
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {stripOptionalNulls, toStrictJsonSchema} from "./schema.js";
 
 export const OPENAI_BASE_URL = "https://api.openai.com/v1";

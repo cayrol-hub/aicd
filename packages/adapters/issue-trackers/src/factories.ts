@@ -1,4 +1,4 @@
-import type {Factory, FactoryContext, IssueTracker} from "@aicd/plugin-sdk";
+import type {Factory, FactoryContext, IssueTracker} from "@aicd-ci/plugin-sdk";
 import {GitHubIssuesTracker} from "./github.js";
 import {JiraTracker} from "./jira.js";
 import {LinearTracker} from "./linear.js";

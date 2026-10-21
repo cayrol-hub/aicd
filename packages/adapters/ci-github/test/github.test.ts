@@ -2,7 +2,7 @@ import {mkdtempSync, writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
 import {describe, expect, it} from "vitest";
-import {GitHubCIProvider} from "@aicd/adapter-ci-github";
+import {GitHubCIProvider} from "@aicd-ci/adapter-ci-github";
 
 const API = "https://api.github.com";
 

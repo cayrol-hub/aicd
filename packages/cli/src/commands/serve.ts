@@ -1,19 +1,19 @@
-import {GitHubCIProvider} from "@aicd/adapter-ci-github";
-import {GitLabCIProvider} from "@aicd/adapter-ci-gitlab";
-import {createMcpServer} from "@aicd/mcp";
-import {computeDora} from "@aicd/metrics";
+import {GitHubCIProvider} from "@aicd-ci/adapter-ci-github";
+import {GitLabCIProvider} from "@aicd-ci/adapter-ci-gitlab";
+import {createMcpServer} from "@aicd-ci/mcp";
+import {computeDora} from "@aicd-ci/metrics";
 import {mkdtempSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
-import {GUARD_RESULTS_COLLECTION} from "@aicd/agent-release-guardian";
+import {GUARD_RESULTS_COLLECTION} from "@aicd-ci/agent-release-guardian";
 import {
     COLLECTIONS,
     type CIProvider,
     type DeploymentRecord,
     type IncidentRecord,
     type StateStore
-} from "@aicd/plugin-sdk";
-import {createAicdServer, type AicdEvent, type EventHandlers} from "@aicd/server";
+} from "@aicd-ci/plugin-sdk";
+import {createAicdServer, type AicdEvent, type EventHandlers} from "@aicd-ci/server";
 import {EXIT, makeLogger, resolveConfig, VERSION, type GlobalOptions} from "../shared.js";
 import {builtInRegistry} from "../registry.js";
 import {openStateStore, Session} from "../session.js";

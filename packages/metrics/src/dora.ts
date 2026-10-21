@@ -1,4 +1,4 @@
-import type {DeploymentRecord, IncidentRecord, StateStore} from "@aicd/plugin-sdk";
+import type {DeploymentRecord, IncidentRecord, StateStore} from "@aicd-ci/plugin-sdk";
 import {listDeployments, listIncidents, timeOf} from "./records.js";
 
 export type DoraLevel = "elite" | "high" | "medium" | "low";

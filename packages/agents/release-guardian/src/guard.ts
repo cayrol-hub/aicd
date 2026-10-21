@@ -1,4 +1,4 @@
-import {callLlm} from "@aicd/core";
+import {callLlm} from "@aicd-ci/core";
 import {
     COLLECTIONS,
     type AgentResult,
@@ -9,7 +9,7 @@ import {
     type MetricQuery,
     type MetricsSource,
     type ProposedAction
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {buildPrompt, LlmGuardSchema, SYSTEM_PROMPT, verifyGuardOutput} from "./llm.js";
 import {COMMENT_MARKER, metricsLines, renderGuardReport, renderMetricsTable, verdictLabel} from "./render.js";
 import {classify, compareWindows, windowStats, type Comparison, type WindowStats} from "./stats.js";

@@ -1,7 +1,7 @@
 import {existsSync, writeFileSync} from "node:fs";
 import {resolve} from "node:path";
 import {glob} from "tinyglobby";
-import type {Logger} from "@aicd/plugin-sdk";
+import type {Logger} from "@aicd-ci/plugin-sdk";
 
 const CONFIG_TEMPLATE = (
     junit: string[]

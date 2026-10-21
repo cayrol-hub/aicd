@@ -1,4 +1,4 @@
-import {callLlm, fixBranchName} from "@aicd/core";
+import {callLlm, fixBranchName} from "@aicd-ci/core";
 import {
     COLLECTIONS,
     type AgentResult,
@@ -7,7 +7,7 @@ import {
     type DeploymentRecord,
     type IncidentRecord,
     type ProposedAction
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {AGENT_NAME} from "./correlate.js";
 import {buildNarrativePrompt, LlmNarrativeSchema, NARRATIVE_SYSTEM_PROMPT, verifyNarrative, type Claim} from "./llm.js";
 import {deterministicNarrative, renderPostmortem, timelineText} from "./render.js";

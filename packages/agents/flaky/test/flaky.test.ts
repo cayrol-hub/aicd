@@ -1,5 +1,5 @@
 import {describe, expect, it, vi} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     checkQuarantine,
     COMMENT_MARKER,
@@ -9,9 +9,9 @@ import {
     scoreHistory,
     scoreTests,
     type FlakyReport
-} from "@aicd/agent-flaky";
-import {RunBudget} from "@aicd/core";
-import {COLLECTIONS, type AgentRuntime, type QuarantineRecord, type TestOutcome} from "@aicd/plugin-sdk";
+} from "@aicd-ci/agent-flaky";
+import {RunBudget} from "@aicd-ci/core";
+import {COLLECTIONS, type AgentRuntime, type QuarantineRecord, type TestOutcome} from "@aicd-ci/plugin-sdk";
 
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};
 

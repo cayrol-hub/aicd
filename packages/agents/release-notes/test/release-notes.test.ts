@@ -3,7 +3,7 @@ import {mkdtempSync, rmSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
 import {afterAll, beforeAll, describe, expect, it, vi} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     commitLink,
     findReferences,
@@ -14,9 +14,9 @@ import {
     SYSTEM_PROMPT,
     toEntry,
     type LlmNotes
-} from "@aicd/agent-release-notes";
-import {RunBudget} from "@aicd/core";
-import {LLMError, type AgentRuntime, type LLMProvider, type StructuredRequest} from "@aicd/plugin-sdk";
+} from "@aicd-ci/agent-release-notes";
+import {RunBudget} from "@aicd-ci/core";
+import {LLMError, type AgentRuntime, type LLMProvider, type StructuredRequest} from "@aicd-ci/plugin-sdk";
 
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};
 

@@ -1,6 +1,6 @@
 import {fileURLToPath} from "node:url";
 import {describe, expect, it, vi} from "vitest";
-import {formatReport, loadCases, replayCases} from "@aicd/replay";
+import {formatReport, loadCases, replayCases} from "@aicd-ci/replay";
 
 const fixtures = fileURLToPath(new URL("../../../evals/fixtures", import.meta.url));
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};

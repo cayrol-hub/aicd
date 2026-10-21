@@ -1,6 +1,6 @@
 import {z} from "zod";
-import {applyEdits, type TextEdit} from "@aicd/core";
-import type {FileChange, JobRunRecord, Language} from "@aicd/plugin-sdk";
+import {applyEdits, type TextEdit} from "@aicd-ci/core";
+import type {FileChange, JobRunRecord, Language} from "@aicd-ci/plugin-sdk";
 import {analyzePipeline, type AnalyzeOptions, type OptimizerFinding} from "./analyze.js";
 import {parseYaml, type ConfigFile} from "./ci-config.js";
 

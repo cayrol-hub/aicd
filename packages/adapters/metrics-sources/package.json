@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/adapter-metrics-sources",
+    "name": "@aicd-ci/adapter-metrics-sources",
     "version": "1.0.0",
     "description": "Metrics sources: Prometheus, Sentry, Datadog",
     "license": "Apache-2.0",
@@ -24,6 +24,6 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*"
+        "@aicd-ci/plugin-sdk": "workspace:*"
     }
 }

@@ -3,7 +3,7 @@ import {mkdtempSync, writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
 import {afterAll, beforeAll, describe, expect, it, vi} from "vitest";
-import {buildProgram, ciFromEvent} from "@aicd/cli";
+import {buildProgram, ciFromEvent} from "@aicd-ci/cli";
 
 let cwd: string;
 let base: string;

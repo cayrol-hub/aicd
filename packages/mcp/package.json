@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/mcp",
+    "name": "@aicd-ci/mcp",
     "version": "1.0.0",
     "description": "Read-only MCP server exposing aicd state to coding agents",
     "license": "Apache-2.0",
@@ -24,7 +24,7 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*",
-        "@aicd/metrics": "workspace:*"
+        "@aicd-ci/plugin-sdk": "workspace:*",
+        "@aicd-ci/metrics": "workspace:*"
     }
 }

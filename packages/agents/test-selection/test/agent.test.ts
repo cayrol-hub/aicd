@@ -3,7 +3,7 @@ import {mkdirSync, mkdtempSync, rmSync, writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {dirname, join} from "node:path";
 import {afterAll, beforeAll, describe, expect, it, vi} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     buildCoverageMap,
     COMMENT_MARKER,
@@ -12,9 +12,9 @@ import {
     runTestSelection,
     saveCoverageMap,
     testIdMatches
-} from "@aicd/agent-test-selection";
-import {RunBudget} from "@aicd/core";
-import {COLLECTIONS, type AgentRuntime, type PipelineContext, type TestSelectionRecord} from "@aicd/plugin-sdk";
+} from "@aicd-ci/agent-test-selection";
+import {RunBudget} from "@aicd-ci/core";
+import {COLLECTIONS, type AgentRuntime, type PipelineContext, type TestSelectionRecord} from "@aicd-ci/plugin-sdk";
 
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};
 const NOW = new Date("2026-10-21T12:00:00Z");

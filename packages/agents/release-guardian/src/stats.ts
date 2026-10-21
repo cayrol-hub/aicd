@@ -1,4 +1,4 @@
-import type {MetricQuery, MetricSample} from "@aicd/plugin-sdk";
+import type {MetricQuery, MetricSample} from "@aicd-ci/plugin-sdk";
 
 export interface WindowStats {
     count: number;

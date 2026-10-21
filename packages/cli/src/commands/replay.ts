@@ -1,5 +1,5 @@
-import {ConfigError} from "@aicd/core";
-import {formatReport, loadCases, replayCases} from "@aicd/replay";
+import {ConfigError} from "@aicd-ci/core";
+import {formatReport, loadCases, replayCases} from "@aicd-ci/replay";
 import {EXIT, type GlobalOptions} from "../shared.js";
 import {Session} from "../session.js";
 

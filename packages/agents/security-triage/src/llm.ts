@@ -1,6 +1,6 @@
 import {z} from "zod";
-import {quoteIsIn, type TextEdit} from "@aicd/core";
-import type {Evidence, Language} from "@aicd/plugin-sdk";
+import {quoteIsIn, type TextEdit} from "@aicd-ci/core";
+import type {Evidence, Language} from "@aicd-ci/plugin-sdk";
 import type {SecurityAlert} from "./sarif.js";
 
 export const LlmSecurityVerdictSchema = z.object({

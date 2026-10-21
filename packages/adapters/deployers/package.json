@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/adapter-deployers",
+    "name": "@aicd-ci/adapter-deployers",
     "version": "1.0.0",
     "description": "Deployers: Argo CD, generic webhook",
     "license": "Apache-2.0",
@@ -24,6 +24,6 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*"
+        "@aicd-ci/plugin-sdk": "workspace:*"
     }
 }

@@ -3,7 +3,7 @@ import {mkdtempSync, rmSync, writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
 import {afterAll, describe, expect, it} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     computeDora,
     deploymentCommits,
@@ -13,8 +13,8 @@ import {
     recordIncident,
     renderDora,
     type DoraReport
-} from "@aicd/metrics";
-import {COLLECTIONS, type DeploymentRecord, type IncidentRecord} from "@aicd/plugin-sdk";
+} from "@aicd-ci/metrics";
+import {COLLECTIONS, type DeploymentRecord, type IncidentRecord} from "@aicd-ci/plugin-sdk";
 
 const WINDOW = {start: "2026-10-01T00:00:00Z", end: "2026-10-15T00:00:00Z"};
 

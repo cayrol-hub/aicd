@@ -1,5 +1,5 @@
 import {writeFileSync} from "node:fs";
-import {generateReleaseNotes, type ReleaseNotesReport} from "@aicd/agent-release-notes";
+import {generateReleaseNotes, type ReleaseNotesReport} from "@aicd-ci/agent-release-notes";
 import {EXIT, type GlobalOptions} from "../shared.js";
 import {conclude, report} from "../outcome.js";
 import {Session} from "../session.js";

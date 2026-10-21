@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/metrics",
+    "name": "@aicd-ci/metrics",
     "version": "1.0.0",
     "description": "DORA metrics computed from the aicd state",
     "license": "Apache-2.0",
@@ -24,7 +24,7 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*",
-        "@aicd/git": "workspace:*"
+        "@aicd-ci/plugin-sdk": "workspace:*",
+        "@aicd-ci/git": "workspace:*"
     }
 }

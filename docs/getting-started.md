@@ -5,8 +5,8 @@ aicd runs as steps of your existing pipeline. Nothing to host. Without an LLM ke
 ## 1. Configure
 
 ```bash
-npx @aicd/cli init      # writes a commented .aicd.yaml and prints the snippet for your CI
-npx @aicd/cli doctor    # checks configuration, CI detection, state, LLM and integrations
+npx @aicd-ci/cli init      # writes a commented .aicd.yaml and prints the snippet for your CI
+npx @aicd-ci/cli doctor    # checks configuration, CI detection, state, LLM and integrations
 ```
 
 Every agent starts at a cautious autonomy (`advise`: it comments, it does not act). Raise it per agent when you

@@ -7,7 +7,7 @@ import {
     type QuarantineRecord,
     type StateStore,
     type TestStatus
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {COMMENT_MARKER, describeScore, renderFlakyComment, renderIssue} from "./render.js";
 import {scoreTests, type TestScore} from "./score.js";
 

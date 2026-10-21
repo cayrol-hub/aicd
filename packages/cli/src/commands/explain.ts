@@ -1,4 +1,4 @@
-import type {AuditEntry} from "@aicd/plugin-sdk";
+import type {AuditEntry} from "@aicd-ci/plugin-sdk";
 import {EXIT, type GlobalOptions} from "../shared.js";
 import {Session} from "../session.js";
 

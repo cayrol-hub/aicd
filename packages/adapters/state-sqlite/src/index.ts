@@ -10,7 +10,7 @@ import type {
     StoredRecord,
     TestOutcome,
     TestStatus
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 
 const SCHEMA = `
 CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);

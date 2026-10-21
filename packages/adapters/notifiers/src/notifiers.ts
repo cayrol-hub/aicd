@@ -1,4 +1,4 @@
-import type {Notification, Notifier} from "@aicd/plugin-sdk";
+import type {Notification, Notifier} from "@aicd-ci/plugin-sdk";
 
 export interface WebhookTarget {
     webhookUrl: string;

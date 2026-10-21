@@ -1,4 +1,4 @@
-import {isGitRepository} from "@aicd/git";
+import {isGitRepository} from "@aicd-ci/git";
 import {EXIT, VERSION, type GlobalOptions} from "../shared.js";
 import {Session} from "../session.js";
 

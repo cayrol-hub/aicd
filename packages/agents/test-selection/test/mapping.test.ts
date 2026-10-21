@@ -3,7 +3,7 @@ import {mkdirSync, mkdtempSync, rmSync, writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {dirname, join} from "node:path";
 import {afterAll, beforeAll, describe, expect, it, vi} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     buildCoverageMap,
     conventionSources,
@@ -14,8 +14,8 @@ import {
     resolveTestKey,
     saveCoverageMap,
     testSubject
-} from "@aicd/agent-test-selection";
-import {COLLECTIONS} from "@aicd/plugin-sdk";
+} from "@aicd-ci/agent-test-selection";
+import {COLLECTIONS} from "@aicd-ci/plugin-sdk";
 
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};
 

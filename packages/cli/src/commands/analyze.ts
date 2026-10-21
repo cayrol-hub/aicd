@@ -1,9 +1,9 @@
 import {readFileSync} from "node:fs";
-import {recordJobRuns} from "@aicd/agent-pipeline-optimizer";
-import {runFlakyAgent} from "@aicd/agent-flaky";
-import {DEFAULT_IGNORE_PATHS, runSecurityTriage} from "@aicd/agent-security-triage";
-import {parseUnifiedDiff} from "@aicd/agent-risk-score";
-import {runTriageAgent} from "@aicd/agent-triage";
+import {recordJobRuns} from "@aicd-ci/agent-pipeline-optimizer";
+import {runFlakyAgent} from "@aicd-ci/agent-flaky";
+import {DEFAULT_IGNORE_PATHS, runSecurityTriage} from "@aicd-ci/agent-security-triage";
+import {parseUnifiedDiff} from "@aicd-ci/agent-risk-score";
+import {runTriageAgent} from "@aicd-ci/agent-triage";
 import {EXIT, findFiles, readTests, type GlobalOptions} from "../shared.js";
 import {conclude, report, type AgentRun} from "../outcome.js";
 import {Session} from "../session.js";

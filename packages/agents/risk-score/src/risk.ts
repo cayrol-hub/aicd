@@ -1,7 +1,7 @@
 import {readFileSync} from "node:fs";
 import {join} from "node:path";
-import {diff as gitDiff, fixCounts} from "@aicd/git";
-import type {AgentResult, AgentRuntime, ProposedAction} from "@aicd/plugin-sdk";
+import {diff as gitDiff, fixCounts} from "@aicd-ci/git";
+import type {AgentResult, AgentRuntime, ProposedAction} from "@aicd-ci/plugin-sdk";
 import {parseUnifiedDiff} from "./diff.js";
 import {COMMENT_MARKER, renderRiskComment} from "./render.js";
 import {scoreMergeRequest, type RiskOptionsInput, type RiskReport} from "./score.js";

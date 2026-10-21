@@ -8,7 +8,7 @@ import {
     type CoverageMapEntry,
     type SelectInput,
     type SelectionOptions
-} from "@aicd/agent-test-selection";
+} from "@aicd-ci/agent-test-selection";
 
 const NOW = new Date("2026-10-21T12:00:00Z");
 

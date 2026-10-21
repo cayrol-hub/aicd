@@ -1,5 +1,5 @@
 import {describe, expect, it, vi} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     classify,
     compareWindows,
@@ -11,8 +11,8 @@ import {
     type GuardInput,
     type GuardReport,
     type LlmGuard
-} from "@aicd/agent-release-guardian";
-import {RunBudget} from "@aicd/core";
+} from "@aicd-ci/agent-release-guardian";
+import {RunBudget} from "@aicd-ci/core";
 import {
     COLLECTIONS,
     type AgentRuntime,
@@ -22,7 +22,7 @@ import {
     type MetricQuery,
     type MetricsSource,
     type TimeWindow
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 
 const STARTED = "2026-10-21T10:00:00.000Z";
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};

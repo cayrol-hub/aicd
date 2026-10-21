@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {createRedactor, entropy, secretsFromEnv} from "@aicd/redaction";
+import {createRedactor, entropy, secretsFromEnv} from "@aicd-ci/redaction";
 
 describe("createRedactor", () => {
     const redact = createRedactor();

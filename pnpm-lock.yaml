@@ -23,40 +23,40 @@ importers:
 
   packages/adapters/ci-github:
     dependencies:
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
 
   packages/adapters/ci-gitlab:
     dependencies:
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
 
   packages/adapters/ci-local:
     dependencies:
-      '@aicd/git':
+      '@aicd-ci/git':
         specifier: workspace:*
         version: link:../../git
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
 
   packages/adapters/deployers:
     dependencies:
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
 
   packages/adapters/issue-trackers:
     dependencies:
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
 
   packages/adapters/llm-anthropic:
     dependencies:
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
       '@anthropic-ai/sdk':
@@ -68,7 +68,7 @@ importers:
 
   packages/adapters/llm-openai:
     dependencies:
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
       zod:
@@ -77,19 +77,19 @@ importers:
 
   packages/adapters/metrics-sources:
     dependencies:
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
 
   packages/adapters/notifiers:
     dependencies:
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
 
   packages/adapters/state-postgres:
     dependencies:
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
       pg:
@@ -102,25 +102,25 @@ importers:
 
   packages/adapters/state-sqlite:
     dependencies:
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
 
   packages/agents/flaky:
     dependencies:
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../../core
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
 
   packages/agents/intent-check:
     dependencies:
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../../core
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
       zod:
@@ -129,10 +129,10 @@ importers:
 
   packages/agents/pipeline-optimizer:
     dependencies:
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../../core
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
       yaml:
@@ -144,10 +144,10 @@ importers:
 
   packages/agents/postmortem:
     dependencies:
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../../core
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
       zod:
@@ -156,10 +156,10 @@ importers:
 
   packages/agents/release-guardian:
     dependencies:
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../../core
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
       zod:
@@ -168,13 +168,13 @@ importers:
 
   packages/agents/release-notes:
     dependencies:
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../../core
-      '@aicd/git':
+      '@aicd-ci/git':
         specifier: workspace:*
         version: link:../../git
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
       zod:
@@ -183,22 +183,22 @@ importers:
 
   packages/agents/risk-score:
     dependencies:
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../../core
-      '@aicd/git':
+      '@aicd-ci/git':
         specifier: workspace:*
         version: link:../../git
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
 
   packages/agents/security-triage:
     dependencies:
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../../core
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
       zod:
@@ -207,13 +207,13 @@ importers:
 
   packages/agents/test-selection:
     dependencies:
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../../core
-      '@aicd/git':
+      '@aicd-ci/git':
         specifier: workspace:*
         version: link:../../git
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
       fast-xml-parser:
@@ -225,13 +225,13 @@ importers:
 
   packages/agents/triage:
     dependencies:
-      '@aicd/parsers':
+      '@aicd-ci/parsers':
         specifier: workspace:*
         version: link:../../parsers
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
-      '@aicd/redaction':
+      '@aicd-ci/redaction':
         specifier: workspace:*
         version: link:../../redaction
       zod:
@@ -240,94 +240,94 @@ importers:
 
   packages/cli:
     dependencies:
-      '@aicd/adapter-ci-github':
+      '@aicd-ci/adapter-ci-github':
         specifier: workspace:*
         version: link:../adapters/ci-github
-      '@aicd/adapter-ci-gitlab':
+      '@aicd-ci/adapter-ci-gitlab':
         specifier: workspace:*
         version: link:../adapters/ci-gitlab
-      '@aicd/adapter-ci-local':
+      '@aicd-ci/adapter-ci-local':
         specifier: workspace:*
         version: link:../adapters/ci-local
-      '@aicd/adapter-deployers':
+      '@aicd-ci/adapter-deployers':
         specifier: workspace:*
         version: link:../adapters/deployers
-      '@aicd/adapter-issue-trackers':
+      '@aicd-ci/adapter-issue-trackers':
         specifier: workspace:*
         version: link:../adapters/issue-trackers
-      '@aicd/adapter-llm-anthropic':
+      '@aicd-ci/adapter-llm-anthropic':
         specifier: workspace:*
         version: link:../adapters/llm-anthropic
-      '@aicd/adapter-llm-openai':
+      '@aicd-ci/adapter-llm-openai':
         specifier: workspace:*
         version: link:../adapters/llm-openai
-      '@aicd/adapter-metrics-sources':
+      '@aicd-ci/adapter-metrics-sources':
         specifier: workspace:*
         version: link:../adapters/metrics-sources
-      '@aicd/adapter-notifiers':
+      '@aicd-ci/adapter-notifiers':
         specifier: workspace:*
         version: link:../adapters/notifiers
-      '@aicd/adapter-state-postgres':
+      '@aicd-ci/adapter-state-postgres':
         specifier: workspace:*
         version: link:../adapters/state-postgres
-      '@aicd/adapter-state-sqlite':
+      '@aicd-ci/adapter-state-sqlite':
         specifier: workspace:*
         version: link:../adapters/state-sqlite
-      '@aicd/agent-flaky':
+      '@aicd-ci/agent-flaky':
         specifier: workspace:*
         version: link:../agents/flaky
-      '@aicd/agent-intent-check':
+      '@aicd-ci/agent-intent-check':
         specifier: workspace:*
         version: link:../agents/intent-check
-      '@aicd/agent-pipeline-optimizer':
+      '@aicd-ci/agent-pipeline-optimizer':
         specifier: workspace:*
         version: link:../agents/pipeline-optimizer
-      '@aicd/agent-postmortem':
+      '@aicd-ci/agent-postmortem':
         specifier: workspace:*
         version: link:../agents/postmortem
-      '@aicd/agent-release-guardian':
+      '@aicd-ci/agent-release-guardian':
         specifier: workspace:*
         version: link:../agents/release-guardian
-      '@aicd/agent-release-notes':
+      '@aicd-ci/agent-release-notes':
         specifier: workspace:*
         version: link:../agents/release-notes
-      '@aicd/agent-risk-score':
+      '@aicd-ci/agent-risk-score':
         specifier: workspace:*
         version: link:../agents/risk-score
-      '@aicd/agent-security-triage':
+      '@aicd-ci/agent-security-triage':
         specifier: workspace:*
         version: link:../agents/security-triage
-      '@aicd/agent-test-selection':
+      '@aicd-ci/agent-test-selection':
         specifier: workspace:*
         version: link:../agents/test-selection
-      '@aicd/agent-triage':
+      '@aicd-ci/agent-triage':
         specifier: workspace:*
         version: link:../agents/triage
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../core
-      '@aicd/git':
+      '@aicd-ci/git':
         specifier: workspace:*
         version: link:../git
-      '@aicd/mcp':
+      '@aicd-ci/mcp':
         specifier: workspace:*
         version: link:../mcp
-      '@aicd/metrics':
+      '@aicd-ci/metrics':
         specifier: workspace:*
         version: link:../metrics
-      '@aicd/parsers':
+      '@aicd-ci/parsers':
         specifier: workspace:*
         version: link:../parsers
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../plugin-sdk
-      '@aicd/redaction':
+      '@aicd-ci/redaction':
         specifier: workspace:*
         version: link:../redaction
-      '@aicd/replay':
+      '@aicd-ci/replay':
         specifier: workspace:*
         version: link:../replay
-      '@aicd/server':
+      '@aicd-ci/server':
         specifier: workspace:*
         version: link:../server
       commander:
@@ -342,7 +342,7 @@ importers:
 
   packages/core:
     dependencies:
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../plugin-sdk
       yaml:
@@ -356,19 +356,19 @@ importers:
 
   packages/mcp:
     dependencies:
-      '@aicd/metrics':
+      '@aicd-ci/metrics':
         specifier: workspace:*
         version: link:../metrics
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../plugin-sdk
 
   packages/metrics:
     dependencies:
-      '@aicd/git':
+      '@aicd-ci/git':
         specifier: workspace:*
         version: link:../git
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../plugin-sdk
 
@@ -388,28 +388,28 @@ importers:
 
   packages/replay:
     dependencies:
-      '@aicd/adapter-state-sqlite':
+      '@aicd-ci/adapter-state-sqlite':
         specifier: workspace:*
         version: link:../adapters/state-sqlite
-      '@aicd/agent-triage':
+      '@aicd-ci/agent-triage':
         specifier: workspace:*
         version: link:../agents/triage
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../core
-      '@aicd/parsers':
+      '@aicd-ci/parsers':
         specifier: workspace:*
         version: link:../parsers
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../plugin-sdk
 
   packages/server:
     dependencies:
-      '@aicd/core':
+      '@aicd-ci/core':
         specifier: workspace:*
         version: link:../core
-      '@aicd/plugin-sdk':
+      '@aicd-ci/plugin-sdk':
         specifier: workspace:*
         version: link:../plugin-sdk
 

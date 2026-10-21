@@ -1,5 +1,5 @@
 import {createInterface} from "node:readline";
-import type {Logger} from "@aicd/plugin-sdk";
+import type {Logger} from "@aicd-ci/plugin-sdk";
 import type {McpServer} from "./server.js";
 
 export interface StdioOptions {

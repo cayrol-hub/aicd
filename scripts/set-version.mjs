@@ -1,5 +1,5 @@
 // Sets the version of every publishable package (fixed versioning), e.g. `node scripts/set-version.mjs 1.0.0`.
-// `@aicd/plugin-sdk` follows the plugin API: its major version must equal PLUGIN_API_VERSION.
+// `@aicd-ci/plugin-sdk` follows the plugin API: its major version must equal PLUGIN_API_VERSION.
 import {readdirSync, readFileSync, statSync, writeFileSync} from "node:fs";
 import {join} from "node:path";
 
@@ -28,8 +28,8 @@ for (const dir of packageDirs(join(root, "packages"))) {
     const file = join(dir, "package.json");
     const manifest = JSON.parse(readFileSync(file, "utf8"));
     if (manifest.private) continue;
-    if (manifest.name === "@aicd/plugin-sdk" && Number(version.split(".")[0]) !== apiVersion) {
-        console.error(`@aicd/plugin-sdk major must equal PLUGIN_API_VERSION (${apiVersion})`);
+    if (manifest.name === "@aicd-ci/plugin-sdk" && Number(version.split(".")[0]) !== apiVersion) {
+        console.error(`@aicd-ci/plugin-sdk major must equal PLUGIN_API_VERSION (${apiVersion})`);
         process.exit(1);
     }
     manifest.version = version;

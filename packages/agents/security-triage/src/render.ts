@@ -1,4 +1,4 @@
-import type {Language} from "@aicd/plugin-sdk";
+import type {Language} from "@aicd-ci/plugin-sdk";
 import type {Severity} from "./sarif.js";
 import type {SecurityReport, SecurityVerdict, TriagedAlert} from "./security.js";
 

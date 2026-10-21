@@ -1,5 +1,5 @@
-import {decide, executeDecisions, finalizeAction, type AgentName, type Decision} from "@aicd/core";
-import {describeAction, type AgentResult, type Language, type ProposedAction} from "@aicd/plugin-sdk";
+import {decide, executeDecisions, finalizeAction, type AgentName, type Decision} from "@aicd-ci/core";
+import {describeAction, type AgentResult, type Language, type ProposedAction} from "@aicd-ci/plugin-sdk";
 import type {Session} from "./session.js";
 
 export interface AgentRun {

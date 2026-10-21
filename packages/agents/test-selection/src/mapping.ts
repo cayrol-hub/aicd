@@ -1,6 +1,6 @@
 import {posix} from "node:path";
-import {coChanges as gitCoChanges, git, isGitRepository} from "@aicd/git";
-import {COLLECTIONS, type CoverageMapRecord, type Logger, type StateStore} from "@aicd/plugin-sdk";
+import {coChanges as gitCoChanges, git, isGitRepository} from "@aicd-ci/git";
+import {COLLECTIONS, type CoverageMapRecord, type Logger, type StateStore} from "@aicd-ci/plugin-sdk";
 import {DEFAULT_TEST_PATTERNS, isTestPath, listSourceFiles} from "./discover.js";
 import {normalizePath} from "./paths.js";
 

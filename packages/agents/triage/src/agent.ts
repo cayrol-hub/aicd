@@ -1,11 +1,11 @@
-import type {TestCaseResult} from "@aicd/parsers";
+import type {TestCaseResult} from "@aicd-ci/parsers";
 import {
     confidenceAtLeast,
     type AgentResult,
     type AgentRuntime,
     type Confidence,
     type FailedJob
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {COMMENT_MARKER, renderTriageComment} from "./render.js";
 import {AGENT_NAME, runTriage, type TriageReport} from "./triage.js";
 

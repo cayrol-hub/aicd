@@ -1,4 +1,4 @@
-import type {Language} from "@aicd/plugin-sdk";
+import type {Language} from "@aicd-ci/plugin-sdk";
 import type {CriterionStatus, IntentAnalysis, IntentReport} from "./intent.js";
 
 export const COMMENT_MARKER = "<!-- aicd:intent -->";

@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/redaction",
+    "name": "@aicd-ci/redaction",
     "version": "1.0.0",
     "description": "Masks secrets and personal data before anything leaves the CI runner",
     "license": "Apache-2.0",

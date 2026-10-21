@@ -1,5 +1,5 @@
 import {describe, expect, it, vi} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     analyzePipeline,
     diffPaths,
@@ -12,8 +12,8 @@ import {
     runPipelineOptimizer,
     type LlmPipelineFix,
     type OptimizerFinding
-} from "@aicd/agent-pipeline-optimizer";
-import {RunBudget} from "@aicd/core";
+} from "@aicd-ci/agent-pipeline-optimizer";
+import {RunBudget} from "@aicd-ci/core";
 import {
     COLLECTIONS,
     type AgentRuntime,
@@ -22,7 +22,7 @@ import {
     type PipelineSummary,
     type ReadonlyCI,
     type StructuredRequest
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {GITHUB_WORKFLOW, GITHUB_WORKFLOW_GOOD, GITLAB_CI, GITLAB_CI_GOOD, gitlabHistory} from "./fixtures.js";
 
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};

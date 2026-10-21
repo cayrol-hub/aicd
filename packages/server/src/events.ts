@@ -1,4 +1,4 @@
-import type {DeploymentState, JobStatus} from "@aicd/plugin-sdk";
+import type {DeploymentState, JobStatus} from "@aicd-ci/plugin-sdk";
 
 export type WebhookProvider = "github" | "gitlab";
 export type AlertSource = "sentry" | "alertmanager" | "generic";

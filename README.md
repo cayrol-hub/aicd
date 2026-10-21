@@ -18,8 +18,8 @@ notes, watches deployments and rolls them back, and writes the post-mortem.
 ## Quick start
 
 ```bash
-npx @aicd/cli init     # commented .aicd.yaml + the snippet for your CI
-npx @aicd/cli doctor   # checks the setup
+npx @aicd-ci/cli init     # commented .aicd.yaml + the snippet for your CI
+npx @aicd-ci/cli doctor   # checks the setup
 ```
 
 ```yaml
@@ -88,7 +88,7 @@ no LLM call and no action on fork code; least-privilege tokens; signed releases 
 ## Extending
 
 Plugins add CI adapters, LLM providers, trackers, metrics sources, deployers, notifiers and state stores through
-`@aicd/plugin-sdk` (plugin API v1, frozen for 1.x) and are checked by its conformance kit:
+`@aicd-ci/plugin-sdk` (plugin API v1, frozen for 1.x) and are checked by its conformance kit:
 [writing a plugin](docs/plugins.md).
 
 ## Development

@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/adapter-state-postgres",
+    "name": "@aicd-ci/adapter-state-postgres",
     "version": "1.0.0",
     "description": "Postgres state store for the server mode",
     "license": "Apache-2.0",
@@ -24,7 +24,7 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*",
+        "@aicd-ci/plugin-sdk": "workspace:*",
         "pg": "^8.23.1"
     },
     "devDependencies": {

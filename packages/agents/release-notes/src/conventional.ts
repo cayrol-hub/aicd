@@ -1,4 +1,4 @@
-import type {Commit} from "@aicd/git";
+import type {Commit} from "@aicd-ci/git";
 
 export type Section = "breaking" | "features" | "fixes" | "performance" | "security" | "documentation" | "other";
 

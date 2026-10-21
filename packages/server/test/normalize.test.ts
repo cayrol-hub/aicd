@@ -9,7 +9,7 @@ import {
     normalizeGitLab,
     normalizeSentry,
     PayloadError
-} from "@aicd/server";
+} from "@aicd-ci/server";
 
 const NOW = new Date("2026-10-21T12:00:00.000Z");
 const SHA = "8f2c1d0b9e7a6f5c4d3b2a19087f6e5d4c3b2a10";

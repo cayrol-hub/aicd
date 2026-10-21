@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/agent-release-guardian",
+    "name": "@aicd-ci/agent-release-guardian",
     "version": "1.0.0",
     "description": "Release guardian agent: watches deployments",
     "license": "Apache-2.0",
@@ -24,8 +24,8 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*",
-        "@aicd/core": "workspace:*",
+        "@aicd-ci/plugin-sdk": "workspace:*",
+        "@aicd-ci/core": "workspace:*",
         "zod": "^4.6.7"
     }
 }

@@ -1,5 +1,5 @@
-import {computeDora, listDeployments, listIncidents} from "@aicd/metrics";
-import {COLLECTIONS, type QuarantineRecord, type StateStore, type StoredDiagnosis} from "@aicd/plugin-sdk";
+import {computeDora, listDeployments, listIncidents} from "@aicd-ci/metrics";
+import {COLLECTIONS, type QuarantineRecord, type StateStore, type StoredDiagnosis} from "@aicd-ci/plugin-sdk";
 import {invalidParams, isRecord} from "./jsonrpc.js";
 import type {McpTool} from "./server.js";
 

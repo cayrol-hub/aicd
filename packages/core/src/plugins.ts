@@ -13,8 +13,8 @@ import type {
     Notifier,
     PluginManifest,
     StateStore
-} from "@aicd/plugin-sdk";
-import {checkPluginManifest} from "@aicd/plugin-sdk/testing";
+} from "@aicd-ci/plugin-sdk";
+import {checkPluginManifest} from "@aicd-ci/plugin-sdk/testing";
 import {ConfigError} from "./config.js";
 
 export interface ComponentKinds {

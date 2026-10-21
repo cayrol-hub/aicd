@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/replay",
+    "name": "@aicd-ci/replay",
     "version": "1.0.0",
     "description": "Shadow mode: replays agents on past failures and scores them",
     "license": "Apache-2.0",
@@ -24,10 +24,10 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*",
-        "@aicd/parsers": "workspace:*",
-        "@aicd/core": "workspace:*",
-        "@aicd/agent-triage": "workspace:*",
-        "@aicd/adapter-state-sqlite": "workspace:*"
+        "@aicd-ci/plugin-sdk": "workspace:*",
+        "@aicd-ci/parsers": "workspace:*",
+        "@aicd-ci/core": "workspace:*",
+        "@aicd-ci/agent-triage": "workspace:*",
+        "@aicd-ci/adapter-state-sqlite": "workspace:*"
     }
 }

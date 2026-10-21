@@ -1,4 +1,4 @@
-import type {DeploymentRef} from "@aicd/plugin-sdk";
+import type {DeploymentRef} from "@aicd-ci/plugin-sdk";
 
 /** What a deployer is configured to drive. */
 export interface DeployTarget {

@@ -1,4 +1,4 @@
-import type {Language} from "@aicd/plugin-sdk";
+import type {Language} from "@aicd-ci/plugin-sdk";
 import {DEFAULT_TEST_PATTERNS, isTestPath} from "./discover.js";
 import type {CoverageMap, CoverageSource} from "./mapping.js";
 import {branchMatches, firstMatch, normalizePath} from "./paths.js";

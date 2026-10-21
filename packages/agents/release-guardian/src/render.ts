@@ -1,4 +1,4 @@
-import type {Language} from "@aicd/plugin-sdk";
+import type {Language} from "@aicd-ci/plugin-sdk";
 import type {GuardReport, Health, MetricResult, Verdict} from "./guard.js";
 import type {Comparison} from "./stats.js";
 

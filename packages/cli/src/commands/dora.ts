@@ -1,4 +1,4 @@
-import {computeDora, renderDora} from "@aicd/metrics";
+import {computeDora, renderDora} from "@aicd-ci/metrics";
 import {EXIT, type GlobalOptions} from "../shared.js";
 import {Session} from "../session.js";
 

@@ -1,4 +1,4 @@
-import {extractExcerpt, type TestCaseResult} from "@aicd/parsers";
+import {extractExcerpt, type TestCaseResult} from "@aicd-ci/parsers";
 import {
     CONFIDENCE_LEVELS,
     LLMError,
@@ -11,7 +11,7 @@ import {
     type PipelineContext,
     type ProposedAction,
     type StateStore
-} from "@aicd/plugin-sdk";
+} from "@aicd-ci/plugin-sdk";
 import {fingerprint} from "./fingerprint.js";
 import {flakiness, looksLikeTestFailure, matchRules} from "./heuristics.js";
 import {buildPrompt, LlmDiagnosisSchema, SYSTEM_PROMPT, verifyEvidence} from "./llm.js";

@@ -1,4 +1,4 @@
-import type {Factory, FactoryContext, LLMProvider} from "@aicd/plugin-sdk";
+import type {Factory, FactoryContext, LLMProvider} from "@aicd-ci/plugin-sdk";
 import {OPENAI_BASE_URL, OpenAICompatibleProvider, type OpenAICompatibleOptions} from "./provider.js";
 
 export const OLLAMA_BASE_URL = "http://localhost:11434/v1";

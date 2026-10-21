@@ -1,7 +1,7 @@
 import {createHmac} from "node:crypto";
 import {describe, expect, it, vi} from "vitest";
-import {ArgoCDDeployer, deployerFactories, signBody, WebhookDeployer} from "@aicd/adapter-deployers";
-import type {DeploymentRef} from "@aicd/plugin-sdk";
+import {ArgoCDDeployer, deployerFactories, signBody, WebhookDeployer} from "@aicd-ci/adapter-deployers";
+import type {DeploymentRef} from "@aicd-ci/plugin-sdk";
 
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};
 

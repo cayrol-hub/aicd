@@ -1,6 +1,6 @@
 import {readFileSync} from "node:fs";
 import {relative} from "node:path";
-import {runPipelineOptimizer} from "@aicd/agent-pipeline-optimizer";
+import {runPipelineOptimizer} from "@aicd-ci/agent-pipeline-optimizer";
 import {EXIT, findFiles, type GlobalOptions} from "../shared.js";
 import {conclude, report} from "../outcome.js";
 import {Session} from "../session.js";

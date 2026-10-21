@@ -1,4 +1,4 @@
-import {COLLECTIONS, type Logger, type StateStore} from "@aicd/plugin-sdk";
+import {COLLECTIONS, type Logger, type StateStore} from "@aicd-ci/plugin-sdk";
 import type {AicdEvent, EventHandlers} from "./events.js";
 
 export type EventStatus = "pending" | "processing" | "done" | "failed";

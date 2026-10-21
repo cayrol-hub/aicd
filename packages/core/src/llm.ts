@@ -1,4 +1,4 @@
-import {LLMError, type AgentRuntime, type LLMUsage, type StructuredRequest} from "@aicd/plugin-sdk";
+import {LLMError, type AgentRuntime, type LLMUsage, type StructuredRequest} from "@aicd-ci/plugin-sdk";
 
 /**
  * One LLM call with the safeguards every agent needs: no call without a provider or budget,

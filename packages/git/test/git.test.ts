@@ -2,7 +2,7 @@ import {mkdtempSync, writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
 import {beforeAll, describe, expect, it} from "vitest";
-import {changedFiles, coChanges, diff, fixCounts, git, isGitRepository, log, previousTag, tags} from "@aicd/git";
+import {changedFiles, coChanges, diff, fixCounts, git, isGitRepository, log, previousTag, tags} from "@aicd-ci/git";
 
 let cwd: string;
 

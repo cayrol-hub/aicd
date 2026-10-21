@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/agent-triage",
+    "name": "@aicd-ci/agent-triage",
     "version": "1.0.0",
     "description": "Triage agent: diagnoses failed CI jobs",
     "license": "Apache-2.0",
@@ -24,9 +24,9 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/parsers": "workspace:*",
-        "@aicd/plugin-sdk": "workspace:*",
-        "@aicd/redaction": "workspace:*",
+        "@aicd-ci/parsers": "workspace:*",
+        "@aicd-ci/plugin-sdk": "workspace:*",
+        "@aicd-ci/redaction": "workspace:*",
         "zod": "^4.6.7"
     }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/adapter-ci-gitlab",
+    "name": "@aicd-ci/adapter-ci-gitlab",
     "version": "1.0.0",
     "description": "GitLab CI adapter",
     "license": "Apache-2.0",
@@ -24,6 +24,6 @@
         "node": ">=22.13"
     },
     "dependencies": {
-        "@aicd/plugin-sdk": "workspace:*"
+        "@aicd-ci/plugin-sdk": "workspace:*"
     }
 }

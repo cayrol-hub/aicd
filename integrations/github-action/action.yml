@@ -23,7 +23,7 @@ inputs:
     required: false
     default: .aicd.yaml
   version:
-    description: Version of @aicd/cli to run.
+    description: Version of @aicd-ci/cli to run.
     required: false
     default: "1"
   args:
@@ -69,6 +69,6 @@ runs:
         config_args=()
         if [ -f "$AICD_INPUT_CONFIG" ]; then config_args=(--config "$AICD_INPUT_CONFIG"); fi
         set -o pipefail
-        npx --yes "@aicd/cli@${AICD_INPUT_VERSION}" "${command[@]}" --ci github "${config_args[@]}" "${extra_args[@]}" | tee "$RUNNER_TEMP/aicd-stdout"
+        npx --yes "@aicd-ci/cli@${AICD_INPUT_VERSION}" "${command[@]}" --ci github "${config_args[@]}" "${extra_args[@]}" | tee "$RUNNER_TEMP/aicd-stdout"
         delimiter="aicd_$(openssl rand -hex 8)"
         { echo "stdout<<$delimiter"; cat "$RUNNER_TEMP/aicd-stdout"; echo "$delimiter"; } >> "$GITHUB_OUTPUT"

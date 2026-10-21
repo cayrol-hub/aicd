@@ -1,14 +1,14 @@
 # Writing a plugin
 
 A plugin adds components aicd can use by name from `.aicd.yaml`: CI adapters, LLM providers, issue trackers,
-metrics sources, deployers, notifiers or state stores. It depends on `@aicd/plugin-sdk` only (plugin API
+metrics sources, deployers, notifiers or state stores. It depends on `@aicd-ci/plugin-sdk` only (plugin API
 version 1, stable for the whole 1.x line).
 
 ## 1. The manifest
 
 ```ts
 // index.ts of the package "aicd-plugin-pagerduty"
-import {definePlugin, PLUGIN_API_VERSION, type Notifier} from "@aicd/plugin-sdk";
+import {definePlugin, PLUGIN_API_VERSION, type Notifier} from "@aicd-ci/plugin-sdk";
 
 class PagerDutyNotifier implements Notifier {
     readonly name = "pagerduty";
@@ -69,7 +69,7 @@ plugins with `plugins.allowed` in their policies.
 ## 3. Test it with the conformance kit
 
 ```ts
-import {checkPluginManifest, checkStateStore, checkCIProvider, checkLLMProvider} from "@aicd/plugin-sdk/testing";
+import {checkPluginManifest, checkStateStore, checkCIProvider, checkLLMProvider} from "@aicd-ci/plugin-sdk/testing";
 import plugin from "../src/index.js";
 
 test("manifest", () => expect(checkPluginManifest(plugin)).toEqual([]));
@@ -81,5 +81,5 @@ Each check returns the list of failures, so it works with any test runner.
 ## Compatibility
 
 `apiVersion` must equal the `PLUGIN_API_VERSION` of the aicd you run; a plugin built for another major version is
-refused at load time. Changes to `@aicd/plugin-sdk` are tracked in `packages/plugin-sdk/api-report.d.ts`;
+refused at load time. Changes to `@aicd-ci/plugin-sdk` are tracked in `packages/plugin-sdk/api-report.d.ts`;
 breaking ones only happen in a new major version, with an ADR.

@@ -1,6 +1,6 @@
 import {fileURLToPath} from "node:url";
 import {describe, expect, it, vi} from "vitest";
-import {ComponentRegistry, ConfigError, loadPlugins} from "@aicd/core";
+import {ComponentRegistry, ConfigError, loadPlugins} from "@aicd-ci/core";
 
 const cwd = fileURLToPath(new URL("./fixtures", import.meta.url));
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};

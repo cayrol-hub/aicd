@@ -1,4 +1,4 @@
-import {checkQuarantine, listQuarantine} from "@aicd/agent-flaky";
+import {checkQuarantine, listQuarantine} from "@aicd-ci/agent-flaky";
 import {EXIT, readTests, type GlobalOptions} from "../shared.js";
 import {Session} from "../session.js";
 

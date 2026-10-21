@@ -2,7 +2,7 @@
 
 ## 1.0.0 — unreleased
 
-First stable version. The plugin API (`@aicd/plugin-sdk` 1.x, `PLUGIN_API_VERSION` 1) is frozen.
+First stable version. The plugin API (`@aicd-ci/plugin-sdk` 1.x, `PLUGIN_API_VERSION` 1) is frozen.
 
 ### Agents
 

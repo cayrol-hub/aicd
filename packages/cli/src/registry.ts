@@ -1,14 +1,14 @@
-import {githubProvider} from "@aicd/adapter-ci-github";
-import {gitlabProvider} from "@aicd/adapter-ci-gitlab";
-import {localProvider} from "@aicd/adapter-ci-local";
-import {deployerFactories} from "@aicd/adapter-deployers";
-import {trackerFactories} from "@aicd/adapter-issue-trackers";
-import {AnthropicProvider, type Effort} from "@aicd/adapter-llm-anthropic";
-import {llmFactories} from "@aicd/adapter-llm-openai";
-import {metricsSourceFactories} from "@aicd/adapter-metrics-sources";
-import {notifierFactories} from "@aicd/adapter-notifiers";
-import {ComponentRegistry} from "@aicd/core";
-import type {Factory, LLMProvider} from "@aicd/plugin-sdk";
+import {githubProvider} from "@aicd-ci/adapter-ci-github";
+import {gitlabProvider} from "@aicd-ci/adapter-ci-gitlab";
+import {localProvider} from "@aicd-ci/adapter-ci-local";
+import {deployerFactories} from "@aicd-ci/adapter-deployers";
+import {trackerFactories} from "@aicd-ci/adapter-issue-trackers";
+import {AnthropicProvider, type Effort} from "@aicd-ci/adapter-llm-anthropic";
+import {llmFactories} from "@aicd-ci/adapter-llm-openai";
+import {metricsSourceFactories} from "@aicd-ci/adapter-metrics-sources";
+import {notifierFactories} from "@aicd-ci/adapter-notifiers";
+import {ComponentRegistry} from "@aicd-ci/core";
+import type {Factory, LLMProvider} from "@aicd-ci/plugin-sdk";
 
 /** Anthropic: key from `api_key_env`, else `AICD_LLM_API_KEY`, else `ANTHROPIC_API_KEY`. */
 const anthropicFactory: Factory<LLMProvider> = {

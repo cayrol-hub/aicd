@@ -1,4 +1,4 @@
-import type {MetricQuery, MetricSample, MetricsSource, TimeWindow} from "@aicd/plugin-sdk";
+import type {MetricQuery, MetricSample, MetricsSource, TimeWindow} from "@aicd-ci/plugin-sdk";
 import {getJson, sumPointWise, trimBase, unixSeconds, type HttpOptions} from "./http.js";
 
 export interface PrometheusOptions extends HttpOptions {

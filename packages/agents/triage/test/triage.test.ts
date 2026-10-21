@@ -1,5 +1,5 @@
 import {describe, expect, it, vi} from "vitest";
-import {SqliteStateStore} from "@aicd/adapter-state-sqlite";
+import {SqliteStateStore} from "@aicd-ci/adapter-state-sqlite";
 import {
     fingerprint,
     normalizeErrorLine,
@@ -8,9 +8,9 @@ import {
     verifyEvidence,
     type LlmDiagnosis,
     type TriageInput
-} from "@aicd/agent-triage";
-import {RunBudget} from "@aicd/core";
-import {LLMError, type LLMProvider} from "@aicd/plugin-sdk";
+} from "@aicd-ci/agent-triage";
+import {RunBudget} from "@aicd-ci/core";
+import {LLMError, type LLMProvider} from "@aicd-ci/plugin-sdk";
 
 const logger = {debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn()};
 

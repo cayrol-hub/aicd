@@ -1,5 +1,5 @@
 {
-    "name": "@aicd/plugin-sdk",
+    "name": "@aicd-ci/plugin-sdk",
     "version": "1.0.0",
     "description": "Public interfaces for aicd plugins and adapters",
     "license": "Apache-2.0",

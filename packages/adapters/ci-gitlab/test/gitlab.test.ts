@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {GitLabCIProvider, gitlabProvider} from "@aicd/adapter-ci-gitlab";
+import {GitLabCIProvider, gitlabProvider} from "@aicd-ci/adapter-ci-gitlab";
 
 const env = {
     GITLAB_CI: "true",
