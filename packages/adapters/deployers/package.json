@@ -1,6 +1,6 @@
 {
     "name": "@aicd-ci/adapter-deployers",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Deployers: Argo CD, generic webhook",
     "license": "Apache-2.0",
     "type": "module",

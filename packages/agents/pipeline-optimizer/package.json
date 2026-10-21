@@ -1,6 +1,6 @@
 {
     "name": "@aicd-ci/agent-pipeline-optimizer",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Pipeline optimizer agent: finds slow and redundant jobs",
     "license": "Apache-2.0",
     "type": "module",

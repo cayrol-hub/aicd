@@ -1,6 +1,17 @@
 # Changelog
 
-## 1.0.0 — unreleased
+## 1.0.1
+
+### Fixed
+
+- JUnit reports written by Node's `node --test` reporter: test cases placed directly under `<testsuites>` were
+  ignored, and tests were keyed by the generic classname `test`. They are now read, and keyed by their file path
+  relative to the repository.
+- Risk score: a migration that destroys data (DROP TABLE, DROP COLUMN, TRUNCATE…) is high risk on its own, whatever
+  the score; the comment says why.
+- Release: npm packages are published with their provenance attestation (`npm publish --provenance`).
+
+## 1.0.0
 
 First stable version. The plugin API (`@aicd-ci/plugin-sdk` 1.x, `PLUGIN_API_VERSION` 1) is frozen.
 

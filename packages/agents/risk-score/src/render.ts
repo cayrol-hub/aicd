@@ -25,6 +25,7 @@ const TEXT = {
         explanation: "Explanation",
         evidence: "Evidence",
         fullSuite: "full test suite required",
+        dataLoss: "high whatever the score: the migration destroys data, which a rollback cannot restore",
         approvals: (n: number) => `${n} approval${n > 1 ? "s" : ""} required`,
         noSignal: "No risk signal.",
         footer: (runId: string) =>
@@ -51,6 +52,7 @@ const TEXT = {
         explanation: "Explication",
         evidence: "Preuves",
         fullSuite: "suite de tests complète requise",
+        dataLoss: "élevé quel que soit le score : la migration détruit des données, qu'un rollback ne restaure pas",
         approvals: (n: number) => `${n} approbation${n > 1 ? "s" : ""} requise${n > 1 ? "s" : ""}`,
         noSignal: "Aucun signal de risque.",
         footer: (runId: string) =>
@@ -75,6 +77,8 @@ export function renderRiskComment(report: RiskReport, options: {language: Langua
     const colon = options.language === "fr" ? " :" : ":";
     const scored = report.signals.filter((signal) => signal.points > 0);
     const headline = [`**${t.risk}${colon} ${t.levels[report.level]} (${report.score}/100)**`];
+    const thresholdHigh = report.thresholds.high;
+    if (report.level === "high" && report.score < thresholdHigh) headline.push(t.dataLoss);
     if (report.forceFullSuite) headline.push(t.fullSuite);
     headline.push(t.approvals(report.requiredApprovals));
 

@@ -190,7 +190,8 @@ describe("scoreMergeRequest", () => {
         });
         // Counted by the migration signal, not again as a sensitive path.
         expect(signal(report.signals, "sensitive_paths").points).toBe(0);
-        expect(report).toMatchObject({score: 45, level: "medium"});
+        // Data loss cannot be rolled back: high risk whatever the score.
+        expect(report).toMatchObject({score: 45, level: "high", forceFullSuite: true});
     });
 
     it("reaches high on a large sensitive change with a migration, dependencies and no tests", () => {
@@ -264,7 +265,9 @@ describe("renderRiskComment", () => {
     it("renders the breakdown in English", () => {
         const body = renderRiskComment(report, {language: "en", runId: "run_1"});
         expect(body.startsWith(COMMENT_MARKER)).toBe(true);
-        expect(body).toContain("**Risk: medium (45/100)** · 1 approval required");
+        expect(body).toContain(
+            "**Risk: high (45/100)** · high whatever the score: the migration destroys data, which a rollback cannot restore · full test suite required · 2 approvals required"
+        );
         expect(body).toContain("| Destructive SQL | 30/30 | 3 destructive SQL statement(s) added |");
         expect(body).toContain("`ALTER TABLE users DROP COLUMN legacy_id`");
         expect(body).not.toContain("| Size |");
@@ -279,7 +282,7 @@ describe("renderRiskComment", () => {
             }
         );
         expect(body).toContain(
-            "**Risque : élevé (45/100)** · suite de tests complète requise · 2 approbations requises"
+            "**Risque : élevé (45/100)** · élevé quel que soit le score : la migration détruit des données, qu'un rollback ne restaure pas · suite de tests complète requise · 2 approbations requises"
         );
         expect(body).toContain("| SQL destructeur | 30/30 | 3 instruction(s) SQL destructrice(s) ajoutée(s) |");
         expect(body).toContain("<summary>Preuves</summary>");

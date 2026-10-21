@@ -32,7 +32,7 @@ jobs:
       - run: node packages/cli/dist/bin.js replay --fixtures evals/fixtures --set llm.provider=none --min-accuracy 0.9
 
       # npm packages, with provenance (SLSA build attestation on npmjs.com).
-      - run: pnpm -r publish --access public --no-git-checks --provenance
+      - run: node scripts/publish.mjs
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

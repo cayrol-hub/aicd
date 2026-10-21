@@ -31,6 +31,27 @@ describe("parseJUnit", () => {
     });
 });
 
+describe("parseJUnit with Node's node --test reporter", () => {
+    it("reads test cases placed directly under testsuites and keys them by relative file", () => {
+        const results = parseJUnit(
+            `<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+    <testcase name="works" time="0.001" classname="test" file="/repo/test/a.test.ts"/>
+    <testcase name="works" time="0.001" classname="test" file="/repo/test/b.test.ts" failure="boom">
+        <failure type="testCodeFailure" message="boom">stack</failure>
+    </testcase>
+    <testsuite name="cart"><testcase name="adds" classname="test" file="/repo/test/cart.test.ts"/></testsuite>
+</testsuites>`,
+            {root: "/repo"}
+        );
+        expect(results.map((result) => [result.id, result.status])).toEqual([
+            ["test/a.test.ts::works", "passed"],
+            ["test/b.test.ts::works", "failed"],
+            ["test/cart.test.ts::adds", "passed"]
+        ]);
+    });
+});
+
 describe("logs", () => {
     it("removes ANSI codes, GitHub timestamps and GitLab section markers", () => {
         const lines = cleanLog(

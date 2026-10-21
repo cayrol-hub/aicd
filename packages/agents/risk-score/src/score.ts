@@ -582,8 +582,10 @@ export function scoreMergeRequest(input: RiskInput, optionsInput: RiskOptionsInp
 
     const rawScore = signals.reduce((sum, signal) => sum + signal.points, 0);
     const score = Math.min(100, rawScore);
+    // Destroying data cannot be undone by a rollback: a destructive migration is high risk on its own.
+    const losesData = signals.some((signal) => signal.id === "destructive_sql" && signal.points > 0);
     const level: RiskLevel =
-        score >= options.thresholds.high ? "high" : score >= options.thresholds.medium ? "medium" : "low";
+        losesData || score >= options.thresholds.high ? "high" : score >= options.thresholds.medium ? "medium" : "low";
     return {
         score,
         rawScore,

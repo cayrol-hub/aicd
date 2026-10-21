@@ -1,6 +1,6 @@
 {
     "name": "@aicd-ci/agent-release-guardian",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Release guardian agent: watches deployments",
     "license": "Apache-2.0",
     "type": "module",

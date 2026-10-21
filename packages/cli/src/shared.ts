@@ -65,7 +65,7 @@ export async function readTests(patterns: string[], logger: Logger, cwd?: string
     const files = await findFiles(patterns, cwd);
     return files.flatMap((file) => {
         try {
-            return parseJUnit(readFileSync(file, "utf8"));
+            return parseJUnit(readFileSync(file, "utf8"), {root: cwd ?? process.cwd()});
         } catch (error) {
             logger.warn(`cannot parse ${file}: ${(error as Error).message}`);
             return [];

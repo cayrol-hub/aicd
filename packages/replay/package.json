@@ -1,6 +1,6 @@
 {
     "name": "@aicd-ci/replay",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Shadow mode: replays agents on past failures and scores them",
     "license": "Apache-2.0",
     "type": "module",
