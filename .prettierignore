@@ -4,3 +4,5 @@ pnpm-lock.yaml
 LICENSE
 evals/fixtures/
 schema/
+packages/plugin-sdk/api-report.d.ts
+docs/reference/
