@@ -1,0 +1,33 @@
+{
+    "name": "@aicd/adapter-state-postgres",
+    "version": "1.0.0",
+    "description": "Postgres state store for the server mode",
+    "license": "Apache-2.0",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aicd-dev/aicd.git",
+        "directory": "packages/adapters/state-postgres"
+    },
+    "engines": {
+        "node": ">=22.13"
+    },
+    "dependencies": {
+        "@aicd/plugin-sdk": "workspace:*",
+        "pg": "^8.23.1"
+    },
+    "devDependencies": {
+        "@types/pg": "^8.23.1"
+    }
+}

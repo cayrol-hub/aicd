@@ -1,0 +1,33 @@
+{
+    "action": "completed",
+    "workflow_run": {
+        "id": 11223344556,
+        "name": "CI",
+        "head_branch": "feature/login",
+        "head_sha": "8f2c1d0b9e7a6f5c4d3b2a19087f6e5d4c3b2a10",
+        "run_number": 412,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/acme/shop/actions/runs/11223344556",
+        "created_at": "2026-10-21T08:12:03Z",
+        "updated_at": "2026-10-21T08:19:44Z",
+        "pull_requests": [
+            {
+                "id": 2011223344,
+                "number": 87,
+                "head": {"ref": "feature/login", "sha": "8f2c1d0b9e7a6f5c4d3b2a19087f6e5d4c3b2a10"},
+                "base": {"ref": "main", "sha": "1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d"}
+            }
+        ]
+    },
+    "workflow": {"id": 5566778, "name": "CI", "path": ".github/workflows/ci.yml"},
+    "repository": {
+        "id": 700100200,
+        "name": "shop",
+        "full_name": "acme/shop",
+        "private": true,
+        "default_branch": "main"
+    },
+    "sender": {"login": "octocat", "id": 1}
+}

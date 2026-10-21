@@ -1,0 +1,19 @@
+{
+    "ref": "refs/tags/v1.4.0",
+    "before": "0000000000000000000000000000000000000000",
+    "after": "c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00",
+    "created": true,
+    "deleted": false,
+    "forced": false,
+    "base_ref": "refs/heads/main",
+    "compare": "https://github.com/acme/shop/compare/v1.4.0",
+    "commits": [],
+    "head_commit": {
+        "id": "8f2c1d0b9e7a6f5c4d3b2a19087f6e5d4c3b2a10",
+        "message": "Release 1.4.0",
+        "timestamp": "2026-10-21T10:00:00+02:00"
+    },
+    "repository": {"id": 700100200, "name": "shop", "full_name": "acme/shop"},
+    "pusher": {"name": "octocat"},
+    "sender": {"login": "octocat", "id": 1}
+}

@@ -1,0 +1,25 @@
+{
+    "action": "synchronize",
+    "number": 87,
+    "before": "0d9c8b7a6f5e4d3c2b1a09f8e7d6c5b4a3928170",
+    "after": "8f2c1d0b9e7a6f5c4d3b2a19087f6e5d4c3b2a10",
+    "pull_request": {
+        "url": "https://api.github.com/repos/acme/shop/pulls/87",
+        "id": 2011223344,
+        "html_url": "https://github.com/acme/shop/pull/87",
+        "number": 87,
+        "state": "open",
+        "title": "Add login with magic links",
+        "body": "Closes #80.\n\nAdds the magic link flow.",
+        "draft": false,
+        "head": {
+            "label": "acme:feature/login",
+            "ref": "feature/login",
+            "sha": "8f2c1d0b9e7a6f5c4d3b2a19087f6e5d4c3b2a10"
+        },
+        "base": {"label": "acme:main", "ref": "main", "sha": "1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d"},
+        "user": {"login": "octocat", "id": 1}
+    },
+    "repository": {"id": 700100200, "name": "shop", "full_name": "acme/shop", "default_branch": "main"},
+    "sender": {"login": "octocat", "id": 1}
+}

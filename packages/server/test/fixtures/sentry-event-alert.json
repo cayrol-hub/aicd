@@ -1,0 +1,23 @@
+{
+    "action": "triggered",
+    "installation": {"uuid": "7a485448-a9e2-4c85-8a3c-4f44175783c9"},
+    "data": {
+        "event": {
+            "event_id": "e4874d664c3540c1a32eab185f12c5ab",
+            "issue_id": "4012345678",
+            "title": "TypeError: Cannot read properties of undefined (reading 'token')",
+            "level": "fatal",
+            "platform": "node",
+            "datetime": "2026-10-21T09:07:31.123000Z",
+            "tags": [
+                ["environment", "production"],
+                ["level", "fatal"],
+                ["release", "shop@1.4.0"]
+            ],
+            "web_url": "https://acme.sentry.io/organizations/acme/issues/4012345678/events/e4874d664c3540c1a32eab185f12c5ab/",
+            "issue_url": "https://sentry.io/api/0/issues/4012345678/"
+        },
+        "triggered_rule": "High error rate in production"
+    },
+    "actor": {"type": "application", "id": "sentry", "name": "Sentry"}
+}

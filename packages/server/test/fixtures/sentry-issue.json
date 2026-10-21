@@ -1,0 +1,22 @@
+{
+    "action": "created",
+    "installation": {"uuid": "7a485448-a9e2-4c85-8a3c-4f44175783c9"},
+    "data": {
+        "issue": {
+            "id": "4012345678",
+            "shortId": "SHOP-1A2",
+            "title": "TypeError: Cannot read properties of undefined (reading 'token')",
+            "culprit": "auth/magic-link in verify",
+            "level": "error",
+            "status": "unresolved",
+            "platform": "node",
+            "firstSeen": "2026-10-21T09:07:31.123000Z",
+            "lastSeen": "2026-10-21T09:07:31.123000Z",
+            "count": "1",
+            "project": {"id": "11", "name": "shop", "slug": "shop"},
+            "web_url": "https://acme.sentry.io/issues/4012345678/",
+            "url": "https://sentry.io/api/0/organizations/acme/issues/4012345678/"
+        }
+    },
+    "actor": {"type": "application", "id": "sentry", "name": "Sentry"}
+}

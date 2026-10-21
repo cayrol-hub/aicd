@@ -1,0 +1,23 @@
+{
+    "action": "created",
+    "deployment_status": {
+        "id": 998877,
+        "state": "success",
+        "environment": "production",
+        "target_url": "https://github.com/acme/shop/actions/runs/11223344999",
+        "environment_url": "https://shop.example.com",
+        "log_url": "https://github.com/acme/shop/actions/runs/11223344999",
+        "created_at": "2026-10-21T09:05:00Z"
+    },
+    "deployment": {
+        "id": 445566,
+        "sha": "8f2c1d0b9e7a6f5c4d3b2a19087f6e5d4c3b2a10",
+        "ref": "main",
+        "task": "deploy",
+        "environment": "production",
+        "created_at": "2026-10-21T09:01:12Z",
+        "updated_at": "2026-10-21T09:05:00Z"
+    },
+    "repository": {"id": 700100200, "name": "shop", "full_name": "acme/shop"},
+    "sender": {"login": "github-actions[bot]", "id": 41898282}
+}

@@ -1,0 +1,23 @@
+{
+    "object_kind": "deployment",
+    "status": "success",
+    "status_changed_at": "2026-10-21 11:05:00 +0200",
+    "deployment_id": 15,
+    "deployable_id": 796,
+    "deployable_url": "https://gitlab.com/acme/shop/-/jobs/796",
+    "environment": "production",
+    "environment_tier": "production",
+    "environment_slug": "production",
+    "environment_external_url": "https://shop.example.com",
+    "project": {
+        "id": 4242,
+        "name": "shop",
+        "web_url": "https://gitlab.com/acme/shop",
+        "path_with_namespace": "acme/shop"
+    },
+    "short_sha": "8f2c1d0b",
+    "user": {"id": 42, "name": "Ada", "username": "ada"},
+    "commit_url": "https://gitlab.com/acme/shop/-/commit/8f2c1d0b9e7a6f5c4d3b2a19087f6e5d4c3b2a10",
+    "commit_title": "Release 1.4.0",
+    "ref": "main"
+}

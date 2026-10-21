@@ -1,0 +1,30 @@
+{
+    "object_kind": "merge_request",
+    "event_type": "merge_request",
+    "user": {"id": 42, "name": "Ada", "username": "ada"},
+    "project": {
+        "id": 4242,
+        "name": "shop",
+        "web_url": "https://gitlab.com/acme/shop",
+        "path_with_namespace": "acme/shop"
+    },
+    "object_attributes": {
+        "id": 99887766,
+        "iid": 87,
+        "title": "Add login with magic links",
+        "description": "Closes #80.",
+        "source_branch": "feature/login",
+        "target_branch": "main",
+        "state": "opened",
+        "action": "update",
+        "oldrev": "0d9c8b7a6f5e4d3c2b1a09f8e7d6c5b4a3928170",
+        "url": "https://gitlab.com/acme/shop/-/merge_requests/87",
+        "last_commit": {
+            "id": "8f2c1d0b9e7a6f5c4d3b2a19087f6e5d4c3b2a10",
+            "message": "Handle expired links",
+            "timestamp": "2026-10-21T08:10:00+00:00"
+        }
+    },
+    "labels": [],
+    "changes": {"updated_at": {"previous": "2026-10-21 08:00:00 UTC", "current": "2026-10-21 08:10:05 UTC"}}
+}
