@@ -1,0 +1,30 @@
+{
+    "name": "@aicd/metrics",
+    "version": "1.0.0",
+    "description": "DORA metrics computed from the aicd state",
+    "license": "Apache-2.0",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aicd-dev/aicd.git",
+        "directory": "packages/metrics"
+    },
+    "engines": {
+        "node": ">=22.13"
+    },
+    "dependencies": {
+        "@aicd/plugin-sdk": "workspace:*",
+        "@aicd/git": "workspace:*"
+    }
+}
