@@ -39,7 +39,7 @@ aicd:
     permissions: {actions: read, contents: read, pull-requests: write}
     steps:
         - uses: actions/checkout@v4
-        - uses: aicd-dev/aicd/integrations/github-action@v1
+        - uses: cayrol-hub/aicd/integrations/github-action@v1
           with:
               command: analyze
               llm-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -52,7 +52,7 @@ The action sets up Node 24 for the rest of the job: run it after your own steps,
 
 ```yaml
 include:
-    - component: gitlab.com/aicd-dev/ci/aicd@1
+    - remote: https://raw.githubusercontent.com/cayrol-hub/aicd/v1/integrations/gitlab-component/templates/aicd.yml
 ```
 
 Masked CI/CD variables: `AICD_GITLAB_TOKEN` (project access token, scope `api`) and `ANTHROPIC_API_KEY`.
@@ -60,7 +60,7 @@ Masked CI/CD variables: `AICD_GITLAB_TOKEN` (project access token, scope `api`) 
 ### Anything else
 
 ```bash
-docker run --rm -e AICD_LLM_API_KEY -v "$PWD:/repo" ghcr.io/aicd-dev/aicd analyze --ci local --log job.log --junit "**/junit.xml"
+docker run --rm -e AICD_LLM_API_KEY -v "$PWD:/repo" ghcr.io/cayrol-hub/aicd analyze --ci local --log job.log --junit "**/junit.xml"
 ```
 
 ## 3. Choose the LLM

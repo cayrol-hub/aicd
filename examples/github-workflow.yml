@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
-      - uses: aicd-dev/aicd/integrations/github-action@v1
+      - uses: cayrol-hub/aicd/integrations/github-action@v1
         with:
           command: review
           llm-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -47,7 +47,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with: {name: junit}
-      - uses: aicd-dev/aicd/integrations/github-action@v1
+      - uses: cayrol-hub/aicd/integrations/github-action@v1
         with:
           command: analyze
           llm-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -59,6 +59,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
-      - uses: aicd-dev/aicd/integrations/github-action@v1
+      - uses: cayrol-hub/aicd/integrations/github-action@v1
         with:
           command: release-notes

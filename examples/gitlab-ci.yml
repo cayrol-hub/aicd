@@ -1,9 +1,9 @@
 # .gitlab-ci.yml — aicd around an existing test job.
 include:
   # End of every pipeline (stage .post, when: always): triage, flaky tests, security alerts, job timings.
-  - component: gitlab.com/aicd-dev/ci/aicd@1
+  - remote: https://raw.githubusercontent.com/cayrol-hub/aicd/v1/integrations/gitlab-component/templates/aicd.yml
   # Merge requests, early: risk score and intent check.
-  - component: gitlab.com/aicd-dev/ci/aicd@1
+  - remote: https://raw.githubusercontent.com/cayrol-hub/aicd/v1/integrations/gitlab-component/templates/aicd.yml
     inputs:
       job_name: aicd-review
       command: review

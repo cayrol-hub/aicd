@@ -31,7 +31,7 @@ aicd:
     permissions: {actions: read, contents: read, pull-requests: write}
     steps:
         - uses: actions/checkout@v4
-        - uses: aicd-dev/aicd/integrations/github-action@v1
+        - uses: cayrol-hub/aicd/integrations/github-action@v1
           with:
               command: analyze
               llm-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -40,7 +40,7 @@ aicd:
 ```yaml
 # GitLab CI
 include:
-    - component: gitlab.com/aicd-dev/ci/aicd@1
+    - remote: https://raw.githubusercontent.com/cayrol-hub/aicd/v1/integrations/gitlab-component/templates/aicd.yml
 ```
 
 Full pipelines: [GitHub](examples/github-workflow.yml), [GitLab](examples/gitlab-ci.yml). Step-by-step:

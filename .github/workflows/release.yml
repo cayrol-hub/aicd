@@ -72,3 +72,11 @@ jobs:
       - run: gh release create "${GITHUB_REF_NAME}" --notes-file release-notes.md "aicd-${GITHUB_REF_NAME}.spdx.json"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Moving major tag (v1): what `uses: cayrol-hub/aicd/integrations/github-action@v1` and the GitLab
+      # `include: remote` URLs point to. Pre-releases (v1.2.0-rc.1) do not move it.
+      - if: ${{ !contains(github.ref_name, '-') }}
+        run: |
+          major="${GITHUB_REF_NAME%%.*}"
+          git tag -f "$major" "$GITHUB_SHA"
+          git push -f origin "refs/tags/$major"

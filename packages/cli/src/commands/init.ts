@@ -5,10 +5,10 @@ import type {Logger} from "@aicd/plugin-sdk";
 
 const CONFIG_TEMPLATE = (
     junit: string[]
-) => `# yaml-language-server: $schema=https://raw.githubusercontent.com/aicd-dev/aicd/main/schema/aicd.schema.json
+) => `# yaml-language-server: $schema=https://raw.githubusercontent.com/cayrol-hub/aicd/main/schema/aicd.schema.json
 # aicd configuration. Every key is optional; the values below are the defaults unless noted.
 # Override any key with AICD_<PATH> (e.g. AICD_AGENTS_TRIAGE_AUTONOMY=act) or --set path=value.
-# Full reference: https://github.com/aicd-dev/aicd/blob/main/docs/reference/configuration.md
+# Full reference: https://github.com/cayrol-hub/aicd/blob/main/docs/reference/configuration.md
 
 # extends: ./policies.yaml          # organisation ceilings (file or https URL)
 
@@ -46,16 +46,16 @@ const SNIPPETS: Record<string, string> = {
     permissions: {actions: read, contents: read, pull-requests: write}
     steps:
       - uses: actions/checkout@v4
-      - uses: aicd-dev/aicd/integrations/github-action@v1
+      - uses: cayrol-hub/aicd/integrations/github-action@v1
         with:
           command: analyze
           llm-api-key: \${{ secrets.ANTHROPIC_API_KEY }}`,
     gitlab: `# .gitlab-ci.yml (full example: examples/gitlab-ci.yml)
 include:
-  - component: gitlab.com/aicd-dev/ci/aicd@1
+  - remote: https://raw.githubusercontent.com/cayrol-hub/aicd/v1/integrations/gitlab-component/templates/aicd.yml
 # Add masked CI/CD variables AICD_GITLAB_TOKEN (project access token, scope api) and ANTHROPIC_API_KEY.`,
     other: `# Any other CI: at the end of the pipeline
-docker run --rm -e AICD_LLM_API_KEY -v "$PWD:/repo" ghcr.io/aicd-dev/aicd analyze --ci local --log path/to/job.log`
+docker run --rm -e AICD_LLM_API_KEY -v "$PWD:/repo" ghcr.io/cayrol-hub/aicd analyze --ci local --log path/to/job.log`
 };
 
 export function detectCi(cwd: string): "github" | "gitlab" | "other" {

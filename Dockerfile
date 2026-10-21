@@ -1,5 +1,5 @@
 # Image for CIs without a native integration:
-#   docker run --rm -e AICD_LLM_API_KEY -v "$PWD:/repo" ghcr.io/aicd-dev/aicd analyze --ci local --log job.log
+#   docker run --rm -e AICD_LLM_API_KEY -v "$PWD:/repo" ghcr.io/cayrol-hub/aicd analyze --ci local --log job.log
 FROM node:24-slim AS build
 RUN corepack enable
 WORKDIR /src
