@@ -67,8 +67,8 @@ jobs:
           format: spdx-json
           output-file: aicd-${{ github.ref_name }}.spdx.json
 
-      # aicd writes its own release notes (rules only: no key needed in the release job).
-      - run: node packages/cli/dist/bin.js release-notes --tag "${GITHUB_REF_NAME}" --set llm.provider=none --output release-notes.md
+      # aicd writes its own release notes (rules only, dry run: the gh step below creates the release).
+      - run: node packages/cli/dist/bin.js release-notes --tag "${GITHUB_REF_NAME}" --set llm.provider=none --dry-run --output release-notes.md
       - run: gh release create "${GITHUB_REF_NAME}" --notes-file release-notes.md "aicd-${GITHUB_REF_NAME}.spdx.json"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
