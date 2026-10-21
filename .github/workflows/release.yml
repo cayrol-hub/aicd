@@ -1,0 +1,74 @@
+name: release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: write # GitHub release
+      id-token: write # npm provenance, keyless signing
+      packages: write # GHCR image
+      attestations: write # build provenance
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/set-version.mjs "${GITHUB_REF_NAME}"
+      - run: pnpm build && pnpm test
+      - run: node packages/cli/dist/bin.js replay --fixtures evals/fixtures --set llm.provider=none --min-accuracy 0.9
+
+      # npm packages, with provenance (SLSA build attestation on npmjs.com).
+      - run: pnpm -r publish --access public --no-git-checks --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Container image with SBOM and provenance, signed keylessly with cosign.
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - id: image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          sbom: true
+          provenance: mode=max
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/aicd:${{ github.ref_name }}
+            ghcr.io/${{ github.repository_owner }}/aicd:latest
+      - uses: sigstore/cosign-installer@v3
+      - run: cosign sign --yes "ghcr.io/${{ github.repository_owner }}/aicd@${{ steps.image.outputs.digest }}"
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-name: ghcr.io/${{ github.repository_owner }}/aicd
+          subject-digest: ${{ steps.image.outputs.digest }}
+          push-to-registry: true
+
+      # Source SBOM attached to the release.
+      - uses: anchore/sbom-action@v0
+        with:
+          format: spdx-json
+          output-file: aicd-${{ github.ref_name }}.spdx.json
+
+      # aicd writes its own release notes (rules only: no key needed in the release job).
+      - run: node packages/cli/dist/bin.js release-notes --tag "${GITHUB_REF_NAME}" --set llm.provider=none --output release-notes.md
+      - run: gh release create "${GITHUB_REF_NAME}" --notes-file release-notes.md "aicd-${GITHUB_REF_NAME}.spdx.json"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

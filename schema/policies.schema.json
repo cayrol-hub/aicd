@@ -1,0 +1,96 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "autonomy_max": {
+            "default": {},
+            "description": "Per agent (or `default`); an agent acting on environments may take one level per environment.",
+            "type": "object",
+            "propertyNames": {
+                "type": "string"
+            },
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "type": "string",
+                        "enum": [
+                            "observe",
+                            "advise",
+                            "propose",
+                            "act"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "propertyNames": {
+                            "type": "string"
+                        },
+                        "additionalProperties": {
+                            "type": "string",
+                            "enum": [
+                                "observe",
+                                "advise",
+                                "propose",
+                                "act"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "forbidden_actions": {
+            "default": [],
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "llm": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "allowed_providers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "max_budget_per_run_usd": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            },
+            "additionalProperties": false
+        },
+        "privacy": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "send_code_max": {
+                    "type": "string",
+                    "enum": [
+                        "none",
+                        "diff_only",
+                        "full"
+                    ]
+                }
+            },
+            "additionalProperties": false
+        },
+        "plugins": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "allowed": {
+                    "description": "Only these plugins may be loaded.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}

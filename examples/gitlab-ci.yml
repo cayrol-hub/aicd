@@ -1,0 +1,36 @@
+# .gitlab-ci.yml — aicd around an existing test job.
+include:
+  # End of every pipeline (stage .post, when: always): triage, flaky tests, security alerts, job timings.
+  - component: gitlab.com/aicd-dev/ci/aicd@1
+  # Merge requests, early: risk score and intent check.
+  - component: gitlab.com/aicd-dev/ci/aicd@1
+    inputs:
+      job_name: aicd-review
+      command: review
+      stage: .pre
+      when: always
+
+test:
+  stage: test
+  image: node:24
+  script:
+    - npm ci
+    - npx vitest run --reporter=junit --outputFile=junit.xml $(npx --yes @aicd/cli@1 tests select --format args) || npx --yes @aicd/cli@1 quarantine check --junit junit.xml
+  artifacts:
+    when: always
+    reports:
+      junit: junit.xml
+    paths: [junit.xml]
+
+deploy-production:
+  stage: deploy
+  environment: production
+  script:
+    - npx --yes @aicd/cli@1 deploy record --env production --status in_progress --id "$CI_PIPELINE_ID"
+    - ./deploy.sh
+    - npx --yes @aicd/cli@1 deploy record --env production --status success --id "$CI_PIPELINE_ID"
+    # Watches metrics for observe_minutes, then pauses or rolls back if the deployment degrades.
+    - npx --yes @aicd/cli@1 guard --deployment "$CI_PIPELINE_ID"
+  cache: {key: aicd-state, paths: [.aicd/]}
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

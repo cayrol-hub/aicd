@@ -1,0 +1,64 @@
+{
+    "name": "@aicd/cli",
+    "version": "1.0.0",
+    "description": "aicd command line",
+    "license": "Apache-2.0",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aicd-dev/aicd.git",
+        "directory": "packages/cli"
+    },
+    "engines": {
+        "node": ">=22.13"
+    },
+    "dependencies": {
+        "@aicd/adapter-ci-github": "workspace:*",
+        "@aicd/adapter-ci-gitlab": "workspace:*",
+        "@aicd/adapter-ci-local": "workspace:*",
+        "@aicd/adapter-deployers": "workspace:*",
+        "@aicd/adapter-issue-trackers": "workspace:*",
+        "@aicd/adapter-llm-anthropic": "workspace:*",
+        "@aicd/adapter-llm-openai": "workspace:*",
+        "@aicd/adapter-metrics-sources": "workspace:*",
+        "@aicd/adapter-notifiers": "workspace:*",
+        "@aicd/adapter-state-postgres": "workspace:*",
+        "@aicd/adapter-state-sqlite": "workspace:*",
+        "@aicd/agent-flaky": "workspace:*",
+        "@aicd/agent-intent-check": "workspace:*",
+        "@aicd/agent-pipeline-optimizer": "workspace:*",
+        "@aicd/agent-postmortem": "workspace:*",
+        "@aicd/agent-release-guardian": "workspace:*",
+        "@aicd/agent-release-notes": "workspace:*",
+        "@aicd/agent-risk-score": "workspace:*",
+        "@aicd/agent-security-triage": "workspace:*",
+        "@aicd/agent-test-selection": "workspace:*",
+        "@aicd/agent-triage": "workspace:*",
+        "@aicd/core": "workspace:*",
+        "@aicd/git": "workspace:*",
+        "@aicd/mcp": "workspace:*",
+        "@aicd/metrics": "workspace:*",
+        "@aicd/parsers": "workspace:*",
+        "@aicd/plugin-sdk": "workspace:*",
+        "@aicd/redaction": "workspace:*",
+        "@aicd/replay": "workspace:*",
+        "@aicd/server": "workspace:*",
+        "commander": "^15.0.0",
+        "tinyglobby": "^0.2.17",
+        "yaml": "^2.9.1"
+    },
+    "bin": {
+        "aicd": "./dist/bin.js"
+    }
+}

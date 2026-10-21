@@ -1,0 +1,100 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src"],
+    "references": [
+        {
+            "path": "../adapters/ci-github"
+        },
+        {
+            "path": "../adapters/ci-gitlab"
+        },
+        {
+            "path": "../adapters/ci-local"
+        },
+        {
+            "path": "../adapters/deployers"
+        },
+        {
+            "path": "../adapters/issue-trackers"
+        },
+        {
+            "path": "../adapters/llm-anthropic"
+        },
+        {
+            "path": "../adapters/llm-openai"
+        },
+        {
+            "path": "../adapters/metrics-sources"
+        },
+        {
+            "path": "../adapters/notifiers"
+        },
+        {
+            "path": "../adapters/state-postgres"
+        },
+        {
+            "path": "../adapters/state-sqlite"
+        },
+        {
+            "path": "../agents/flaky"
+        },
+        {
+            "path": "../agents/intent-check"
+        },
+        {
+            "path": "../agents/pipeline-optimizer"
+        },
+        {
+            "path": "../agents/postmortem"
+        },
+        {
+            "path": "../agents/release-guardian"
+        },
+        {
+            "path": "../agents/release-notes"
+        },
+        {
+            "path": "../agents/risk-score"
+        },
+        {
+            "path": "../agents/security-triage"
+        },
+        {
+            "path": "../agents/test-selection"
+        },
+        {
+            "path": "../agents/triage"
+        },
+        {
+            "path": "../core"
+        },
+        {
+            "path": "../git"
+        },
+        {
+            "path": "../mcp"
+        },
+        {
+            "path": "../metrics"
+        },
+        {
+            "path": "../parsers"
+        },
+        {
+            "path": "../plugin-sdk"
+        },
+        {
+            "path": "../redaction"
+        },
+        {
+            "path": "../replay"
+        },
+        {
+            "path": "../server"
+        }
+    ]
+}

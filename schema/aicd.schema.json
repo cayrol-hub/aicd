@@ -1,0 +1,1072 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "extends": {
+            "description": "Organisation policies: a file path or an https URL.",
+            "type": "string"
+        },
+        "plugins": {
+            "default": [],
+            "description": "Plugin packages to load (installed in the repository).",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "llm": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "provider": {
+                    "default": "anthropic",
+                    "description": "anthropic | openai | ollama | none | a plugin provider",
+                    "type": "string"
+                },
+                "model": {
+                    "default": "claude-opus-5-5",
+                    "type": "string"
+                },
+                "effort": {
+                    "default": "medium",
+                    "type": "string",
+                    "enum": [
+                        "low",
+                        "medium",
+                        "high",
+                        "xhigh",
+                        "max"
+                    ]
+                },
+                "budget_per_run_usd": {
+                    "default": 0.3,
+                    "type": "number",
+                    "minimum": 0
+                },
+                "base_url": {
+                    "description": "OpenAI-compatible servers (Ollama, vLLM…).",
+                    "type": "string"
+                },
+                "api_key_env": {
+                    "description": "Name of the environment variable holding the key.",
+                    "type": "string"
+                },
+                "prices": {
+                    "description": "USD per million tokens, for providers aicd has no price for.",
+                    "type": "object",
+                    "properties": {
+                        "input": {
+                            "type": "number",
+                            "minimum": 0
+                        },
+                        "output": {
+                            "type": "number",
+                            "minimum": 0
+                        }
+                    },
+                    "required": [
+                        "input",
+                        "output"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "agents": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "triage": {
+                    "default": {},
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "autonomy": {
+                            "default": "advise",
+                            "type": "string",
+                            "enum": [
+                                "observe",
+                                "advise",
+                                "propose",
+                                "act"
+                            ]
+                        },
+                        "retry_flaky": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "flaky_window": {
+                            "default": 20,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "flaky_min_flips": {
+                            "default": 2,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "flaky": {
+                    "default": {},
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "autonomy": {
+                            "default": "advise",
+                            "type": "string",
+                            "enum": [
+                                "observe",
+                                "advise",
+                                "propose",
+                                "act"
+                            ]
+                        },
+                        "window": {
+                            "default": 30,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "min_flips": {
+                            "default": 2,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "min_runs": {
+                            "default": 3,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "quarantine_after": {
+                            "default": 3,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "release_after": {
+                            "default": 10,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "create_issues": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "test_selection": {
+                    "default": {},
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "autonomy": {
+                            "default": "advise",
+                            "description": "Only for its merge request comment.",
+                            "type": "string",
+                            "enum": [
+                                "observe",
+                                "advise",
+                                "propose",
+                                "act"
+                            ]
+                        },
+                        "full_suite_on": {
+                            "default": [
+                                "main",
+                                "master",
+                                "release/*"
+                            ],
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "force_full_patterns": {
+                            "default": [],
+                            "description": "Added to the built-in list (lockfiles, CI and build config…).",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "max_changed_files": {
+                            "default": 50,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "unmapped_source": {
+                            "default": "full",
+                            "type": "string",
+                            "enum": [
+                                "full",
+                                "ignore"
+                            ]
+                        },
+                        "map_max_age_days": {
+                            "default": 14,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "ignore_patterns": {
+                            "default": [],
+                            "description": "Changed files without test impact, added to the built-in list (docs).",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "test_patterns": {
+                            "default": [],
+                            "description": "Overrides the built-in test file patterns when set.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "unmapped_tests": {
+                            "default": "run",
+                            "type": "string",
+                            "enum": [
+                                "run",
+                                "skip"
+                            ]
+                        },
+                        "conventions": {
+                            "default": true,
+                            "description": "Map tests to sources by naming conventions.",
+                            "type": "boolean"
+                        },
+                        "co_change_threshold": {
+                            "default": 3,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "comment": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "coverage": {
+                            "default": {},
+                            "type": "object",
+                            "properties": {
+                                "lcov": {
+                                    "default": [
+                                        "**/lcov.info"
+                                    ],
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "cobertura": {
+                                    "default": [],
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "jacoco": {
+                                    "default": [],
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "security_triage": {
+                    "default": {},
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "autonomy": {
+                            "default": "advise",
+                            "type": "string",
+                            "enum": [
+                                "observe",
+                                "advise",
+                                "propose",
+                                "act"
+                            ]
+                        },
+                        "ignore_paths": {
+                            "default": [],
+                            "description": "Added to the built-in list (tests, fixtures, vendor, generated…).",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "max_alerts": {
+                            "default": 10,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "context_lines": {
+                            "default": 20,
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "never_dismiss": {
+                            "default": [
+                                "critical"
+                            ],
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "critical",
+                                    "high",
+                                    "medium",
+                                    "low",
+                                    "note"
+                                ]
+                            }
+                        },
+                        "fail_on": {
+                            "default": "high",
+                            "type": "string",
+                            "enum": [
+                                "critical",
+                                "high",
+                                "medium",
+                                "low",
+                                "note"
+                            ]
+                        },
+                        "fix_proposal": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "pipeline_optimizer": {
+                    "default": {},
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "autonomy": {
+                            "default": "propose",
+                            "type": "string",
+                            "enum": [
+                                "observe",
+                                "advise",
+                                "propose",
+                                "act"
+                            ]
+                        },
+                        "config_files": {
+                            "default": [],
+                            "description": "Default: .gitlab-ci.yml or .github/workflows/*.yml.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "history_limit": {
+                            "default": 50,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "min_runs": {
+                            "default": 5,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "slow_job_share": {
+                            "default": 0.25,
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                        },
+                        "slow_job_min_minutes": {
+                            "default": 5,
+                            "type": "number",
+                            "minimum": 0
+                        },
+                        "queue_threshold_seconds": {
+                            "default": 120,
+                            "type": "number",
+                            "minimum": 0
+                        },
+                        "retry_rate": {
+                            "default": 0.1,
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                        },
+                        "max_llm_findings": {
+                            "default": 3,
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "fix_proposal": {
+                            "default": true,
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "intent_check": {
+                    "default": {},
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "autonomy": {
+                            "default": "advise",
+                            "type": "string",
+                            "enum": [
+                                "observe",
+                                "advise",
+                                "propose",
+                                "act"
+                            ]
+                        },
+                        "max_diff_chars": {
+                            "default": 60000,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "fail_on_gaps": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "risk_score": {
+                    "default": {},
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "autonomy": {
+                            "default": "advise",
+                            "type": "string",
+                            "enum": [
+                                "observe",
+                                "advise",
+                                "propose",
+                                "act"
+                            ]
+                        },
+                        "sensitive_paths": {
+                            "default": [],
+                            "description": "Added to the built-in list.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "medium_threshold": {
+                            "default": 40,
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "high_threshold": {
+                            "default": 70,
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "weights": {
+                            "default": {},
+                            "description": "Maximum points per signal.",
+                            "type": "object",
+                            "propertyNames": {
+                                "type": "string"
+                            },
+                            "additionalProperties": {
+                                "type": "number",
+                                "minimum": 0
+                            }
+                        },
+                        "fix_hotspot_min": {
+                            "default": 2,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "label_prefix": {
+                            "default": "risk:",
+                            "type": "string"
+                        },
+                        "fail_on_high": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "comment_on_low": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "required_approvals": {
+                            "default": {},
+                            "type": "object",
+                            "properties": {
+                                "low": {
+                                    "default": 1,
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                },
+                                "medium": {
+                                    "default": 1,
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                },
+                                "high": {
+                                    "default": 2,
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "release_notes": {
+                    "default": {},
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "autonomy": {
+                            "default": "propose",
+                            "type": "string",
+                            "enum": [
+                                "observe",
+                                "advise",
+                                "propose",
+                                "act"
+                            ]
+                        },
+                        "audiences": {
+                            "default": [
+                                "technical",
+                                "users"
+                            ],
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "technical",
+                                    "users"
+                                ]
+                            }
+                        },
+                        "primary": {
+                            "default": "technical",
+                            "type": "string",
+                            "enum": [
+                                "technical",
+                                "users"
+                            ]
+                        },
+                        "use_llm": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "repository_url": {
+                            "description": "Default: derived from the CI (GitHub).",
+                            "type": "string"
+                        },
+                        "ticket_url": {
+                            "description": "Template with {key}, e.g. https://acme.atlassian.net/browse/{key}.",
+                            "type": "string"
+                        },
+                        "ticket_prefixes": {
+                            "default": [],
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "release_name": {
+                            "default": "{tag}",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "release_guardian": {
+                    "default": {},
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "autonomy": {
+                            "default": {
+                                "default": "propose",
+                                "staging": "act",
+                                "production": "propose"
+                            },
+                            "anyOf": [
+                                {
+                                    "type": "string",
+                                    "enum": [
+                                        "observe",
+                                        "advise",
+                                        "propose",
+                                        "act"
+                                    ]
+                                },
+                                {
+                                    "type": "object",
+                                    "propertyNames": {
+                                        "type": "string"
+                                    },
+                                    "additionalProperties": {
+                                        "type": "string",
+                                        "enum": [
+                                            "observe",
+                                            "advise",
+                                            "propose",
+                                            "act"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "metrics": {
+                            "default": [],
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "source": {
+                                        "type": "string"
+                                    },
+                                    "query": {
+                                        "type": "string"
+                                    },
+                                    "bad": {
+                                        "default": "up",
+                                        "type": "string",
+                                        "enum": [
+                                            "up",
+                                            "down"
+                                        ]
+                                    },
+                                    "absolute_min": {
+                                        "default": 0,
+                                        "type": "number",
+                                        "minimum": 0
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "source",
+                                    "query"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "error_source": {
+                            "description": "Name of a metrics source that reports new errors (Sentry).",
+                            "type": "string"
+                        },
+                        "baseline_minutes": {
+                            "default": 60,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "observe_minutes": {
+                            "default": 15,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "step_seconds": {
+                            "default": 60,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        },
+                        "relative_increase": {
+                            "default": 0.5,
+                            "type": "number",
+                            "exclusiveMinimum": 0
+                        },
+                        "severe_factor": {
+                            "default": 2,
+                            "type": "number",
+                            "exclusiveMinimum": 0
+                        },
+                        "new_errors_threshold": {
+                            "default": 3,
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 9007199254740991
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "postmortem": {
+                    "default": {},
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "default": true,
+                            "type": "boolean"
+                        },
+                        "autonomy": {
+                            "default": "propose",
+                            "type": "string",
+                            "enum": [
+                                "observe",
+                                "advise",
+                                "propose",
+                                "act"
+                            ]
+                        },
+                        "lookback_hours": {
+                            "default": 24,
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "integrations": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "trackers": {
+                    "default": [],
+                    "description": "jira | github | linear | markdown | plugin trackers",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        },
+                        "required": [
+                            "type"
+                        ],
+                        "additionalProperties": {}
+                    }
+                },
+                "metrics_sources": {
+                    "default": {},
+                    "description": "prometheus | datadog | sentry, by name",
+                    "type": "object",
+                    "propertyNames": {
+                        "type": "string"
+                    },
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        },
+                        "required": [
+                            "type"
+                        ],
+                        "additionalProperties": {}
+                    }
+                },
+                "deployer": {
+                    "description": "argocd | webhook",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "required": [
+                        "type"
+                    ],
+                    "additionalProperties": {}
+                },
+                "notifiers": {
+                    "default": [],
+                    "description": "slack | teams | webhook; `on` filters by severity or agent",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "on": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "required": [
+                            "type"
+                        ]
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "inputs": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "junit": {
+                    "default": [
+                        "**/junit*.xml",
+                        "**/TEST-*.xml",
+                        "**/test-results/**/*.xml"
+                    ],
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "sarif": {
+                    "default": [
+                        "**/*.sarif",
+                        "**/*.sarif.json"
+                    ],
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "privacy": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "send_code": {
+                    "default": "diff_only",
+                    "type": "string",
+                    "enum": [
+                        "none",
+                        "diff_only",
+                        "full"
+                    ]
+                },
+                "redact": {
+                    "default": [
+                        "secrets",
+                        "emails",
+                        "ip_addresses",
+                        "high_entropy"
+                    ],
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "secrets",
+                            "emails",
+                            "ip_addresses",
+                            "high_entropy"
+                        ]
+                    }
+                },
+                "extra_patterns": {
+                    "default": [],
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "comment": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "language": {
+                    "default": "en",
+                    "type": "string",
+                    "enum": [
+                        "en",
+                        "fr"
+                    ]
+                },
+                "min_confidence": {
+                    "default": "low",
+                    "type": "string",
+                    "enum": [
+                        "low",
+                        "medium",
+                        "high"
+                    ]
+                }
+            },
+            "additionalProperties": false
+        },
+        "state": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "backend": {
+                    "default": "sqlite",
+                    "description": "sqlite | postgres | a plugin store",
+                    "type": "string"
+                },
+                "path": {
+                    "default": ".aicd/state.db",
+                    "type": "string"
+                },
+                "url_env": {
+                    "default": "AICD_DATABASE_URL",
+                    "description": "Postgres connection string variable.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "server": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "host": {
+                    "default": "0.0.0.0",
+                    "type": "string"
+                },
+                "port": {
+                    "default": 8080,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 65535
+                },
+                "api_tokens_env": {
+                    "default": "AICD_API_TOKENS",
+                    "description": "Comma-separated bearer tokens.",
+                    "type": "string"
+                },
+                "github_secret_env": {
+                    "default": "AICD_GITHUB_WEBHOOK_SECRET",
+                    "type": "string"
+                },
+                "gitlab_token_env": {
+                    "default": "AICD_GITLAB_WEBHOOK_TOKEN",
+                    "type": "string"
+                },
+                "alerts_token_env": {
+                    "default": "AICD_ALERTS_TOKEN",
+                    "type": "string"
+                },
+                "sentry_client_secret_env": {
+                    "default": "AICD_SENTRY_CLIENT_SECRET",
+                    "description": "Sentry integrations sign their webhooks instead of sending a token.",
+                    "type": "string"
+                },
+                "concurrency": {
+                    "default": 2,
+                    "type": "integer",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                }
+            },
+            "additionalProperties": false
+        },
+        "audit": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "jsonl": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "security": {
+            "default": {},
+            "type": "object",
+            "properties": {
+                "allow_forks": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "protected_branches": {
+                    "default": [
+                        "main",
+                        "master",
+                        "develop",
+                        "development",
+                        "production",
+                        "release/*"
+                    ],
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "fail_on_internal_error": {
+            "default": false,
+            "type": "boolean"
+        }
+    },
+    "additionalProperties": false
+}

@@ -1,0 +1,64 @@
+# .github/workflows/ci.yml — aicd around an existing test job.
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ["v*"]
+
+jobs:
+  # Merge requests, early: risk score and intent check (needs no test result).
+  review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions: {contents: read, pull-requests: write, statuses: write}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: aicd-dev/aicd/integrations/github-action@v1
+        with:
+          command: review
+          llm-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: 24}
+      - run: npm ci
+      # Only the tests the change needs (empty output = everything).
+      - run: npx vitest run --reporter=junit --outputFile=junit.xml $(npx --yes @aicd/cli@1 tests select --format args)
+      # Pass when every failing test is a known flaky test in quarantine.
+      - if: failure()
+        run: npx --yes @aicd/cli@1 quarantine check --junit junit.xml
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with: {name: junit, path: junit.xml}
+
+  # End of every pipeline, green or red: triage, flaky tests, security alerts, job timings.
+  aicd:
+    needs: [test]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions: {actions: read, contents: read, pull-requests: write}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: {name: junit}
+      - uses: aicd-dev/aicd/integrations/github-action@v1
+        with:
+          command: analyze
+          llm-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
+
+  release-notes:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions: {contents: write}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: aicd-dev/aicd/integrations/github-action@v1
+        with:
+          command: release-notes

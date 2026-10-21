@@ -1,0 +1,14 @@
+# Organisation policies, referenced with `extends:` from every repository. Ceilings only.
+autonomy_max:
+  default: advise
+  triage: act
+  flaky: act
+  release_guardian: {default: propose, staging: act, production: propose}
+forbidden_actions: [rollback_deployment]
+llm:
+  allowed_providers: [anthropic, ollama]
+  max_budget_per_run_usd: 0.5
+privacy:
+  send_code_max: diff_only
+plugins:
+  allowed: [aicd-plugin-pagerduty]
