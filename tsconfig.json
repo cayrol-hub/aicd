@@ -1,0 +1,98 @@
+{
+    "files": [],
+    "references": [
+        {
+            "path": "packages/plugin-sdk"
+        },
+        {
+            "path": "packages/git"
+        },
+        {
+            "path": "packages/redaction"
+        },
+        {
+            "path": "packages/parsers"
+        },
+        {
+            "path": "packages/core"
+        },
+        {
+            "path": "packages/agents/triage"
+        },
+        {
+            "path": "packages/adapters/ci-local"
+        },
+        {
+            "path": "packages/adapters/ci-github"
+        },
+        {
+            "path": "packages/adapters/ci-gitlab"
+        },
+        {
+            "path": "packages/adapters/llm-anthropic"
+        },
+        {
+            "path": "packages/adapters/state-sqlite"
+        },
+        {
+            "path": "packages/adapters/state-postgres"
+        },
+        {
+            "path": "packages/agents/flaky"
+        },
+        {
+            "path": "packages/agents/test-selection"
+        },
+        {
+            "path": "packages/agents/security-triage"
+        },
+        {
+            "path": "packages/agents/pipeline-optimizer"
+        },
+        {
+            "path": "packages/agents/intent-check"
+        },
+        {
+            "path": "packages/agents/risk-score"
+        },
+        {
+            "path": "packages/agents/release-notes"
+        },
+        {
+            "path": "packages/agents/release-guardian"
+        },
+        {
+            "path": "packages/agents/postmortem"
+        },
+        {
+            "path": "packages/metrics"
+        },
+        {
+            "path": "packages/mcp"
+        },
+        {
+            "path": "packages/server"
+        },
+        {
+            "path": "packages/adapters/issue-trackers"
+        },
+        {
+            "path": "packages/adapters/metrics-sources"
+        },
+        {
+            "path": "packages/adapters/deployers"
+        },
+        {
+            "path": "packages/adapters/notifiers"
+        },
+        {
+            "path": "packages/adapters/llm-openai"
+        },
+        {
+            "path": "packages/replay"
+        },
+        {
+            "path": "packages/cli"
+        }
+    ]
+}

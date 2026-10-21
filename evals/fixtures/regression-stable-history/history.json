@@ -1,0 +1,142 @@
+[
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r0",
+    "commitSha": "c0",
+    "at": "2026-10-01T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r1",
+    "commitSha": "c1",
+    "at": "2026-10-02T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r2",
+    "commitSha": "c2",
+    "at": "2026-10-03T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r3",
+    "commitSha": "c3",
+    "at": "2026-10-04T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r4",
+    "commitSha": "c4",
+    "at": "2026-10-05T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r5",
+    "commitSha": "c5",
+    "at": "2026-10-06T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r6",
+    "commitSha": "c6",
+    "at": "2026-10-07T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r7",
+    "commitSha": "c7",
+    "at": "2026-10-08T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r8",
+    "commitSha": "c8",
+    "at": "2026-10-09T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r9",
+    "commitSha": "c9",
+    "at": "2026-10-10T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r10",
+    "commitSha": "c10",
+    "at": "2026-10-11T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r11",
+    "commitSha": "c11",
+    "at": "2026-10-12T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r12",
+    "commitSha": "c12",
+    "at": "2026-10-13T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r13",
+    "commitSha": "c13",
+    "at": "2026-10-14T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r14",
+    "commitSha": "c14",
+    "at": "2026-10-15T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r15",
+    "commitSha": "c15",
+    "at": "2026-10-16T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r16",
+    "commitSha": "c16",
+    "at": "2026-10-17T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r17",
+    "commitSha": "c17",
+    "at": "2026-10-18T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r18",
+    "commitSha": "c18",
+    "at": "2026-10-19T10:00:00Z"
+  },
+  {
+    "testId": "com.acme.orders.OrderTotalsTest::roundsHalfUp",
+    "status": "passed",
+    "runId": "r19",
+    "commitSha": "c19",
+    "at": "2026-10-20T10:00:00Z"
+  }
+]

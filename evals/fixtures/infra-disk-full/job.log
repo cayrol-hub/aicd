@@ -1,0 +1,5 @@
+> next build
+Creating an optimized production build ...
+Error: ENOSPC: no space left on device, write
+[Error: No space left on device]
+ERROR: Job failed: exit code 1

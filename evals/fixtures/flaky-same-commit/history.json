@@ -1,0 +1,30 @@
+[
+  {
+    "testId": "e2e/checkout.spec.ts::checkout > shows the confirmation",
+    "status": "passed",
+    "runId": "r0",
+    "commitSha": "a1",
+    "at": "2026-10-10T10:00:00Z"
+  },
+  {
+    "testId": "e2e/checkout.spec.ts::checkout > shows the confirmation",
+    "status": "failed",
+    "runId": "r1",
+    "commitSha": "a1",
+    "at": "2026-10-11T10:00:00Z"
+  },
+  {
+    "testId": "e2e/checkout.spec.ts::checkout > shows the confirmation",
+    "status": "passed",
+    "runId": "r2",
+    "commitSha": "a0",
+    "at": "2026-10-12T10:00:00Z"
+  },
+  {
+    "testId": "e2e/checkout.spec.ts::checkout > shows the confirmation",
+    "status": "passed",
+    "runId": "r3",
+    "commitSha": "9f",
+    "at": "2026-10-13T10:00:00Z"
+  }
+]

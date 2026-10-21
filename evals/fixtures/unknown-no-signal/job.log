@@ -1,0 +1,4 @@
+Run ./tools/check-release.sh
+checking release metadata
+done
+Error: Process completed with exit code 2.

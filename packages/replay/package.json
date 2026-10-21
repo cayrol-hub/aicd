@@ -1,0 +1,33 @@
+{
+    "name": "@aicd/replay",
+    "version": "1.0.0",
+    "description": "Shadow mode: replays agents on past failures and scores them",
+    "license": "Apache-2.0",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aicd-dev/aicd.git",
+        "directory": "packages/replay"
+    },
+    "engines": {
+        "node": ">=22.13"
+    },
+    "dependencies": {
+        "@aicd/plugin-sdk": "workspace:*",
+        "@aicd/parsers": "workspace:*",
+        "@aicd/core": "workspace:*",
+        "@aicd/agent-triage": "workspace:*",
+        "@aicd/adapter-state-sqlite": "workspace:*"
+    }
+}

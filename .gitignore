@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.tsbuildinfo
+coverage/
+.aicd/
+.env
+.env.*
+.DS_Store
+!packages/core/test/fixtures/node_modules/

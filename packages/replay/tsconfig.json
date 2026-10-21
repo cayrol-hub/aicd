@@ -1,0 +1,25 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src"],
+    "references": [
+        {
+            "path": "../plugin-sdk"
+        },
+        {
+            "path": "../parsers"
+        },
+        {
+            "path": "../core"
+        },
+        {
+            "path": "../agents/triage"
+        },
+        {
+            "path": "../adapters/state-sqlite"
+        }
+    ]
+}

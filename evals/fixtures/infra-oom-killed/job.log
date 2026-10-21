@@ -1,0 +1,6 @@
+> webpack --mode production
+<--- Last few GCs --->
+[2841:0x5d3c000]    91234 ms: Mark-Compact 2041.1 (2083.4) -> 2039.8 (2083.6) MB
+FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+Aborted (core dumped)
+ERROR: Job failed: exit code 134

@@ -1,0 +1,28 @@
+{
+    "name": "aicd-monorepo",
+    "private": true,
+    "type": "module",
+    "description": "AI layer for any CI/CD: agents propose, deterministic policies decide, humans approve.",
+    "license": "Apache-2.0",
+    "engines": {
+        "node": ">=22.13"
+    },
+    "scripts": {
+        "build": "tsc -b",
+        "clean": "tsc -b --clean",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "schema": "tsc -b && node scripts/generate-schema.mjs",
+        "eval": "tsc -b && node packages/cli/dist/bin.js replay --fixtures evals/fixtures --llm none",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "docs": "tsc -b && node scripts/generate-schema.mjs && node scripts/generate-docs.mjs && node scripts/api-report.mjs",
+        "eval:matrix": "tsc -b && node scripts/eval-matrix.mjs"
+    },
+    "devDependencies": {
+        "@types/node": "^26.6.5",
+        "prettier": "^3.9.10",
+        "typescript": "^7.0.2",
+        "vitest": "^5.0.5"
+    }
+}

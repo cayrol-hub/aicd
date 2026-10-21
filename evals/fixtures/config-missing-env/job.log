@@ -1,0 +1,4 @@
+$ node dist/migrate.js
+Error: Missing required environment variable DATABASE_URL
+    at loadEnv (/builds/acme/api/dist/env.js:12:11)
+ERROR: Job failed: exit code 1

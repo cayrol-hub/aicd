@@ -1,0 +1,33 @@
+{
+    "name": "@aicd/plugin-sdk",
+    "version": "1.0.0",
+    "description": "Public interfaces for aicd plugins and adapters",
+    "license": "Apache-2.0",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        },
+        "./testing": {
+            "types": "./dist/testing/index.d.ts",
+            "default": "./dist/testing/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aicd-dev/aicd.git",
+        "directory": "packages/plugin-sdk"
+    },
+    "engines": {
+        "node": ">=22.13"
+    },
+    "dependencies": {
+        "zod": "^4.6.7"
+    }
+}

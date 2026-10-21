@@ -1,0 +1,7 @@
+2026-10-20T08:12:01.1234567Z ##[group]Run npm ci
+2026-10-20T08:12:01.2234567Z npm ci
+2026-10-20T08:12:44.0034567Z npm error code ECONNRESET
+2026-10-20T08:12:44.0134567Z npm error network aborted
+2026-10-20T08:12:44.0234567Z npm error network This is a problem related to network connectivity.
+2026-10-20T08:12:44.0334567Z npm error network In most cases you are behind a proxy or have bad network settings.
+2026-10-20T08:12:44.1034567Z ##[error]Process completed with exit code 1.

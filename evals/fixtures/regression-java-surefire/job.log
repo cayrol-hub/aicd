@@ -1,0 +1,5 @@
+[INFO] Running com.acme.billing.InvoiceServiceTest
+[ERROR] Tests run: 12, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.84 s <<< FAILURE! - in com.acme.billing.InvoiceServiceTest
+[ERROR] totalIncludesVat(com.acme.billing.InvoiceServiceTest)  Time elapsed: 0.02 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <120.00> but was: <100.00>
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.2.5:test (default-test) on project billing: There are test failures.

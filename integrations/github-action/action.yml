@@ -1,0 +1,74 @@
+name: aicd
+description: AI layer for your CI — triage, flaky tests, test selection, risk, intent and security review, release notes.
+author: aicd contributors
+branding:
+  icon: activity
+  color: blue
+
+inputs:
+  command:
+    description: "aicd command: analyze (end of pipeline), review (merge requests), optimize, release-notes, tests select, guard…"
+    required: false
+    default: analyze
+  llm-api-key:
+    description: API key of the LLM provider (Anthropic by default). Leave empty to run with rules only.
+    required: false
+    default: ""
+  github-token:
+    description: Token used to read job logs and act. Grant only the permissions the command needs (see docs/security.md).
+    required: false
+    default: ${{ github.token }}
+  config:
+    description: Path of the configuration file.
+    required: false
+    default: .aicd.yaml
+  version:
+    description: Version of @aicd/cli to run.
+    required: false
+    default: "1"
+  args:
+    description: Extra arguments (e.g. `--set agents.triage.autonomy=act`).
+    required: false
+    default: ""
+
+outputs:
+  stdout:
+    description: Standard output of the command (e.g. the test list of `tests select --format args`).
+    value: ${{ steps.aicd.outputs.stdout }}
+
+# Note: this composite action sets up Node 24 for the rest of the job. Run it after your own steps, or in a job of
+# its own, when your steps need another Node version.
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 24
+
+    # The state (known failures, test history, coverage map, deployments) lives in .aicd/ and is kept by the cache.
+    - uses: actions/cache@v4
+      with:
+        path: .aicd
+        key: aicd-state-${{ github.run_id }}-${{ github.run_attempt }}-${{ inputs.command }}
+        restore-keys: aicd-state-
+
+    # Inputs go through environment variables, never interpolated into the script (no injection).
+    # Arguments are split on spaces; quotes are not interpreted.
+    - id: aicd
+      shell: bash
+      env:
+        AICD_LLM_API_KEY: ${{ inputs.llm-api-key }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        AICD_INPUT_COMMAND: ${{ inputs.command }}
+        AICD_INPUT_CONFIG: ${{ inputs.config }}
+        AICD_INPUT_VERSION: ${{ inputs.version }}
+        AICD_INPUT_ARGS: ${{ inputs.args }}
+      run: |
+        read -r -a command <<< "$AICD_INPUT_COMMAND"
+        read -r -a extra_args <<< "$AICD_INPUT_ARGS"
+        config_args=()
+        if [ -f "$AICD_INPUT_CONFIG" ]; then config_args=(--config "$AICD_INPUT_CONFIG"); fi
+        set -o pipefail
+        npx --yes "@aicd/cli@${AICD_INPUT_VERSION}" "${command[@]}" --ci github "${config_args[@]}" "${extra_args[@]}" | tee "$RUNNER_TEMP/aicd-stdout"
+        delimiter="aicd_$(openssl rand -hex 8)"
+        { echo "stdout<<$delimiter"; cat "$RUNNER_TEMP/aicd-stdout"; echo "$delimiter"; } >> "$GITHUB_OUTPUT"

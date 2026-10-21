@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.acme.billing.InvoiceServiceTest" tests="12" failures="1">
+  <testcase name="totalIncludesVat" classname="com.acme.billing.InvoiceServiceTest" time="0.02">
+    <failure message="expected: &lt;120.00&gt; but was: &lt;100.00&gt;" type="org.opentest4j.AssertionFailedError"/>
+  </testcase>
+</testsuite>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="vitest tests" tests="13" failures="1">
+  <testsuite name="test/pricing.test.ts" tests="1" failures="1">
+    <testcase classname="test/pricing.test.ts" name="applyDiscount &gt; caps the discount at 50%" time="0.004">
+      <failure message="expected 70 to be 50 // Object.is equality" type="AssertionError">AssertionError: expected 70 to be 50</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

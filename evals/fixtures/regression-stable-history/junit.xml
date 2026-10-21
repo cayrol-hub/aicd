@@ -1,0 +1,1 @@
+<testsuite name="com.acme.orders.OrderTotalsTest"><testcase classname="com.acme.orders.OrderTotalsTest" name="roundsHalfUp"><failure message="expected:&lt;10.05&gt; but was:&lt;10.04&gt;"/></testcase></testsuite>

@@ -1,0 +1,3 @@
+ FAIL  e2e/checkout.spec.ts > checkout > shows the confirmation
+   Error: locator.click: Timeout 5000ms exceeded.
+ Test Files  1 failed | 14 passed (15)

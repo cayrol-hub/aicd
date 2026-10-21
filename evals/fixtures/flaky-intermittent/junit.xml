@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites><testsuite name="pytest" tests="10" failures="1">
+  <testcase classname="tests.test_sync" name="test_sync_completes_within_deadline" time="2.01">
+    <failure message="TimeoutError: sync did not complete in 2.0s">TimeoutError</failure>
+  </testcase>
+</testsuite></testsuites>

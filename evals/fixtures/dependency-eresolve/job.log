@@ -1,0 +1,10 @@
+> npm install
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error
+npm error While resolving: web-app@2.3.0
+npm error Found: react@19.2.0
+npm error Could not resolve dependency:
+npm error peer react@"^17.0.0 || ^18.0.0" from react-legacy-modal@4.1.2
+npm error Fix the upstream dependency conflict, or retry with --force or --legacy-peer-deps
+ERROR: Job failed: exit code 1

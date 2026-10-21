@@ -1,0 +1,6 @@
+[
+  {"testId": "tests.test_sync::test_sync_completes_within_deadline", "status": "passed", "runId": "r6", "commitSha": "c3", "at": "2026-10-19T10:00:00Z"},
+  {"testId": "tests.test_sync::test_sync_completes_within_deadline", "status": "failed", "runId": "r5", "commitSha": "c3", "at": "2026-10-19T09:00:00Z"},
+  {"testId": "tests.test_sync::test_sync_completes_within_deadline", "status": "passed", "runId": "r4", "commitSha": "c2", "at": "2026-10-18T10:00:00Z"},
+  {"testId": "tests.test_sync::test_sync_completes_within_deadline", "status": "passed", "runId": "r3", "commitSha": "c1", "at": "2026-10-17T10:00:00Z"}
+]

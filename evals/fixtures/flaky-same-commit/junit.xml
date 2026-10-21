@@ -1,0 +1,1 @@
+<testsuites><testsuite name="e2e/checkout.spec.ts"><testcase classname="e2e/checkout.spec.ts" name="checkout &gt; shows the confirmation"><failure message="locator.click: Timeout 5000ms exceeded."/></testcase></testsuite></testsuites>

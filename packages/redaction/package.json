@@ -1,0 +1,27 @@
+{
+    "name": "@aicd/redaction",
+    "version": "1.0.0",
+    "description": "Masks secrets and personal data before anything leaves the CI runner",
+    "license": "Apache-2.0",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aicd-dev/aicd.git",
+        "directory": "packages/redaction"
+    },
+    "engines": {
+        "node": ">=22.13"
+    },
+    "dependencies": {}
+}

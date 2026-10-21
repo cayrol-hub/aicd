@@ -1,0 +1,3 @@
+$ ./scripts/deploy.sh staging
+/bin/bash: line 151: ./scripts/deploy.sh: Permission denied
+ERROR: Job failed: exit code 126

@@ -1,0 +1,2 @@
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.pom
+[ERROR] Failed to execute goal on project api: Could not resolve dependencies for project com.acme:api:jar:1.4.0: Could not transfer artifact org.slf4j:slf4j-api:pom:2.0.13 from/to central (https://repo.maven.apache.org/maven2): Connection reset -> [Help 1]

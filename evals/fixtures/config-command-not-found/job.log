@@ -1,0 +1,4 @@
+$ yarnn install --frozen-lockfile
+/bin/bash: line 142: yarnn: command not found
+Cleaning up project directory and file based variables
+ERROR: Job failed: exit code 127

@@ -1,0 +1,6 @@
+=== RUN   TestParseDuration
+    parse_test.go:42: ParseDuration("1h30m") = 90, want 5400
+--- FAIL: TestParseDuration (0.00s)
+FAIL
+FAIL	github.com/acme/timeutil	0.012s
+FAIL

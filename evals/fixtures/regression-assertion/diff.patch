@@ -1,0 +1,7 @@
+--- a/src/pricing.ts
++++ b/src/pricing.ts
+@@ -10,7 +10,7 @@ export function applyDiscount(price: number, percent: number): number {
+-    const capped = Math.min(percent, 50);
++    const capped = percent;
+     return price - (price * capped) / 100;
+ }

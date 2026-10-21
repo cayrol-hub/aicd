@@ -1,0 +1,10 @@
+> vitest run
+ ✓ test/cart.test.ts (12 tests) 41ms
+ ✗ test/pricing.test.ts > applyDiscount > caps the discount at 50%
+   AssertionError: expected 70 to be 50 // Object.is equality
+    - Expected  50
+    + Received  70
+    ❯ test/pricing.test.ts:28:41
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 12 passed (13)
+ERROR: Job failed: exit code 1

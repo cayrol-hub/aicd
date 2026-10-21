@@ -1,0 +1,5 @@
+> pytest -q
+....F.....
+FAILED tests/test_sync.py::test_sync_completes_within_deadline - TimeoutError: sync did not complete in 2.0s
+1 failed, 9 passed in 14.21s
+ERROR: Job failed: exit code 1
