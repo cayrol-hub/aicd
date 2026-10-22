@@ -51,6 +51,40 @@ export async function recordBaseline(
     return {recorded: seen.size, removed};
 }
 
+/**
+ * Default branch scans, one record per tool. A scan without any alert leaves the baseline empty: this record is
+ * what tells "scanned, nothing found" apart from "never scanned".
+ */
+export const SCANS_COLLECTION = "security_scans";
+
+export interface SecurityScanRecord {
+    tool: string;
+    at: string;
+    alerts: number;
+}
+
+export async function recordScan(
+    state: StateStore,
+    tools: string[],
+    alerts: SecurityAlert[],
+    now: Date = new Date()
+): Promise<void> {
+    for (const tool of tools) {
+        const record: SecurityScanRecord = {
+            tool,
+            at: now.toISOString(),
+            alerts: alerts.filter((alert) => alert.tool === tool).length
+        };
+        await state.putRecord(SCANS_COLLECTION, tool, record);
+    }
+}
+
+/** True when the default branch was scanned at least once (with or without alerts). */
+export async function hasBaseline(state: StateStore): Promise<boolean> {
+    if ((await state.listRecords(SCANS_COLLECTION, {limit: 1})).length > 0) return true;
+    return (await state.listRecords(COLLECTIONS.securityBaseline, {limit: 1})).length > 0;
+}
+
 /** Splits alerts into those absent from the baseline (new) and those already on the default branch. */
 export async function splitNewAlerts(
     state: StateStore,

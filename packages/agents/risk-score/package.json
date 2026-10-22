@@ -1,6 +1,6 @@
 {
     "name": "@aicd-ci/agent-risk-score",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Risk agent: scores merge requests",
     "license": "Apache-2.0",
     "type": "module",

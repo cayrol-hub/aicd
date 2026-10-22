@@ -1,6 +1,6 @@
 {
     "name": "@aicd-ci/adapter-state-postgres",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Postgres state store for the server mode",
     "license": "Apache-2.0",
     "type": "module",

@@ -68,6 +68,8 @@ export interface IntentReport {
     testsChanged: boolean;
     findings: IntentFinding[];
     analysis: IntentAnalysis;
+    /** Why no LLM was available: none configured (or budget spent), or code from a fork. */
+    unavailable?: "no_llm" | "fork";
     /** Only with an LLM analysis that assessed at least one criterion. */
     verdict?: "pass" | "gaps";
     diffTruncated: boolean;
@@ -147,8 +149,10 @@ export async function runIntentCheck(
     if (tickets.length === 0) report.analysis = "no_ticket";
     else if (!input.diff?.trim()) report.analysis = "no_diff";
     else if (runtime.sendCode === "none") report.analysis = "send_code_none";
-    else if (!runtime.llm || runtime.context.isFork) report.analysis = "unavailable";
-    else {
+    else if (!runtime.llm || runtime.context.isFork) {
+        report.analysis = "unavailable";
+        report.unavailable = runtime.context.isFork ? "fork" : "no_llm";
+    } else {
         const diff = truncate(redact(input.diff), options.max_diff_chars);
         report.diffTruncated = diff.truncated;
         const asked = criteria.slice(0, MAX_LLM_CRITERIA);

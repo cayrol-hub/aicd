@@ -115,7 +115,11 @@ export async function runRiskScore(runtime: AgentRuntime, input: RiskScoreInput)
         actions.push({
             type: "comment",
             marker: COMMENT_MARKER,
-            body: renderRiskComment(report, {language: runtime.language, runId: runtime.runId}),
+            body: renderRiskComment(report, {
+                language: runtime.language,
+                runId: runtime.runId,
+                failOnHigh: options.failOnHigh ?? false
+            }),
             reason
         });
     }

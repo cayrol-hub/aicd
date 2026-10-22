@@ -274,6 +274,32 @@ describe("runSecurityTriage", () => {
         });
     });
 
+    it("knows a default branch scanned without alerts, and shows the flagged code with what to do", async () => {
+        const state = new SqliteStateStore(":memory:");
+        const clean = JSON.parse(semgrep()) as {runs: {results: unknown[]}[]};
+        for (const run of clean.runs) run.results = [];
+        await runSecurityTriage(onDefaultBranch(state), {ci: fakeCi(), sarifDocuments: [JSON.stringify(clean)]});
+        expect(await state.listRecords(COLLECTIONS.securityBaseline)).toHaveLength(0);
+
+        const result = await runSecurityTriage(runtime({state, sendCode: "none"}), {
+            ci: fakeCi(),
+            sarifDocuments: [semgrep()],
+            options: {fail_on: "medium"}
+        });
+        expect(result.report.baselineMissing).toBe(false);
+        const comment = result.actions.find((action) => action.type === "comment");
+        const body = comment?.type === "comment" ? comment.body : "";
+        expect(body).not.toContain("never been scanned");
+        expect(body).toContain("An alert is new when the last scan of the default branch did not have it");
+        expect(body).toContain("**The `aicd/security` check fails:");
+        expect(body).toContain("_Verdicts come from rules only");
+        expect(body).toContain("Flagged code:\n\n```\n");
+        expect(body).toContain("12 |     res.redirect(next);");
+        expect(body).not.toContain("sk_live_");
+        expect(body).toContain("**What to do**: Check whether a user can control the data");
+        expect(body).toContain("`// nosemgrep: ");
+    });
+
     it("proposes no comment when nothing is new", async () => {
         const state = new SqliteStateStore(":memory:");
         await runSecurityTriage(onDefaultBranch(state), {ci: fakeCi(), sarifDocuments: [CODEQL]});

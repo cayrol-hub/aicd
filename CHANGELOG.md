@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.0.2
+
+### Changed
+
+- Clearer, fuller comments, so that a reader gets the whole picture without opening the logs:
+    - **Triage**: the pipeline, commit and job links; each failing test with its assertion message and location; what
+      the diagnosis means and the next steps for its category; how aicd reached it (known failures, rules, test history,
+      LLM, and why the LLM was not used).
+    - **Risk score**: what the level means, a checklist for the reviewer built from the signals that scored, why the
+      `aicd/risk` check fails, the signals with no points and how the score is computed.
+    - **Intent check**: without an LLM verdict, the acceptance criteria become a checklist for the reviewer, with how
+      to enable the automatic check; how to link a ticket.
+    - **Security**: the flagged code (redacted) for each new alert, what to do for its verdict, how to dismiss a false
+      positive, why the `aicd/security` check fails or passes.
+    - **Flaky tests**: what flaky and quarantined mean, and what to do.
+    - Suggested actions an agent may not run say why (the agent's autonomy, the autonomy each action needs) and come
+      before the footer.
+
+### Fixed
+
+- Security: a default branch scanned without any alert was reported as "never scanned". Each scan of the default
+  branch is now recorded, with or without alerts.
+- Triage: a probable regression quotes the failing tests' assertion messages as evidence, instead of the first error
+  line of the log.
+- Release: npm packages are published under the `next` tag, and `latest` moves only once the registry serves all of
+  them. During the 1.0.1 release, `npx @aicd-ci/cli@1` failed for a few minutes because the CLI was installable before
+  one of its dependencies.
+
 ## 1.0.1
 
 ### Fixed

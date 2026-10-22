@@ -1,6 +1,6 @@
 {
     "name": "@aicd-ci/redaction",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Masks secrets and personal data before anything leaves the CI runner",
     "license": "Apache-2.0",
     "type": "module",

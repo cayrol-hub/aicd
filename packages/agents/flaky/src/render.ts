@@ -7,6 +7,15 @@ export const COMMENT_MARKER = "<!-- aicd:flaky -->";
 const TEXT = {
     en: {
         title: "aicd · Flaky tests",
+        intro: "A test is flaky when it passes and fails without any code change. aicd scores each test from its recent history: status changes, failures, and above all a pass and a failure on the same commit.",
+        quarantineMeaning: (releaseAfter: number) =>
+            `A quarantined test keeps running and its failures are still reported, but they no longer block pipelines. It comes out of quarantine after ${releaseAfter} consecutive passes.`,
+        stepsLabel: "What to do",
+        steps: [
+            "Look for what makes the test non-deterministic: timing and timeouts, test order, shared state, network calls, random data, time zones.",
+            "Fix the test or the code under it; the issue opened for each quarantined test is the place to track it.",
+            "Failing tests outside quarantine still block: treat them as real failures."
+        ],
         failedQuarantined: "Quarantined tests that failed in this run (known flaky)",
         failedOther: "Other failing tests (not quarantined)",
         newlyFlaky: "Newly detected flaky tests",
@@ -32,6 +41,15 @@ const TEXT = {
     },
     fr: {
         title: "aicd · Tests instables",
+        intro: "Un test est instable quand il réussit et échoue sans changement de code. aicd note chaque test d'après son historique récent : changements de statut, échecs, et surtout un succès et un échec sur le même commit.",
+        quarantineMeaning: (releaseAfter: number) =>
+            `Un test en quarantaine continue de s'exécuter et ses échecs restent signalés, mais ils ne bloquent plus les pipelines. Il sort de quarantaine après ${releaseAfter} succès consécutifs.`,
+        stepsLabel: "Que faire",
+        steps: [
+            "Cherchez ce qui rend le test non déterministe : délais et timeouts, ordre des tests, état partagé, appels réseau, données aléatoires, fuseaux horaires.",
+            "Corrigez le test ou le code qu'il teste ; l'issue ouverte pour chaque test en quarantaine sert à suivre ce travail.",
+            "Les tests en échec hors quarantaine bloquent toujours : traitez-les comme de vrais échecs."
+        ],
         failedQuarantined: "Tests en quarantaine en échec dans cette exécution (instabilité connue)",
         failedOther: "Autres tests en échec (hors quarantaine)",
         newlyFlaky: "Nouveaux tests instables détectés",
@@ -76,7 +94,10 @@ function list(title: string, items: string[], colon: string): string {
 }
 
 /** Markdown comment posted (and updated) on the merge request. */
-export function renderFlakyComment(report: FlakyReport, options: {runId: string; language: Language}): string {
+export function renderFlakyComment(
+    report: FlakyReport,
+    options: {runId: string; language: Language; releaseAfter?: number}
+): string {
     const t = TEXT[options.language];
     // French typography puts a space before the colon.
     const colon = options.language === "fr" ? " :" : ":";
@@ -101,9 +122,11 @@ export function renderFlakyComment(report: FlakyReport, options: {runId: string;
               ].join("\n")
             : "";
 
+    const quarantining = report.toQuarantine.length > 0 || report.failing.quarantined.length > 0;
     return [
         COMMENT_MARKER,
         `### ${t.title}`,
+        t.intro,
         list(t.failedQuarantined, report.failing.quarantined.map(code), colon),
         report.failing.quarantined.length > 0
             ? list(t.failedOther, report.failing.notQuarantined.map(code), colon)
@@ -120,6 +143,10 @@ export function renderFlakyComment(report: FlakyReport, options: {runId: string;
             colon
         ),
         report.quarantined.length > 0 ? t.quarantined(report.quarantined.length) : "",
+        quarantining && options.releaseAfter !== undefined ? t.quarantineMeaning(options.releaseAfter) : "",
+        report.newlyFlaky.length > 0 || quarantining
+            ? [`**${t.stepsLabel}**`, "", ...t.steps.map((step, index) => `${index + 1}. ${step}`)].join("\n")
+            : "",
         `<sub>${t.footer(options.runId)}</sub>`
     ]
         .filter(Boolean)

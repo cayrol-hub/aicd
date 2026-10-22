@@ -66,7 +66,13 @@ export async function runTriageAgent(
             type: "comment",
             marker: COMMENT_MARKER,
             reason: "triage report",
-            body: runtime.redact(renderTriageComment(shown, {runId: runtime.runId, language: runtime.language}))
+            body: runtime.redact(
+                renderTriageComment(shown, {
+                    runId: runtime.runId,
+                    language: runtime.language,
+                    context: runtime.context
+                })
+            )
         });
     }
     return {agent: AGENT_NAME, actions, report, llmCalls: report.llmCalls, costUsd: report.costUsd};

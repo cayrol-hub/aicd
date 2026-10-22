@@ -220,7 +220,7 @@ export async function runFlakyAgent(runtime: AgentRuntime, input: FlakyInput): P
         actions.push({
             type: "comment",
             marker: COMMENT_MARKER,
-            body: runtime.redact(renderFlakyComment(report, {runId, language})),
+            body: runtime.redact(renderFlakyComment(report, {runId, language, releaseAfter: options.releaseAfter})),
             reason: changed ? "flaky tests changed" : "quarantined tests failed in this run"
         });
     }

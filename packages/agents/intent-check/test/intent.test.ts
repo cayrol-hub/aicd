@@ -345,10 +345,15 @@ describe("renderIntentComment", () => {
 
         const piped = await runIntentCheck(
             runtime(),
-            input({tickets: [{...ticket, acceptanceCriteria: ["a | b\nnew line"]}]})
+            input({tickets: [{...ticket, acceptanceCriteria: ["a | b\nnew line"]}], changedFiles: ["src/a.ts"]})
         );
         const text = piped.actions[0]?.type === "comment" ? piped.actions[0].body : "";
-        expect(text).toContain("| 1 | a \\| b new line <sub>ENG-12</sub> | Not checked |  |");
+        // Without an LLM verdict the criteria become a checklist for the reviewer.
+        expect(text).toContain("**Acceptance criteria to check by hand**\n\n- [ ] a | b new line <sub>ENG-12</sub>");
+        expect(text).toContain("configure an LLM (`llm-api-key` input or `AICD_LLM_API_KEY`)");
+        expect(text).toContain(
+            "**Tests:** no test file changed. Check that existing tests cover the acceptance criteria"
+        );
 
         const injected = await runIntentCheck(
             runtime(),

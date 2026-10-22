@@ -1,6 +1,6 @@
 {
     "name": "@aicd-ci/git",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Read-only git helpers (log, diff, tags, co-change)",
     "license": "Apache-2.0",
     "type": "module",

@@ -8,7 +8,13 @@ const TEXT = {
     en: {
         title: "aicd · Intent check",
         noTicket:
-            "**No ticket linked.** Mention the ticket key (e.g. `ENG-123`), its link or its spec file in the title, description or branch name, so the change can be checked against its acceptance criteria.",
+            "**No ticket linked.** The intent check compares a change with what its ticket asks for. Mention the ticket in the title, description or branch name — its key (`ENG-123`), its link, its spec file, or `Closes #12` for a GitHub issue — and its acceptance criteria will be listed here and checked against the code.",
+        manual: "Acceptance criteria to check by hand",
+        howToEnable: {
+            no_llm: "To check each criterion against the code automatically, configure an LLM (`llm-api-key` input or `AICD_LLM_API_KEY`): every verdict then quotes the diff.",
+            fork: "Pipelines from forks never send code to an LLM."
+        },
+        untested: "Check that existing tests cover the acceptance criteria, or add some.",
         tickets: "Tickets",
         criterion: "Criterion",
         status: "Status",
@@ -41,7 +47,13 @@ const TEXT = {
     fr: {
         title: "aicd · Conformité au ticket",
         noTicket:
-            "**Aucun ticket lié.** Mentionnez la clé du ticket (par ex. `ENG-123`), son lien ou son fichier de spécification dans le titre, la description ou le nom de branche, pour que le changement soit comparé à ses critères d'acceptation.",
+            "**Aucun ticket lié.** La vérification compare un changement à ce que demande son ticket. Mentionnez le ticket dans le titre, la description ou le nom de branche — sa clé (`ENG-123`), son lien, son fichier de spécification, ou `Closes #12` pour une issue GitHub — et ses critères d'acceptation seront listés ici et comparés au code.",
+        manual: "Critères d'acceptation à vérifier à la main",
+        howToEnable: {
+            no_llm: "Pour comparer automatiquement chaque critère au code, configurez un LLM (entrée `llm-api-key` ou `AICD_LLM_API_KEY`) : chaque verdict cite alors le diff.",
+            fork: "Les pipelines venant de forks n'envoient jamais de code à un LLM."
+        },
+        untested: "Vérifiez que les tests existants couvrent les critères d'acceptation, ou ajoutez-en.",
         tickets: "Tickets",
         criterion: "Critère",
         status: "Statut",
@@ -129,7 +141,19 @@ export function renderIntentComment(report: IntentReport, options: {language: La
         sections.push(t.summary(covered, total, notCovered, unclear));
     }
 
-    if (report.criteria.length > 0) {
+    const checked = report.criteria.some((criterion) => criterion.status !== "unchecked");
+    if (report.criteria.length > 0 && !checked) {
+        // Nothing was assessed: a checklist the reviewer can tick is more useful than a table of "Not checked".
+        sections.push(
+            [
+                `**${t.manual}**`,
+                "",
+                ...report.criteria.map(
+                    (criterion) => `- [ ] ${plain(criterion.text)} <sub>${plain(criterion.ticket)}</sub>`
+                )
+            ].join("\n")
+        );
+    } else if (report.criteria.length > 0) {
         const rows = report.criteria.map((criterion, index) => {
             const evidence = [
                 criterion.explanation ? cell(plain(criterion.explanation)) : "",
@@ -152,6 +176,7 @@ export function renderIntentComment(report: IntentReport, options: {language: La
     }
     if (report.analysis !== "llm" && report.analysis !== "no_ticket" && report.criteria.length > 0) {
         notes.push(t.notChecked[report.analysis]);
+        if (report.analysis === "unavailable") notes.push(t.howToEnable[report.unavailable ?? "no_llm"]);
     }
     if (report.diffTruncated) notes.push(t.truncated);
     if (notes.length > 0) sections.push(notes.map((note) => `_${note}_`).join("\n\n"));
@@ -167,7 +192,13 @@ export function renderIntentComment(report: IntentReport, options: {language: La
         );
     }
 
-    sections.push(report.testsChanged ? t.testsChanged(report.testFiles.length) : t.noTests);
+    sections.push(
+        report.testsChanged
+            ? t.testsChanged(report.testFiles.length)
+            : report.criteria.length > 0
+              ? `${t.noTests} ${t.untested}`
+              : t.noTests
+    );
 
     if (report.changedFiles.length > 0) {
         const shown = report.changedFiles.slice(0, 50).map((file) => `- \`${file}\``);

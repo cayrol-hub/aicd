@@ -1,6 +1,5 @@
 import {z} from "zod";
 import {applyEdits, callLlm, fixBranchName, type TextEdit} from "@aicd-ci/core";
-import {COLLECTIONS} from "@aicd-ci/plugin-sdk";
 import type {
     AgentResult,
     AgentRuntime,
@@ -10,7 +9,7 @@ import type {
     ProposedAction,
     ReadonlyCI
 } from "@aicd-ci/plugin-sdk";
-import {recordBaseline, splitNewAlerts} from "./baseline.js";
+import {hasBaseline, recordBaseline, recordScan, splitNewAlerts} from "./baseline.js";
 import {DEFAULT_IGNORE_PATHS, dedupeAlerts, matchIgnorePath} from "./heuristics.js";
 import {
     buildPrompt,
@@ -58,7 +57,14 @@ export interface TriagedAlert {
     /** Set when the LLM verdict was changed by a safeguard (invented quote, never-dismiss severity). */
     downgraded?: "unverified_evidence" | "never_dismiss";
     fix?: {description: string; branch: string; files: string[]};
+    /** The flagged lines with a little context, redacted, for the comment. */
+    snippet?: {startLine: number; text: string};
 }
+
+/** Alerts shown with their code in the comment, at most. */
+const MAX_SNIPPETS = 10;
+/** Lines of context around the flagged lines in the comment. */
+const SNIPPET_CONTEXT = 2;
 
 export interface SecurityReport {
     defaultBranch: boolean;
@@ -156,6 +162,7 @@ export async function runSecurityTriage(
         // A run with an unparsable document must not erase the baseline of the tools it lists.
         if (errors.length === 0 || alerts.length > 0) {
             const {recorded, removed} = await recordBaseline(state, alerts, {now: runtime.now(), tools: [...tools]});
+            await recordScan(state, [...tools], alerts, runtime.now());
             logger.info(`${AGENT_NAME}: baseline updated (${recorded} alerts, ${removed} removed)`);
         }
         const triaged = alerts.map((alert) => triageByRules(alert, false, options)).sort(byPriority);
@@ -176,7 +183,7 @@ export async function runSecurityTriage(
         };
     }
 
-    const baselineMissing = (await state.listRecords(COLLECTIONS.securityBaseline, {limit: 1})).length === 0;
+    const baselineMissing = !(await hasBaseline(state));
     const {newAlerts, existing} = await splitNewAlerts(state, alerts);
     const triaged = [
         ...newAlerts.map((alert) => triageByRules(alert, true, options)),
@@ -186,6 +193,15 @@ export async function runSecurityTriage(
     let llmCalls = 0;
     let costUsd = 0;
     const fixes: {item: TriagedAlert; changes: FileChange[]}[] = [];
+    const files = new Map<string, Promise<string | undefined>>();
+    const read = (path: string) => {
+        if (!files.has(path))
+            files.set(
+                path,
+                input.ci.readFile(path).catch(() => undefined)
+            );
+        return files.get(path) as Promise<string | undefined>;
+    };
     if (context.mergeRequest && runtime.sendCode !== "none" && runtime.llm && options.max_alerts > 0) {
         const changed = new Set(input.changedFiles ?? []);
         const mayShow = (file: string) => runtime.sendCode === "full" || changed.has(file);
@@ -199,21 +215,31 @@ export async function runSecurityTriage(
             )
             .sort(byPriority)
             .slice(0, options.max_alerts);
-        const files = new Map<string, Promise<string | undefined>>();
-        const read = (path: string) => {
-            if (!files.has(path))
-                files.set(
-                    path,
-                    input.ci.readFile(path).catch(() => undefined)
-                );
-            return files.get(path) as Promise<string | undefined>;
-        };
         for (const item of candidates) {
             const outcome = await refineWithLlm(runtime, item, read, options);
             if (!outcome) continue;
             llmCalls++;
             costUsd += outcome.costUsd;
             if (outcome.changes) fixes.push({item, changes: outcome.changes});
+        }
+    }
+
+    // The reviewer sees the flagged code in the comment: the file is in the repository, the text is redacted.
+    if (context.mergeRequest) {
+        const shown = triaged
+            .filter((item) => item.isNew && item.verdict !== "likely_false_positive")
+            .sort(byPriority)
+            .slice(0, MAX_SNIPPETS);
+        for (const item of shown) {
+            const {file, startLine, endLine} = item.alert;
+            if (!file || startLine === undefined) continue;
+            const content = await read(file);
+            if (content === undefined) continue;
+            const lines = runtime.redact(content).split("\n");
+            const from = Math.max(1, startLine - SNIPPET_CONTEXT);
+            const to = Math.min(lines.length, Math.max(startLine, endLine ?? startLine) + SNIPPET_CONTEXT, from + 11);
+            if (from > lines.length) continue;
+            item.snippet = {startLine: from, text: lines.slice(from - 1, to).join("\n")};
         }
     }
 
@@ -240,7 +266,12 @@ export async function runSecurityTriage(
             actions.push({
                 type: "comment",
                 marker: COMMENT_MARKER,
-                body: renderSecurityComment(report, {language: runtime.language, runId: runtime.runId}),
+                body: renderSecurityComment(report, {
+                    language: runtime.language,
+                    runId: runtime.runId,
+                    failOn: options.fail_on,
+                    llm: Boolean(runtime.llm) && runtime.sendCode !== "none" && !context.isFork
+                }),
                 reason: `${newOnes.length} new security alert(s)`
             });
         }

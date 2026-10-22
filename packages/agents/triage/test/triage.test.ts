@@ -219,7 +219,75 @@ describe("renderTriageComment", () => {
             {runId: "run_1", language: "fr", suggestions: ["`retry_job` (job 3)"]}
         );
         expect(body.startsWith("<!-- aicd:triage -->")).toBe(true);
-        expect(body).toContain("Test instable (confiance : haute, règles)");
+        expect(body).toContain("#### `unit` — Test instable");
+        expect(body).toContain("**Confiance** : haute (preuves solides) · **Diagnostic** : règles");
+        expect(body).toContain("**Que faire**");
         expect(body).toContain("Actions suggérées");
+    });
+
+    it("gives the full picture of a regression: assertion, location, meaning, next steps and reasoning", async () => {
+        const report = await runTriage(
+            input({
+                jobs: [{id: "9", name: "test", url: "https://ci.example/jobs/9", log: "✖ failing tests:\nexit 1"}],
+                tests: [
+                    {
+                        id: "pricing::caps the discount at 50%",
+                        name: "caps the discount at 50%",
+                        file: "test/pricing.test.ts",
+                        status: "failed",
+                        message: "Expected values to be strictly equal:30 !== 50",
+                        details: "AssertionError\n    at TestContext (file:///repo/test/pricing.test.ts:7:51)"
+                    }
+                ]
+            })
+        );
+        const finding = report.findings[0];
+        expect(finding).toMatchObject({category: "regression", jobUrl: "https://ci.example/jobs/9"});
+        expect(finding?.evidence).toEqual([
+            {
+                kind: "test",
+                ref: "pricing::caps the discount at 50%",
+                quote: "Expected values to be strictly equal:30 !== 50"
+            }
+        ]);
+        expect(finding?.trail).toMatchObject({knownHits: 0, rule: null, llm: "not_configured"});
+
+        const body = renderTriageComment(report.findings, {
+            runId: "run_1",
+            language: "en",
+            context: {
+                provider: "github",
+                repository: "acme/shop",
+                commitSha: "ee12958aaaa",
+                branch: "fix/discount",
+                pipelineUrl: "https://ci.example/runs/1",
+                isFork: false
+            }
+        });
+        expect(body).toContain(
+            "**The pipeline failed: 1 job diagnosed** · commit `ee12958` on `fix/discount` · [pipeline](https://ci.example/runs/1)"
+        );
+        expect(body).toContain("**Job**: [test](https://ci.example/jobs/9)");
+        expect(body).toContain("- `pricing::caps the discount at 50%` — `test/pricing.test.ts:7`");
+        expect(body).toContain("  > `Expected values to be strictly equal:30 !== 50`");
+        expect(body).toContain("**What it means**: The failing tests have no history of instability");
+        expect(body).toContain("1. Read the assertion messages above");
+        expect(body).toContain(
+            "Rules (network, runner resources, external services, dependencies, configuration): no match."
+        );
+        expect(body).toContain(
+            "Test history of `pricing::caps the discount at 50%`: no earlier run recorded, too early to tell whether it is flaky."
+        );
+        expect(body).toContain("LLM analysis: none, no LLM is configured");
+    });
+
+    it("puts a rule's own advice first", async () => {
+        const report = await runTriage(
+            input({jobs: [{id: "4", name: "build", log: "FATAL ERROR: JavaScript heap out of memory"}]})
+        );
+        const body = renderTriageComment(report.findings, {runId: "run_1", language: "en"});
+        expect(body).toContain("1. A retry may fail the same way: give the job more memory or disk");
+        expect(body).not.toContain("Re-run the job: this kind of failure is usually transient.");
+        expect(body).toContain("Rules: the `resources` rule matches the log.");
     });
 });

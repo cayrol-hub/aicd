@@ -1,6 +1,6 @@
 {
     "name": "@aicd-ci/agent-flaky",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Flaky test agent: scores tests and manages the quarantine",
     "license": "Apache-2.0",
     "type": "module",

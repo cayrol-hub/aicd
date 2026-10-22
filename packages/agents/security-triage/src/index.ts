@@ -21,7 +21,15 @@ export {
     type SecurityAlert,
     type Severity
 } from "./sarif.js";
-export {recordBaseline, splitNewAlerts, type SecurityBaselineRecord} from "./baseline.js";
+export {
+    hasBaseline,
+    recordBaseline,
+    recordScan,
+    SCANS_COLLECTION,
+    splitNewAlerts,
+    type SecurityBaselineRecord,
+    type SecurityScanRecord
+} from "./baseline.js";
 export {dedupeAlerts, DEFAULT_IGNORE_PATHS, globToRegExp, matchIgnorePath} from "./heuristics.js";
 export {
     buildPrompt,

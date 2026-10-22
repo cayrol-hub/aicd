@@ -1,6 +1,6 @@
 {
     "name": "@aicd-ci/metrics",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "DORA metrics computed from the aicd state",
     "license": "Apache-2.0",
     "type": "module",

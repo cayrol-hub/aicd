@@ -13,7 +13,7 @@ import {
     type StateStore
 } from "@aicd-ci/plugin-sdk";
 import {fingerprint} from "./fingerprint.js";
-import {flakiness, looksLikeTestFailure, matchRules} from "./heuristics.js";
+import {flakiness, looksLikeTestFailure, matchRules, RULES, type Flakiness, type Rule} from "./heuristics.js";
 import {buildPrompt, LlmDiagnosisSchema, SYSTEM_PROMPT, verifyEvidence} from "./llm.js";
 
 export const AGENT_NAME = "triage";
@@ -61,8 +61,45 @@ export interface TriageInput {
     now?: () => Date;
 }
 
+/**
+ * Whether the LLM analysed the job, and why not: the failure was already explained (not_needed), no provider is
+ * configured, the code comes from a fork, the budget is spent, its diagnosis had no verifiable quote (rejected), or
+ * the call failed.
+ */
+export type LlmStatus = "used" | "not_needed" | "not_configured" | "fork" | "budget" | "rejected" | "failed";
+
+/** A failing test as the comment shows it: where it is and what its assertion said. */
+export interface FailingTest {
+    id: string;
+    name: string;
+    /** File relative to the repository, with the line of the failure when the report gives it. */
+    location?: string;
+    /** First line of the failure message, verbatim from the report. */
+    message?: string;
+}
+
+/** The steps the diagnosis went through, in order. Steps after the deciding one are absent. */
+export interface TriageTrail {
+    /** Times this failure (same fingerprint) was diagnosed before; 0 when it is new. */
+    knownHits: number;
+    /** Rule that matched; null when the rules were checked without a match. */
+    rule?: Rule["id"] | null;
+    /** Test history of each failing test, when it was checked. */
+    history?: ({testId: string} & Flakiness)[];
+    llm: LlmStatus;
+}
+
+/** A finding with what the comment needs to give the full picture. */
+export interface TriageFinding extends Finding {
+    jobUrl?: string;
+    tests: FailingTest[];
+    trail: TriageTrail;
+    /** Rule-specific advice, in the report language. */
+    hint?: string;
+}
+
 export interface TriageReport {
-    findings: Finding[];
+    findings: TriageFinding[];
     llmCalls: number;
     costUsd: number;
 }
@@ -81,6 +118,8 @@ const TEXT = {
     }
 };
 
+const RULES_BY_ID = new Map(RULES.map((rule) => [rule.id, rule]));
+
 const atLeast = (a: Confidence, b: Confidence) => CONFIDENCE_LEVELS.indexOf(a) >= CONFIDENCE_LEVELS.indexOf(b);
 
 /** Failing tests that belong to a job: matched by job name in the test file or classname, else all of them. */
@@ -96,7 +135,39 @@ function actionsFor(
 ): ProposedAction[] {
     const retryable = finding.category === "flaky_test" || finding.category === "infrastructure";
     if (!retryFlaky || !retryable || !jobId || !atLeast(finding.confidence, "medium")) return [];
-    return [{type: "retry_job", jobId, reason: `${finding.category}: a retry is likely to pass`}];
+    const why = finding.category === "flaky_test" ? "flaky tests" : "an infrastructure problem";
+    return [
+        {
+            type: "retry_job",
+            jobId,
+            reason: `${finding.jobName ? `\`${finding.jobName}\`` : "the job"} failed because of ${why}: a retry is likely to pass`
+        }
+    ];
+}
+
+const firstLine = (text: string | undefined) =>
+    text
+        ?.split("\n")
+        .map((line) => line.trim())
+        .find(Boolean);
+
+/** Where a test failed: its file, with the line from the stack trace when the report has one. */
+function locate(test: TestCaseResult): string | undefined {
+    if (!test.file) return undefined;
+    const escaped = test.file.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const line = new RegExp(`${escaped}:(\\d+)`).exec(test.details ?? "")?.[1];
+    return line ? `${test.file}:${line}` : test.file;
+}
+
+function describeTest(test: TestCaseResult, redact: (text: string) => string): FailingTest {
+    const location = locate(test);
+    const message = firstLine(test.message) ?? firstLine(test.details);
+    return {
+        id: test.id,
+        name: test.name,
+        ...(location ? {location: redact(location)} : {}),
+        ...(message ? {message: redact(message)} : {})
+    };
 }
 
 /**
@@ -144,7 +215,7 @@ export async function runTriage(input: TriageInput): Promise<TriageReport> {
                   .redact(input.diff)
                   .slice(0, options.maxDiffChars ?? (options.sendCode === "full" ? 200_000 : 60_000));
 
-    const findings: Finding[] = [];
+    const findings: TriageFinding[] = [];
     let llmCalls = 0;
     let costUsd = 0;
 
@@ -153,11 +224,22 @@ export async function runTriage(input: TriageInput): Promise<TriageReport> {
         const jobTests = testsForJob(job, failing, jobs.length);
         const testIds = jobTests.map((test) => test.id);
         const fp = fingerprint(excerpt.errorLines, testIds);
-        const base = {agent: AGENT_NAME, jobId: job.id, jobName: job.name, fingerprint: fp, failingTests: testIds};
+        const tests = jobTests.map((test) => describeTest(test, input.redact));
+        const base = {
+            agent: AGENT_NAME,
+            jobId: job.id,
+            jobName: job.name,
+            ...(job.url ? {jobUrl: job.url} : {}),
+            fingerprint: fp,
+            failingTests: testIds,
+            tests
+        };
+        const trail: TriageTrail = {knownHits: 0, llm: "not_needed"};
 
-        const finish = async (finding: Omit<Finding, "actions">) => {
-            const complete: Finding = {
+        const finish = async (finding: Omit<TriageFinding, "actions" | "trail">) => {
+            const complete: TriageFinding = {
                 ...finding,
+                trail: {...trail},
                 actions: actionsFor(finding, input.jobs.length > 0 ? job.id : undefined, options.retryFlaky)
             };
             findings.push(complete);
@@ -176,6 +258,7 @@ export async function runTriage(input: TriageInput): Promise<TriageReport> {
         // 1. Known failure.
         const known = options.llmOnly ? undefined : await state.getDiagnosis(fp);
         if (known) {
+            trail.knownHits = known.hits;
             logger.debug(`job ${job.name}: known fingerprint ${fp} (${known.hits} hits)`);
             await finish({
                 ...base,
@@ -191,11 +274,15 @@ export async function runTriage(input: TriageInput): Promise<TriageReport> {
 
         // 2. Rules that explain a failure on their own.
         const rule = options.llmOnly ? undefined : matchRules(excerpt.errorLines, excerpt.text, options.language);
+        if (!options.llmOnly) trail.rule = rule?.rule ?? null;
         if (rule) {
+            const {rule: id, ...diagnosis} = rule;
+            const hint = RULES_BY_ID.get(id)?.hint?.[options.language];
             await finish({
                 ...base,
-                ...rule,
-                evidence: rule.evidence.map((e) => ({...e, ref: `log`})),
+                ...diagnosis,
+                ...(hint ? {hint} : {}),
+                evidence: diagnosis.evidence.map((e) => ({...e, ref: `log`})),
                 source: "heuristic"
             });
             continue;
@@ -209,6 +296,7 @@ export async function runTriage(input: TriageInput): Promise<TriageReport> {
                     ...flakiness(await state.getTestHistory(test.id, options.flakyWindow), options.flakyMinFlips)
                 }))
             );
+            trail.history = verdicts.map(({test, ...verdict}) => ({testId: test.id, ...verdict}));
             if (verdicts.every((verdict) => verdict.flaky)) {
                 const confidence = verdicts.every((verdict) => verdict.confidence === "high") ? "high" : "medium";
                 await finish({
@@ -228,6 +316,7 @@ export async function runTriage(input: TriageInput): Promise<TriageReport> {
         }
 
         // 4. LLM analysis, verified.
+        trail.llm = !options.useLlm || !input.llm ? "not_configured" : context.isFork ? "fork" : "budget";
         if (options.useLlm && input.llm && !context.isFork) {
             if (!budget.canSpend()) {
                 logger.warn(
@@ -269,6 +358,7 @@ export async function runTriage(input: TriageInput): Promise<TriageReport> {
                         accepted,
                         rejectedEvidence: verified.rejected
                     });
+                    trail.llm = accepted ? "used" : "rejected";
                     if (accepted) {
                         const output = response.output;
                         await finish({
@@ -285,6 +375,7 @@ export async function runTriage(input: TriageInput): Promise<TriageReport> {
                     }
                     logger.warn(`job ${job.name}: LLM diagnosis rejected (no verifiable evidence)`);
                 } catch (error) {
+                    trail.llm = "failed";
                     if (error instanceof LLMError && error.usage) {
                         llmCalls++;
                         costUsd += error.usage.costUsd;
@@ -297,9 +388,18 @@ export async function runTriage(input: TriageInput): Promise<TriageReport> {
             }
         }
 
-        // 5. Deterministic fallback.
+        // 5. Deterministic fallback. The assertion messages of the failing tests say more than the log's first error.
         const firstError = excerpt.errorLines[0];
-        const evidence = firstError ? [{kind: "log" as const, ref: "log", quote: firstError.trim()}] : [];
+        const testEvidence = tests
+            .filter((test) => test.message)
+            .slice(0, 5)
+            .map((test) => ({kind: "test" as const, ref: test.id, quote: test.message as string}));
+        const evidence =
+            testEvidence.length > 0
+                ? testEvidence
+                : firstError
+                  ? [{kind: "log" as const, ref: "log", quote: firstError.trim()}]
+                  : [];
         if (jobTests.length > 0 || looksLikeTestFailure(excerpt.text)) {
             await finish({
                 ...base,

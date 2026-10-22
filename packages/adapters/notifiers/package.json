@@ -1,6 +1,6 @@
 {
     "name": "@aicd-ci/adapter-notifiers",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Notifiers: Slack, Microsoft Teams, generic webhook",
     "license": "Apache-2.0",
     "type": "module",

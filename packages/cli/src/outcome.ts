@@ -1,4 +1,11 @@
-import {decide, executeDecisions, finalizeAction, type AgentName, type Decision} from "@aicd-ci/core";
+import {
+    decide,
+    executeDecisions,
+    finalizeAction,
+    REQUIRED_AUTONOMY,
+    type AgentName,
+    type Decision
+} from "@aicd-ci/core";
 import {describeAction, type AgentResult, type Language, type ProposedAction} from "@aicd-ci/plugin-sdk";
 import type {Session} from "./session.js";
 
@@ -25,14 +32,38 @@ export interface Conclusion {
     failingStatus: boolean;
 }
 
-const SUGGESTIONS: Record<Language, string> = {
-    en: "Suggested actions (not run: autonomy too low)",
-    fr: "Actions suggérées (non exécutées : autonomie insuffisante)"
-};
+const SUGGESTIONS = {
+    en: {
+        title: "Suggested actions, not run",
+        why: (agent: string, autonomy: string) =>
+            `aicd may only ${autonomy === "observe" ? "observe" : autonomy} here (\`agents.${agent}.autonomy: ${autonomy}\`). Do these yourself, or raise the autonomy in \`.aicd.yaml\` to let aicd do them.`,
+        needs: (required: string) => `needs \`${required}\``
+    },
+    fr: {
+        title: "Actions suggérées, non exécutées",
+        why: (agent: string, autonomy: string) =>
+            `aicd a seulement le droit de ${autonomy === "observe" ? "observer" : autonomy === "advise" ? "conseiller" : "proposer"} ici (\`agents.${agent}.autonomy: ${autonomy}\`). Faites-les vous-même, ou augmentez l'autonomie dans \`.aicd.yaml\` pour qu'aicd les fasse.`,
+        needs: (required: string) => `demande \`${required}\``
+    }
+} satisfies Record<Language, unknown>;
 
-function withSuggestions(body: string, suggestions: string[], language: Language): string {
+/** The suggestions go right before the comment's footer line (`<sub>…</sub>`), or at its end. */
+function withSuggestions(
+    body: string,
+    suggestions: {text: string; required: string}[],
+    context: {agent: string; autonomy: string; language: Language}
+): string {
     if (suggestions.length === 0) return body;
-    return `${body}\n\n**${SUGGESTIONS[language]}**\n${suggestions.map((line) => `- ${line}`).join("\n")}`;
+    const t = SUGGESTIONS[context.language];
+    const block = [
+        `**${t.title}**`,
+        "",
+        t.why(context.agent, context.autonomy),
+        "",
+        ...suggestions.map((suggestion) => `- ${suggestion.text} (${t.needs(suggestion.required)})`)
+    ].join("\n");
+    const footer = body.lastIndexOf("\n\n<sub>");
+    return footer === -1 ? `${body}\n\n${block}` : `${body.slice(0, footer)}\n\n${block}${body.slice(footer)}`;
 }
 
 /**
@@ -64,15 +95,19 @@ export async function conclude(
         const decided = others.map((action) => decide(finalizeAction(action, autonomy), autonomy, {forbidden}));
         const suggestions = decided
             .filter((decision) => decision.verdict === "downgrade")
-            .map((decision) => `${describeAction(decision.action)} — ${session.redact(decision.action.reason)}`);
+            .map((decision) => ({
+                text: `${describeAction(decision.action)} — ${session.redact(decision.action.reason)}`,
+                required: REQUIRED_AUTONOMY[decision.action.type]
+            }));
         for (const comment of comments) {
             if (comment.type !== "comment") continue;
-            decided.push(
-                decide({...comment, body: withSuggestions(comment.body, suggestions, language)}, autonomy, {forbidden})
-            );
+            const body = withSuggestions(comment.body, suggestions, {agent, autonomy, language});
+            decided.push(decide({...comment, body}, autonomy, {forbidden}));
         }
         if (comments.length === 0 && suggestions.length > 0) {
-            session.logger.info(`${result.agent}: ${suggestions.length} suggestion(s): ${suggestions.join("; ")}`);
+            session.logger.info(
+                `${result.agent}: ${suggestions.length} suggestion(s): ${suggestions.map((s) => s.text).join("; ")}`
+            );
         }
         for (const decision of decided) {
             decisions.push({agent: result.agent, decision});
